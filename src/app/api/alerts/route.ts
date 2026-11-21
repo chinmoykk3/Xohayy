@@ -1,7 +1,7 @@
 import { type NextRequest } from "next/server";
 import { alertsQuerySchema } from "@/lib/validators";
 import { getAlertsRepository } from "@/lib/alerts";
-import { okResponse, errorResponse } from "@/lib/api";
+import { conditionalOkResponse, errorResponse } from "@/lib/api";
 
 export async function GET(request: NextRequest) {
   try {
@@ -32,11 +32,13 @@ export async function GET(request: NextRequest) {
       includeExpired,
     });
 
-    return okResponse(
+    return conditionalOkResponse(
+      request,
       {
         alerts,
         fetchedAt: new Date().toISOString(),
       },
+      alerts,
       {
         cacheControl: "public, max-age=60, stale-while-revalidate=600",
       }

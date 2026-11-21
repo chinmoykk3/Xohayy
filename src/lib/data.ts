@@ -1,13 +1,4 @@
-import { z } from "zod";
 import type { District, Helpline, Facility, Alert, Hazard, Locale, KitItem } from "@/types";
-import {
-  districtSchema,
-  helplineSchema,
-  facilitySchema,
-  alertSchema,
-  localeGuideSchema,
-  kitItemSchema,
-} from "./validators";
 
 import districtsJson from "@/data/districts.json";
 import helplinesJson from "@/data/helplines.json";
@@ -48,35 +39,35 @@ const guidesMap: Record<"flood" | "landslide", Record<Locale, unknown>> = {
 };
 
 /**
- * Loads and validates seeded districts data.
+ * Loads seeded districts data.
  */
 export function getDistricts(): District[] {
-  return z.array(districtSchema).parse(districtsJson) as District[];
+  return districtsJson as District[];
 }
 
 /**
- * Loads and validates emergency helpline directory.
+ * Loads emergency helpline directory.
  */
 export function getHelplines(): Helpline[] {
-  return z.array(helplineSchema).parse(helplinesJson) as Helpline[];
+  return helplinesJson as Helpline[];
 }
 
 /**
- * Loads and validates shelters and healthcare facilities.
+ * Loads shelters and healthcare facilities.
  */
 export function getFacilities(): Facility[] {
-  return z.array(facilitySchema).parse(sheltersJson) as Facility[];
+  return sheltersJson as Facility[];
 }
 
 /**
- * Loads and validates sample disaster alerts.
+ * Loads sample disaster alerts.
  */
 export function getSampleAlerts(): Alert[] {
-  return z.array(alertSchema).parse(alertsSampleJson) as Alert[];
+  return alertsSampleJson as Alert[];
 }
 
 /**
- * Loads and validates localized guide by hazard and locale.
+ * Loads localized guide by hazard and locale.
  */
 export function getGuide(hazard: "flood" | "landslide", locale: Locale = "en"): LocaleGuide | null {
   const hazardGuides = guidesMap[hazard];
@@ -85,12 +76,12 @@ export function getGuide(hazard: "flood" | "landslide", locale: Locale = "en"): 
   const raw = hazardGuides[locale] ?? hazardGuides.en;
   if (!raw) return null;
 
-  return localeGuideSchema.parse(raw) as LocaleGuide;
+  return raw as LocaleGuide;
 }
 
 /**
- * Loads and validates emergency kit checklist items.
+ * Loads emergency kit checklist items.
  */
 export function getKitItems(): KitItem[] {
-  return z.array(kitItemSchema).parse(kitJson) as KitItem[];
+  return kitJson as KitItem[];
 }

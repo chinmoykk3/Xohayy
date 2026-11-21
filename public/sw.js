@@ -53,8 +53,10 @@ self.addEventListener("install", (event) => {
       await Promise.allSettled(
         PRECACHE_ROUTES.map(async (route) => {
           try {
-            const res = await fetch(route, { cache: "no-cache" });
+            const fullUrl = new URL(route, self.location.origin).toString();
+            const res = await fetch(fullUrl, { cache: "no-cache" });
             if (res && res.ok) {
+              await shellCache.put(fullUrl, res.clone());
               await shellCache.put(route, res);
             }
           } catch {
@@ -209,30 +211,38 @@ async function networkFirst(request, cacheName) {
  * Navigation Strategy: Network First with Cache and offline.html Fallback
  */
 async function handleNavigation(request) {
+  const url = new URL(request.url);
   try {
     const networkResponse = await fetch(request);
     if (networkResponse && networkResponse.ok) {
       const cache = await caches.open(SHELL_CACHE);
       cache.put(request, networkResponse.clone());
+      cache.put(url.pathname, networkResponse.clone());
     }
     return networkResponse;
   } catch {
-    // Try matching exact request in cache
-    const cached = await caches.match(request);
-    if (cached) {
-      return cached;
-    }
+    const cache = await caches.open(SHELL_CACHE);
+    // 1. Try matching exact request
+    let cached = await cache.match(request);
+    if (cached) return cached;
 
-    // Try matching alternate pathname (with / without trailing slash)
-    const url = new URL(request.url);
+    // 2. Try matching url.pathname
+    cached = await cache.match(url.pathname);
+    if (cached) return cached;
+
+    // 3. Try matching alternate pathname (with or without trailing slash)
     const altPath = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname + "/";
-    const altCached = await caches.match(altPath);
-    if (altCached) {
-      return altCached;
-    }
+    cached = await cache.match(altPath);
+    if (cached) return cached;
 
-    // Uncached first-visit or unvisited route offline -> fallback to offline.html
-    const fallback = await caches.match("/offline.html");
+    // 4. Try matching global caches
+    cached = await caches.match(request);
+    if (cached) return cached;
+    cached = await caches.match(url.pathname);
+    if (cached) return cached;
+
+    // 5. Uncached first-visit or unvisited route offline -> fallback to offline.html
+    const fallback = (await cache.match("/offline.html")) || (await caches.match("/offline.html"));
     if (fallback) {
       return fallback;
     }

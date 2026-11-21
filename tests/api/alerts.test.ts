@@ -68,7 +68,8 @@ describe("GET /api/alerts (Section 19)", () => {
 
 describe("GET /api/districts (Section 19)", () => {
   it("returns 200 OK with district directory and long cache headers", async () => {
-    const res = await getDistricts();
+    const req = new NextRequest("http://localhost:3000/api/districts");
+    const res = await getDistricts(req);
 
     expect(res.status).toBe(200);
 

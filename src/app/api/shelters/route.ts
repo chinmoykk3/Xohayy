@@ -1,7 +1,7 @@
 import { type NextRequest } from "next/server";
 import { sheltersQuerySchema } from "@/lib/validators";
 import { getFacilitiesRepository } from "@/lib/shelters";
-import { okResponse, errorResponse } from "@/lib/api";
+import { conditionalOkResponse, errorResponse } from "@/lib/api";
 
 export async function GET(request: NextRequest) {
   try {
@@ -30,11 +30,13 @@ export async function GET(request: NextRequest) {
       type,
     });
 
-    return okResponse(
+    return conditionalOkResponse(
+      request,
       {
         facilities,
         fetchedAt: new Date().toISOString(),
       },
+      facilities,
       {
         cacheControl: "public, max-age=3600, stale-while-revalidate=86400",
       }

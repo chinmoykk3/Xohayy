@@ -268,7 +268,9 @@ export function ShelterList({ initialFacilities, locale, className = "" }: Shelt
           aria-label={t(locale, "shelters.title")}
         >
           {filteredFacilities.map((facility) => (
-            <ShelterCard key={facility.id} facility={facility} locale={locale} />
+            <div key={facility.id} role="listitem">
+              <ShelterCard facility={facility} locale={locale} />
+            </div>
           ))}
         </div>
       ) : (

@@ -1,10 +1,51 @@
 import { NextResponse } from "next/server";
+import { createHash } from "crypto";
 import type { ApiErrorCode, ApiErrorBody } from "@/types";
 
 export interface OkResponseOptions {
   status?: number;
   headers?: HeadersInit;
   cacheControl?: string;
+}
+
+/**
+ * Computes an ETag for arbitrary data using SHA-1.
+ */
+export function computeEtag(data: unknown): string {
+  const serialized = typeof data === "string" ? data : JSON.stringify(data);
+  return `"${createHash("sha1").update(serialized).digest("hex")}"`;
+}
+
+/**
+ * Returns a standardized JSON success response with conditional ETag validation.
+ * Returns 304 Not Modified if the client's If-None-Match matches the payload ETag.
+ */
+export function conditionalOkResponse<T>(
+  request: Request,
+  data: T,
+  contentForEtag: unknown,
+  options: OkResponseOptions = {}
+): NextResponse {
+  const etag = computeEtag(contentForEtag);
+  const ifNoneMatch = request.headers.get("if-none-match");
+
+  const responseHeaders = new Headers(options.headers);
+  responseHeaders.set("ETag", etag);
+  if (options.cacheControl) {
+    responseHeaders.set("Cache-Control", options.cacheControl);
+  }
+
+  if (ifNoneMatch && (ifNoneMatch === etag || ifNoneMatch === `W/${etag}`)) {
+    return new NextResponse(null, {
+      status: 304,
+      headers: responseHeaders,
+    });
+  }
+
+  return NextResponse.json(data, {
+    status: options.status ?? 200,
+    headers: responseHeaders,
+  });
 }
 
 /**

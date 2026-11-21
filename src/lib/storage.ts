@@ -1,6 +1,5 @@
 import type { Locale, Preferences } from "@/types";
 import { DEFAULT_LOCALE, LOCALES, isValidLocale } from "@/i18n/config";
-import { preferencesSchema } from "./validators";
 
 export const STORAGE_KEY = "xahay_preferences";
 export const STORAGE_VERSION = 1;
@@ -8,6 +7,29 @@ export const STORAGE_VERSION = 1;
 export interface StoredPayload {
   version: number;
   data: Preferences;
+}
+
+/**
+ * Validates a preferences object safely without heavy runtime validation dependencies.
+ */
+function isValidPreferences(data: unknown): data is Preferences {
+  if (typeof data !== "object" || data === null) return false;
+  const p = data as Record<string, unknown>;
+  if (typeof p.locale !== "string" || !LOCALES.includes(p.locale as Locale)) return false;
+  if (p.textScale !== 1 && p.textScale !== 1.25 && p.textScale !== 1.5) return false;
+  if (typeof p.highContrast !== "boolean") return false;
+  if (typeof p.reducedMotion !== "boolean") return false;
+  if (
+    p.districtId !== undefined &&
+    (typeof p.districtId !== "string" || p.districtId.length < 1 || p.districtId.length > 64)
+  ) {
+    return false;
+  }
+  if (!Array.isArray(p.readGuides) || !p.readGuides.every((x) => typeof x === "string"))
+    return false;
+  if (!Array.isArray(p.kitChecked) || !p.kitChecked.every((x) => typeof x === "string"))
+    return false;
+  return true;
 }
 
 /**
@@ -88,12 +110,11 @@ export function readPreferences(urlLocale?: Locale): Preferences {
       return defaults;
     }
 
-    const validation = preferencesSchema.safeParse(payload.data);
-    if (!validation.success) {
+    if (!isValidPreferences(payload.data)) {
       return defaults;
     }
 
-    const stored = validation.data as Preferences;
+    const stored = payload.data;
 
     // URL locale takes precedence if explicitly provided on active route
     return {
@@ -115,8 +136,7 @@ export function writePreferences(prefs: Preferences): boolean {
     return false;
   }
 
-  const validation = preferencesSchema.safeParse(prefs);
-  if (!validation.success) {
+  if (!isValidPreferences(prefs)) {
     return false;
   }
 

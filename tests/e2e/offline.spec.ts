@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Offline Experience (Phase 17, Section 21.5, 21.7, 21.8)", () => {
+test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
   test("visit home, wait for the service worker, go offline, reload, assert the banner, assert a guide and the emergency numbers are available", async ({
     page,
     context,
@@ -68,7 +68,10 @@ test.describe("Offline Experience (Phase 17, Section 21.5, 21.7, 21.8)", () => {
       { timeout: 15000 }
     );
 
-    await page.waitForTimeout(1000);
+    // Warm critical pages
+    await page.goto("/en/emergency", { waitUntil: "networkidle" });
+    await page.goto("/en/guides", { waitUntil: "networkidle" });
+    await page.goto("/en/guides/flood", { waitUntil: "networkidle" });
 
     try {
       // 2. Disable network
@@ -95,6 +98,102 @@ test.describe("Offline Experience (Phase 17, Section 21.5, 21.7, 21.8)", () => {
       // C. Safety Guide renders offline
       await page.goto("/en/guides/flood", { waitUntil: "load" });
       await expect(page.locator("h1")).toBeVisible();
+    } finally {
+      await context.setOffline(false);
+    }
+  });
+
+  test("offline report is queued locally, then going online delivers it to the server (Phase 24, Task 2)", async ({
+    page,
+    context,
+  }) => {
+    // 1. Visit report page while online
+    await page.goto("/en/report", { waitUntil: "networkidle" });
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Report Hazard Condition" })
+    ).toBeVisible();
+
+    // Select Dhemaji as district first
+    const districtSelect = page.locator("#report-district-select");
+    await districtSelect.selectOption("dhemaji");
+
+    // Select condition type
+    const typeBtn = page.getByRole("button", { name: /Road Blocked/i });
+    await typeBtn.click();
+
+    // Fill note
+    const noteInput = page.locator("textarea[name='note']");
+    await noteInput.fill("Bridge approach submerged by floodwaters. Submitting offline test.");
+
+    try {
+      // 2. Turn network offline
+      await context.setOffline(true);
+
+      // Trigger offline event in browser
+      await page.evaluate(() => {
+        window.dispatchEvent(new Event("offline"));
+      });
+
+      // Assert offline banner is visible
+      const offlineBanner = page.locator("[role='status']").filter({ hasText: /You are offline/i });
+      await expect(offlineBanner).toBeVisible({ timeout: 5000 });
+
+      // 3. Submit report while offline
+      const submitBtn = page.getByRole("button", { name: /Submit Report/i });
+      await submitBtn.click();
+
+      // 4. Assert queued status confirmation is displayed
+      const queuedStatus = page.locator("#report-queued-status");
+      await expect(queuedStatus).toBeVisible({ timeout: 5000 });
+      await expect(queuedStatus).toContainText(/Saved on your phone/i);
+
+      // Verify item exists in IndexedDB queue
+      const queuedCount = await page.evaluate(async () => {
+        return new Promise<number>((resolve) => {
+          const req = indexedDB.open("xahay_offline_db", 1);
+          req.onsuccess = () => {
+            const db = req.result;
+            const tx = db.transaction("reports_queue", "readonly");
+            const store = tx.objectStore("reports_queue");
+            const countReq = store.count();
+            countReq.onsuccess = () => resolve(countReq.result);
+            countReq.onerror = () => resolve(0);
+          };
+          req.onerror = () => resolve(0);
+        });
+      });
+      expect(queuedCount).toBeGreaterThan(0);
+
+      // 5. Restore network connection (go back online)
+      await context.setOffline(false);
+
+      // Trigger online event to trigger queue auto-sync
+      await page.evaluate(() => {
+        window.dispatchEvent(new Event("online"));
+      });
+
+      // 6. Assert queue is delivered and drained
+      await expect
+        .poll(
+          async () => {
+            return await page.evaluate(async () => {
+              return new Promise<number>((resolve) => {
+                const req = indexedDB.open("xahay_offline_db", 1);
+                req.onsuccess = () => {
+                  const db = req.result;
+                  const tx = db.transaction("reports_queue", "readonly");
+                  const store = tx.objectStore("reports_queue");
+                  const countReq = store.count();
+                  countReq.onsuccess = () => resolve(countReq.result);
+                  countReq.onerror = () => resolve(0);
+                };
+                req.onerror = () => resolve(0);
+              });
+            });
+          },
+          { timeout: 10000, intervals: [500, 1000] }
+        )
+        .toBe(0);
     } finally {
       await context.setOffline(false);
     }

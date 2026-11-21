@@ -1,14 +1,12 @@
-import { z } from "zod";
 import type { Report, ReportType, Locale } from "@/types";
-import { reportSchema } from "./validators";
 import sampleReportsJson from "@/data/reports.sample.json";
 import { t } from "@/i18n/config";
 
 /**
- * Loads and validates sample community reports.
+ * Loads sample community reports.
  */
 export function getSampleReports(): Report[] {
-  return z.array(reportSchema).parse(sampleReportsJson) as Report[];
+  return sampleReportsJson as Report[];
 }
 
 export interface ReportsFilter {

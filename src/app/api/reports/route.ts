@@ -1,4 +1,4 @@
-import { safeJson, okResponse, errorResponse } from "@/lib/api";
+import { safeJson, okResponse, errorResponse, conditionalOkResponse } from "@/lib/api";
 import { createReportSchema, reportsQuerySchema } from "@/lib/validators";
 import { getReportsRepository } from "@/lib/db";
 import { getRateLimiter, hashClient, RATE_LIMITS } from "@/lib/rateLimit";
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       limit: 20,
     });
 
-    return okResponse(approved, {
+    return conditionalOkResponse(request, approved, approved, {
       cacheControl: "public, max-age=30, stale-while-revalidate=60",
     });
   } catch {

@@ -1,0 +1,14 @@
+"use client";
+
+import React from "react";
+import { ErrorFallback } from "@/components/common/ErrorFallback";
+
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return <ErrorFallback error={error} reset={reset} locale="en" isGlobal={true} />;
+}

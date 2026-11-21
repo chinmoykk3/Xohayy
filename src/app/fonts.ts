@@ -4,6 +4,7 @@ export const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-latin",
+  preload: true,
   fallback: [
     "system-ui",
     "-apple-system",
@@ -18,6 +19,7 @@ export const notoSansBengali = Noto_Sans_Bengali({
   subsets: ["bengali"],
   display: "swap",
   variable: "--font-bengali",
+  preload: false,
   fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
@@ -25,5 +27,6 @@ export const notoSansDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   display: "swap",
   variable: "--font-devanagari",
+  preload: false,
   fallback: ["system-ui", "-apple-system", "sans-serif"],
 });

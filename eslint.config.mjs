@@ -25,6 +25,19 @@ const eslintConfig = defineConfig([
           message: "dangerouslySetInnerHTML is strictly forbidden. Do not inject raw HTML.",
         },
       ],
+      "react/no-danger": "error",
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "JSXAttribute[name.name='dangerouslySetInnerHTML']",
+          message:
+            "dangerouslySetInnerHTML is strictly forbidden (Plan Section 24.1, ADR-005). Do not inject raw HTML.",
+        },
+        {
+          selector: "Property[key.name='dangerouslySetInnerHTML']",
+          message: "dangerouslySetInnerHTML is strictly forbidden. Do not inject raw HTML.",
+        },
+      ],
     },
   },
   {

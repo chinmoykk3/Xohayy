@@ -1,15 +1,18 @@
+import { NextRequest } from "next/server";
 import { getDistricts } from "@/lib/data";
-import { okResponse, errorResponse } from "@/lib/api";
+import { conditionalOkResponse, errorResponse } from "@/lib/api";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const districts = getDistricts();
 
-    return okResponse(
+    return conditionalOkResponse(
+      request,
       {
         districts,
         fetchedAt: new Date().toISOString(),
       },
+      districts,
       {
         cacheControl: "public, max-age=86400, stale-while-revalidate=604800",
       }

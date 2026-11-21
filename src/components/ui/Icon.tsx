@@ -32,7 +32,9 @@ export type IconName =
   | "square"
   | "volume-2"
   | "volume-x"
-  | "copy";
+  | "copy"
+  | "rotate-cw"
+  | "home";
 
 export interface IconProps {
   name: IconName;
@@ -286,6 +288,22 @@ export function Icon({ name, size = 24, className = "", ariaHidden = true, alt }
         strokeLinejoin="round"
         strokeWidth={2}
         d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
+      />
+    ),
+    "rotate-cw": (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+      />
+    ),
+    home: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
       />
     ),
   };

@@ -46,12 +46,10 @@ export function AlertsView({ locale = DEFAULT_LOCALE }: AlertsViewProps) {
 
   const [rawAlerts, setRawAlerts] = useState<Alert[]>(() => getSampleAlerts());
 
-  const districtId = district?.id;
-
   const loadAlerts = useCallback(async () => {
     try {
       const params = new URLSearchParams();
-      if (districtId) params.set("districtId", districtId);
+      if (district?.id) params.set("districtId", district.id);
       if (selectedHazard !== "all") params.set("hazard", selectedHazard);
       if (includeExpired) params.set("includeExpired", "true");
 
@@ -69,37 +67,12 @@ export function AlertsView({ locale = DEFAULT_LOCALE }: AlertsViewProps) {
     } catch {
       // Fetcher already falls back to cache; on total cold start without network, sample alerts remain
     }
-  }, [districtId, selectedHazard, includeExpired, locale]);
+  }, [district?.id, selectedHazard, includeExpired, locale]);
 
   // Fetch when filters change
   useEffect(() => {
-    let ignore = false;
-    void (async () => {
-      try {
-        const params = new URLSearchParams();
-        if (districtId) params.set("districtId", districtId);
-        if (selectedHazard !== "all") params.set("hazard", selectedHazard);
-        if (includeExpired) params.set("includeExpired", "true");
-
-        const queryStr = params.toString();
-        const url = queryStr ? `/api/alerts?${queryStr}` : "/api/alerts";
-
-        const data = await fetcher<{ alerts: Alert[]; fetchedAt: string }>(url, {
-          timeout: 6000,
-          locale,
-        });
-
-        if (!ignore && data?.alerts) {
-          setRawAlerts(data.alerts);
-        }
-      } catch {
-        // Fallback
-      }
-    })();
-    return () => {
-      ignore = true;
-    };
-  }, [districtId, selectedHazard, includeExpired, locale]);
+    loadAlerts();
+  }, [loadAlerts]);
 
   // Task 5: Avoid aggressive polling: refresh alerts on page focus and on a long interval only (5 minutes = 300,000ms)
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { MongoClient, type Db } from "mongodb";
+import { MongoClient, type Db, type ObjectId } from "mongodb";
 import type {
   Report,
   ReportStatus,
@@ -52,6 +52,7 @@ export interface ReportsRepository {
 }
 
 interface MongoReportDoc {
+  _id?: ObjectId;
   id: string;
   districtId: string;
   type: ReportType;
@@ -126,9 +127,8 @@ export class MemoryReportsRepository implements ReportsRepository {
     // Sort newest first
     result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-    if (filter?.limit) {
-      result = result.slice(0, filter.limit);
-    }
+    const effectiveLimit = Math.min(filter?.limit || 50, 100);
+    result = result.slice(0, effectiveLimit);
 
     return result;
   }
@@ -229,9 +229,8 @@ export class MongoReportsRepository implements ReportsRepository {
     if (filter?.districtId) query.districtId = filter.districtId;
 
     let cursor = coll.find(query).sort({ createdAt: -1 });
-    if (filter?.limit) {
-      cursor = cursor.limit(filter.limit);
-    }
+    const effectiveLimit = Math.min(filter?.limit || 50, 100);
+    cursor = cursor.limit(effectiveLimit);
 
     const docs = await cursor.toArray();
     return docs.map((doc) => ({
@@ -304,7 +303,7 @@ export class MongoAlertsRepository implements AlertsRepository {
 
   async getAlerts(options?: AlertsFilterOptions): Promise<Alert[]> {
     const db = await this.dbPromise;
-    const docs = await db.collection<MongoAlertDoc>("alerts").find({}).toArray();
+    const docs = await db.collection<MongoAlertDoc>("alerts").find({}).limit(100).toArray();
     const rawAlerts = docs.map((d) => ({
       id: d.id,
       districtId: d.districtId,
@@ -356,7 +355,7 @@ export class MongoFacilitiesRepository implements FacilitiesRepository {
 
   async find(filter?: FacilitiesFilter, locale: Locale = "en"): Promise<Facility[]> {
     const db = await this.dbPromise;
-    const docs = await db.collection<MongoFacilityDoc>("facilities").find({}).toArray();
+    const docs = await db.collection<MongoFacilityDoc>("facilities").find({}).limit(200).toArray();
     const rawFacilities = docs.map((d) => ({
       id: d.id,
       districtId: d.districtId,
