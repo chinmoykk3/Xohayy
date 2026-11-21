@@ -12,9 +12,13 @@ const PUBLIC_FILE = /\.(.*)$/;
 export function generateCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV === "development";
 
+  const scriptDirective = isDev
+    ? "script-src 'self' 'unsafe-eval' 'unsafe-inline'"
+    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`;
+
   const directives = [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${isDev ? "'unsafe-eval'" : ""}`.trim(),
+    scriptDirective,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://unpkg.com",
     "font-src 'self' data:",

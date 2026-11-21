@@ -1,69 +1,63 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { DistrictSelect } from "@/components/alerts/DistrictSelect";
+import { Dialog } from "@/components/ui/Dialog";
+import { ShareLocation } from "@/components/emergency/ShareLocation";
 import { useDistrict } from "@/hooks/useDistrict";
 import { useOnlineStatus, toggleSimulateOffline } from "@/hooks/useOnlineStatus";
+import { DEFAULT_LOCALE } from "@/i18n/config";
 import type { Locale } from "@/types";
 
 interface HomeContentProps {
   locale: Locale;
 }
 
-interface FrequentDistrict {
-  id: string;
-  nameEn: string;
-  nameLocal?: string;
-}
-
-const FREQUENT_DISTRICTS: FrequentDistrict[] = [
-  { id: "dhemaji", nameEn: "Dhemaji", nameLocal: "ধেমাজি" },
-  { id: "lakhimpur", nameEn: "Lakhimpur", nameLocal: "লখিমপুৰ" },
-  { id: "majuli", nameEn: "Majuli", nameLocal: "মাজুলী" },
-  { id: "dibrugarh", nameEn: "Dibrugarh", nameLocal: "ডিব্ৰুগড়" },
-  { id: "barpeta", nameEn: "Barpeta", nameLocal: "বৰপেটা" },
-  { id: "morigaon", nameEn: "Morigaon", nameLocal: "মৰিগাঁও" },
-  { id: "kamrup-metro", nameEn: "Kamrup Metro" },
-  { id: "cachar", nameEn: "Cachar" },
+const FREQUENT_DISTRICTS = [
+  { id: "dhemaji", en: "Dhemaji", as: "ধেমাজি" },
+  { id: "lakhimpur", en: "Lakhimpur", as: "লখিমপুৰ" },
+  { id: "majuli", en: "Majuli", as: "মাজুলী" },
+  { id: "dibrugarh", en: "Dibrugarh", as: "ডিব্ৰুগড়" },
+  { id: "barpeta", en: "Barpeta", as: "বৰপেটা" },
+  { id: "morigaon", en: "Morigaon", as: "মৰিগাঁও" },
+  { id: "kamrup-metro", en: "Kamrup Metro", as: "কামৰূপ মহানগৰ" },
+  { id: "cachar", en: "Cachar", as: "কাছাৰ" },
 ];
 
-export function HomeContent({ locale }: HomeContentProps) {
+export function HomeContent({ locale = DEFAULT_LOCALE }: HomeContentProps) {
   const { district, setDistrict } = useDistrict();
   const isOnline = useOnlineStatus();
-  const [activeScript, setActiveScript] = useState<"en" | "as" | "hi">(
-    locale === "as" ? "as" : locale === "hi" ? "hi" : "en"
-  );
 
-  // Set default to Dhemaji if not already set, to match the design screenshot
-  useEffect(() => {
-    if (!district) {
-      setDistrict("dhemaji");
-    }
-  }, [district, setDistrict]);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isDispatchModalOpen, setIsDispatchModalOpen] = useState(false);
 
+  // Active district fallback to Dhemaji for demonstration of live telemetry
   const activeDistrictId = district?.id || "dhemaji";
   const activeDistrictName = district?.name[locale] || district?.name.en || "Dhemaji";
 
   return (
-    <div className="space-y-4">
-      {/* 1. Sync & Offline Status Ribbon */}
-      <div className="w-full bg-[#f0fdfa] border border-[#99f6e4] rounded-lg px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-slate-800 shadow-xs">
-        <div className="flex flex-wrap items-center gap-2 font-medium">
-          <span className="text-teal-600 font-bold flex items-center gap-1">
-            <Icon name="wifi" size={16} />
-            <span className="font-semibold tracking-wide">
+    <div className="space-y-5 pb-12">
+      {/* 1. Connection & Local Cache Status Banner */}
+      <div className="w-full bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/60 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <span className="flex items-center gap-1.5 font-bold text-sky-900 dark:text-sky-200">
+            <Icon
+              name={isOnline ? "wifi" : "wifi-off"}
+              size={16}
+              className="text-sky-600 dark:text-sky-400"
+            />
+            <span>
               {isOnline
-                ? "CONNECTED \u2022 Local Cache Synchronized"
-                : "OFFLINE \u2022 Operating from Local Cache"}
+                ? "CONNECTED • Local Cache Synchronized"
+                : "DISCONNECTED • Operating on Local Mesh Cache"}
             </span>
           </span>
-          <span className="text-slate-500 hidden md:inline">&bull;</span>
-          <span className="text-slate-600 hidden md:inline">
+          <span className="text-slate-500 dark:text-slate-400 hidden sm:inline">
             Last Synced: Today 08:30 IST (ASDMA &amp; CWC Data Feed)
           </span>
-          <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold text-[11px] tracking-wide">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold text-[11px]">
             OFFLINE READY / অফলাইন সক্ৰিয়
           </span>
         </div>
@@ -71,342 +65,299 @@ export function HomeContent({ locale }: HomeContentProps) {
         <button
           type="button"
           onClick={toggleSimulateOffline}
-          className="text-xs px-3 py-1.5 rounded-md border border-teal-300 bg-white hover:bg-teal-50 text-slate-700 font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ml-auto"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors cursor-pointer"
         >
-          <Icon name="radio" size={14} className="text-teal-600" />
-          <span>{isOnline ? "Simulate Field Offline" : "Restore Online Network"}</span>
+          <span>⚡</span>
+          <span>{isOnline ? "Simulate Field Offline" : "Restore Online"}</span>
         </button>
       </div>
 
-      {/* 2. Active Monitoring Basin & District Selection Bar */}
-      <div className="bg-white border border-slate-200 rounded-lg p-4 space-y-3 shadow-xs">
-        {/* Top Row: Basin Label & Script Selector */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">
-            ACTIVE MONITORING BASIN / জিলা নিৰ্বাচন
-          </span>
+      {/* 2. Active Monitoring Basin & District Switcher */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
+          <div className="flex items-center gap-2 text-slate-800 dark:text-slate-100 font-extrabold text-xs sm:text-sm tracking-wide uppercase">
+            <Icon name="map-pin" size={17} className="text-red-600" />
+            <span>ACTIVE MONITORING BASIN / জিলা নিৰ্বাচন</span>
+          </div>
 
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-            <span className="text-[11px] text-slate-400">SCRIPT:</span>
-            <div className="flex items-center rounded-md border border-slate-200 bg-slate-50 p-0.5">
-              <button
-                type="button"
-                onClick={() => setActiveScript("en")}
-                className={`px-2 py-0.5 rounded text-xs ${
-                  activeScript === "en"
-                    ? "bg-white shadow-xs text-slate-900 font-bold"
-                    : "text-slate-500"
-                }`}
-              >
-                EN (English)
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveScript("as")}
-                className={`px-2 py-0.5 rounded text-xs ${
-                  activeScript === "as"
-                    ? "bg-white shadow-xs text-slate-900 font-bold"
-                    : "text-slate-500"
-                }`}
-              >
-                অসমীয়া (AS)
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveScript("hi")}
-                className={`px-2 py-0.5 rounded text-xs ${
-                  activeScript === "hi"
-                    ? "bg-white shadow-xs text-slate-900 font-bold"
-                    : "text-slate-500"
-                }`}
-              >
-                हिन्दी (HI)
-              </button>
-            </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <span className="hidden sm:inline">SCRIPT:</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              EN (English)
+            </span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              অসমীয়া (AS)
+            </span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              हिन्दी (HI)
+            </span>
           </div>
         </div>
 
-        {/* Middle Row: Accessible District Search Combobox */}
-        <div>
-          <DistrictSelect locale={locale} onSelect={(d) => setDistrict(d?.id ?? null)} />
-        </div>
+        {/* District Combobox and Quick Chips */}
+        <div className="space-y-3">
+          <div className="max-w-md">
+            <DistrictSelect locale={locale} onSelect={(d) => setDistrict(d?.id ?? null)} />
+          </div>
 
-        {/* Bottom Row: Frequent Districts Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          <span className="text-xs font-semibold text-slate-500 mr-1">Frequent:</span>
-          {FREQUENT_DISTRICTS.map((item) => {
-            const isSelected = activeDistrictId === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setDistrict(item.id)}
-                className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors cursor-pointer ${
-                  isSelected
-                    ? "bg-red-600 text-white shadow-xs font-bold"
-                    : "bg-sky-50 text-slate-700 border border-sky-200 hover:bg-sky-100"
-                }`}
-              >
-                {item.nameEn}
-                {item.nameLocal ? ` \u2022 ${item.nameLocal}` : ""}
-              </button>
-            );
-          })}
+          {/* Frequent District Chips */}
+          <div className="flex items-center flex-wrap gap-1.5 pt-1 text-xs">
+            <span className="font-bold text-slate-600 dark:text-slate-400 mr-1">Frequent:</span>
+            {FREQUENT_DISTRICTS.map((chip) => {
+              const isSelected = activeDistrictId === chip.id;
+              return (
+                <button
+                  key={chip.id}
+                  type="button"
+                  onClick={() => setDistrict(chip.id)}
+                  className={`px-3 py-1.5 rounded-full font-semibold transition-colors cursor-pointer ${
+                    isSelected
+                      ? "bg-red-700 text-white shadow-xs font-bold ring-2 ring-red-400/50"
+                      : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                  }`}
+                >
+                  {chip.en} &bull; {chip.as}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* 3. Top 4 Quick Action / SOS Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        {/* Card 1: CALL 112 (Solid Crimson Red) */}
+      {/* 3. Emergency Quick Action Cards Grid (4 Columns) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        {/* Card 1: CALL 112 (Red) */}
         <a
           href="tel:112"
-          className="bg-red-600 hover:bg-red-700 text-white rounded-lg p-3.5 flex items-center justify-between shadow-sm transition-transform active:scale-[0.99] cursor-pointer group"
+          className="bg-red-600 hover:bg-red-700 text-white rounded-xl p-4 flex items-center justify-between shadow-xs transition-transform transform active:scale-[0.99] group"
         >
           <div className="flex items-center gap-3">
-            <span className="p-2.5 rounded-full bg-white/20 text-white shrink-0">
-              <Icon name="phone" size={22} />
-            </span>
+            <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <Icon name="phone" size={22} className="text-white" />
+            </div>
             <div>
-              <h2 className="text-base font-black tracking-tight leading-none text-white">
-                CALL 112
-              </h2>
-              <p className="text-[11px] text-red-100 font-medium mt-1 leading-tight">
-                জৰুৰীকালীন সাহায্য &bull; All India SOS
-              </p>
+              <div className="text-xl font-black tracking-tight leading-none">CALL 112</div>
+              <div className="text-xs text-red-100 font-medium mt-1">
+                জৰুৰীকালীন সাহায্য &bull; ALL India SOS
+              </div>
             </div>
           </div>
-          <span className="text-white text-lg font-bold group-hover:translate-x-0.5 transition-transform">
-            &rarr;
-          </span>
+          <Icon
+            name="arrow-right"
+            size={20}
+            className="text-white/80 group-hover:translate-x-1 transition-transform"
+          />
         </a>
 
-        {/* Card 2: DISASTER HELPLINE (Soft Slate Gray) */}
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 flex flex-col justify-between shadow-xs">
-          <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+        {/* Card 2: DISASTER HELPLINE (White) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3.5 flex flex-col justify-between shadow-xs">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wide">
             <span>DISASTER HELPLINE</span>
-            <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-mono">
+            <span className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px]">
               24x7 DEOC
             </span>
           </div>
-          <div className="flex items-center justify-between text-xs font-bold text-slate-800 pt-2">
+          <div className="grid grid-cols-2 gap-2 pt-2">
             <a
               href="tel:1070"
-              className="flex items-center gap-1.5 hover:text-red-600 transition-colors py-1"
+              className="flex items-center justify-center gap-1.5 py-2 px-2 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700/80 rounded-lg text-xs font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 transition-colors"
             >
-              <Icon name="phone" size={14} className="text-slate-500" />
+              <Icon name="phone" size={13} className="text-sky-600 dark:text-sky-400" />
               <span>1070 State</span>
             </a>
-            <span className="text-slate-300">|</span>
             <a
               href="tel:1077"
-              className="flex items-center gap-1.5 hover:text-red-600 transition-colors py-1"
+              className="flex items-center justify-center gap-1.5 py-2 px-2 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700/80 rounded-lg text-xs font-bold text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 transition-colors"
             >
-              <Icon name="phone" size={14} className="text-slate-500" />
+              <Icon name="phone" size={13} className="text-sky-600 dark:text-sky-400" />
               <span>1077 Dist</span>
             </a>
           </div>
         </div>
 
-        {/* Card 3: 3 Relief Camps (Soft Mint Green) */}
+        {/* Card 3: Relief Camps (Mint/Teal) */}
         <Link
           href={`/${locale}/shelters`}
-          className="bg-[#ecfdf5] border border-[#a7f3d0] hover:bg-[#d1fae5] rounded-lg p-3.5 flex items-center justify-between shadow-xs transition-colors group cursor-pointer"
+          className="bg-teal-50/80 dark:bg-teal-950/30 border border-teal-200 dark:border-teal-800/50 hover:border-teal-300 dark:hover:border-teal-700 rounded-xl p-4 flex items-center justify-between shadow-xs transition-colors group"
         >
           <div className="flex items-center gap-3">
-            <span className="p-2 rounded-lg bg-emerald-100 text-emerald-800 shrink-0">
+            <div className="w-11 h-11 rounded-full bg-teal-600 text-white flex items-center justify-center shrink-0 shadow-xs">
               <Icon name="tent" size={22} />
-            </span>
+            </div>
             <div>
-              <h2 className="text-sm sm:text-base font-bold text-slate-900 leading-none">
+              <div className="text-base font-black text-slate-900 dark:text-slate-100 leading-tight">
                 3 Relief Camps
-              </h2>
-              <p className="text-[11px] text-emerald-800 font-medium mt-1 leading-tight">
+              </div>
+              <div className="text-xs text-teal-800 dark:text-teal-300 font-medium mt-0.5">
                 Active &amp; Stocked Nearby
-              </p>
+              </div>
             </div>
           </div>
-          <span className="text-emerald-700 text-base font-bold group-hover:translate-x-0.5 transition-transform">
-            &gt;
-          </span>
+          <Icon
+            name="arrow-right"
+            size={18}
+            className="text-teal-600 dark:text-teal-400 group-hover:translate-x-1 transition-transform"
+          />
         </Link>
 
-        {/* Card 4: Share GPS SOS (Solid Cyan/Teal) */}
-        <Link
-          href={`/${locale}/emergency`}
-          className="bg-[#0e7490] hover:bg-[#0891b2] text-white rounded-lg p-3.5 flex items-center justify-between shadow-sm transition-transform active:scale-[0.99] cursor-pointer group"
+        {/* Card 4: Share GPS SOS (Vibrant Sky Blue) */}
+        <button
+          type="button"
+          onClick={() => setIsShareModalOpen(true)}
+          className="bg-sky-600 hover:bg-sky-700 text-white rounded-xl p-4 flex items-center justify-between shadow-xs transition-transform transform active:scale-[0.99] group text-left cursor-pointer"
         >
           <div className="flex items-center gap-3">
-            <span className="p-2.5 rounded-full bg-white/20 text-white shrink-0">
-              <Icon name="navigation" size={20} />
-            </span>
+            <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <Icon name="navigation" size={22} className="text-white" />
+            </div>
             <div>
-              <h2 className="text-base font-black tracking-tight leading-none text-white">
-                Share GPS SOS
-              </h2>
-              <p className="text-[11px] text-cyan-100 font-medium mt-1 leading-tight">
+              <div className="text-base font-black tracking-tight leading-tight">Share GPS SOS</div>
+              <div className="text-xs text-sky-100 font-medium mt-0.5">
                 WhatsApp &amp; SMS Payload
-              </p>
+              </div>
             </div>
           </div>
-          <span className="text-white text-base font-bold group-hover:translate-x-0.5 transition-transform">
-            <Icon name="send" size={16} />
-          </span>
-        </Link>
+          <Icon
+            name="arrow-right"
+            size={18}
+            className="text-white/80 group-hover:translate-x-1 transition-transform"
+          />
+        </button>
       </div>
 
-      {/* 4. Main 2-Column Dashboard Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        {/* ================= LEFT COLUMN (~65% / 7.5 of 12 cols) ================= */}
-        <div className="lg:col-span-7 xl:col-span-8 space-y-4">
-          {/* Card A: Severe Hazard Warning Banner & Gauges */}
-          <section
-            aria-labelledby="hazard-warning-heading"
-            className="border border-red-200 rounded-lg overflow-hidden bg-white shadow-xs"
-          >
-            {/* Top Red Alert Header */}
-            <div className="bg-[#b91c1c] text-white px-4 py-2.5 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Icon name="warning" size={18} className="text-white" />
-                <h2
-                  id="hazard-warning-heading"
-                  className="text-xs sm:text-sm font-black tracking-wide uppercase"
-                >
-                  SEVERE HAZARD WARNING - উচ্চ বিপদসংকেত
-                </h2>
+      {/* 4. Main Two-Column Section (60% Left / 40% Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        {/* LEFT COLUMN: Severe Hazard Warning & Verified Ground Reports */}
+        <div className="lg:col-span-7 space-y-5">
+          {/* A. Severe Hazard Warning Card */}
+          <div className="bg-white dark:bg-slate-900 border-2 border-red-500 rounded-xl overflow-hidden shadow-sm">
+            {/* Red Card Header Bar */}
+            <div className="bg-red-600 px-4 py-2.5 flex items-center justify-between text-white">
+              <div className="flex items-center gap-2 font-black text-sm tracking-wide">
+                <span>⚠️</span>
+                <span>SEVERE HAZARD WARNING &bull; উচ্চ বিপদশংকা</span>
               </div>
-              <span className="bg-red-950/80 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-red-800 text-[11px] font-extrabold uppercase tracking-wider text-red-100 border border-red-700">
                 ASDMA LEVEL-3
               </span>
             </div>
 
-            {/* Warning Body */}
+            {/* Jurisdiction & Tags */}
             <div className="p-4 sm:p-5 space-y-4">
-              {/* Target Jurisdiction & Risk Badges */}
-              <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="flex flex-wrap items-start justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                 <div>
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     TARGET JURISDICTION
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight leading-tight">
+                  </div>
+                  <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
                     {activeDistrictName} District
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
+                  </h1>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                     Northern Bank Brahmaputra Basin &amp; Subansiri Drainage
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-1.5 shrink-0">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-red-300 bg-red-50 text-red-700 text-xs font-bold">
-                    <span className="text-red-600">&#9888;</span>
-                    Severe Flood Warning
+                <div className="flex flex-col sm:flex-row items-end gap-1.5 pt-1">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-100 dark:bg-red-950/70 text-red-800 dark:text-red-300 font-bold text-xs border border-red-200 dark:border-red-900">
+                    <span>⚠️</span> Severe Flood Warning
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-rose-300 bg-rose-50 text-rose-800 text-xs font-bold">
-                    <span className="text-rose-600">&#9888;</span>
-                    Moderate Slide Risk
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-purple-100 dark:bg-purple-950/70 text-purple-800 dark:text-purple-300 font-bold text-xs border border-purple-200 dark:border-purple-900">
+                    <span>⚠️</span> Moderate Slide Risk
                   </span>
                 </div>
               </div>
 
-              {/* Inset Gauges & Weather Card */}
-              <div className="bg-slate-50/90 border border-slate-200 rounded-lg p-3.5 sm:p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Column 1: Brahmaputra River Gauge */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                      <Icon name="droplets" size={16} className="text-blue-600" />
-                      Brahmaputra Gauge
+              {/* Live Telemetry Gauges (2 Sub-Cards) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {/* Sub-Card 1: Brahmaputra River Gauge */}
+                <div className="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <Icon name="droplets" size={15} className="text-blue-600" />
+                      <span>Brahmaputra Gauge</span>
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-red-600 text-white font-black text-[10px] tracking-wider uppercase">
-                      RISING &and;
+                    <span className="px-1.5 py-0.5 rounded bg-red-600 text-white text-[10px] font-black uppercase">
+                      RISING ▲
                     </span>
                   </div>
 
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl sm:text-3xl font-black text-slate-900 font-mono tracking-tight">
-                      104.80
+                    <span className="text-2xl font-black text-slate-900 dark:text-slate-100">
+                      104.80 <span className="text-sm font-semibold text-slate-500">m</span>
                     </span>
-                    <span className="text-xs font-bold text-red-600 font-mono">
+                    <span className="text-xs font-extrabold text-red-600 dark:text-red-400">
                       +0.95m above Danger Level
                     </span>
                   </div>
 
-                  {/* Meter Track Bar */}
-                  <div className="space-y-1">
-                    <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden relative">
-                      {/* Danger indicator bar */}
-                      <div
-                        className="h-full bg-gradient-to-r from-blue-500 via-amber-500 to-red-600 rounded-full"
-                        style={{ width: "88%" }}
-                      />
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-500 font-mono">
-                      <span>Warning: 102.5m</span>
-                      <span className="text-amber-700 font-semibold">Danger: 103.85m</span>
-                      <span className="text-red-700 font-bold">Peak: 106.0m</span>
-                    </div>
+                  {/* Level Marks */}
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 flex justify-between pt-1 border-t border-slate-200 dark:border-slate-700">
+                    <span>Warning: 102.5m</span>
+                    <span className="text-red-600 dark:text-red-400 font-semibold">
+                      Danger: 103.85m
+                    </span>
+                    <span>Peak: 106.0m</span>
                   </div>
 
-                  <p className="text-[10px] text-slate-500">
+                  {/* Visual Progress Bar */}
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden flex">
+                    <div className="bg-blue-500 h-full w-[65%]" />
+                    <div className="bg-amber-500 h-full w-[15%]" />
+                    <div className="bg-red-600 h-full w-[12%]" />
+                  </div>
+
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 pt-0.5">
                     Station: Nematighat / Dhemaji CWC Station #04
-                  </p>
+                  </div>
                 </div>
 
-                {/* Column 2: Precipitation Alert */}
-                <div className="space-y-2 md:border-l md:border-slate-200 md:pl-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                      <Icon name="activity" size={16} className="text-cyan-600" />
-                      Precipitation Alert
+                {/* Sub-Card 2: Precipitation Alert */}
+                <div className="bg-slate-50 dark:bg-slate-800/60 rounded-xl p-3.5 border border-slate-200 dark:border-slate-700 space-y-2">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
+                    <span className="flex items-center gap-1.5">
+                      <span>🌧️</span>
+                      <span>Precipitation Alert</span>
                     </span>
-                    <span className="text-[10px] text-slate-500 font-medium">IMD Automated</span>
+                    <span className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 text-[10px] font-bold">
+                      IMD Automated
+                    </span>
                   </div>
 
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl sm:text-3xl font-black text-slate-900 font-mono tracking-tight">
-                      84.0
+                    <span className="text-2xl font-black text-slate-900 dark:text-slate-100">
+                      84.0 <span className="text-sm font-semibold text-slate-500">mm</span>
                     </span>
-                    <span className="text-xs font-bold text-slate-600">
-                      mm Recorded last 24 hrs
+                    <span className="text-xs text-slate-600 dark:text-slate-400">
+                      Recorded last 24 hrs
                     </span>
                   </div>
 
-                  {/* Sparkline Curve SVG */}
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-slate-600 font-medium">
-                        Forecast (Next 12h): Heavy (75-115mm)
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded bg-red-100 text-red-700 font-bold text-[10px]">
-                        Red Watch
-                      </span>
-                    </div>
-                    <svg className="w-full h-7 text-cyan-600" viewBox="0 0 200 30" fill="none">
-                      <path
-                        d="M0 25 C40 22, 80 18, 120 12 C150 8, 180 5, 200 2"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                      />
-                      <circle cx="200" cy="2" r="3" fill="#dc2626" />
-                    </svg>
+                  {/* Forecast */}
+                  <div className="text-[11px] text-slate-700 dark:text-slate-300 flex items-center justify-between pt-1 border-t border-slate-200 dark:border-slate-700">
+                    <span>Forecast (Next 12h): Heavy (75-110mm)</span>
+                    <span className="px-1.5 py-0.2 rounded bg-red-600 text-white font-bold text-[10px]">
+                      Red Watch
+                    </span>
                   </div>
 
-                  <p className="text-[10px] text-slate-500">
+                  {/* Visual Rainfall Bar */}
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden">
+                    <div className="bg-sky-600 h-full w-[82%]" />
+                  </div>
+
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 pt-0.5">
                     Heavy downpour concentrated over upper catchment.
-                  </p>
+                  </div>
                 </div>
               </div>
 
-              {/* Immediate Public Directive Alert Box */}
-              <div className="bg-[#fef2f2] border border-[#fecaca] rounded-lg p-4 space-y-3">
-                <div className="flex items-center gap-2 text-red-800">
-                  <Icon name="bell" size={18} className="text-red-700 shrink-0" />
-                  <h4 className="text-xs sm:text-sm font-black tracking-wide uppercase">
-                    IMMEDIATE PUBLIC DIRECTIVE / বাধ্যতামূলক নিৰ্দেশনা
-                  </h4>
+              {/* Immediate Public Directive */}
+              <div className="bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 rounded-xl p-4 space-y-3">
+                <div className="flex items-center gap-2 text-red-700 dark:text-red-400 font-extrabold text-xs sm:text-sm">
+                  <span>🚨</span>
+                  <span>IMMEDIATE PUBLIC DIRECTIVE / বাধ্যতামূলক নিৰ্দেশনা</span>
                 </div>
-
-                <p className="text-xs sm:text-sm text-slate-800 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
                   Low-lying wards 4 to 9 evacuation initiated by SDRF &amp; District Administration.
                   Move immediately to designated high embankments. Keep domestic livestock secured
                   at Gogamukh High School Relief Compound.
@@ -415,294 +366,298 @@ export function HomeContent({ locale }: HomeContentProps) {
                 <div className="flex flex-wrap items-center gap-2.5 pt-1">
                   <Link
                     href={`/${locale}/shelters`}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#b91c1c] hover:bg-red-800 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs transition-colors"
                   >
-                    <Icon name="navigation" size={15} />
+                    <Icon name="navigation" size={14} />
                     <span>Navigate to Safe Embankment</span>
                   </Link>
-
-                  <a
-                    href="tel:1077"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs sm:text-sm shadow-xs transition-colors cursor-pointer"
+                  <button
+                    type="button"
+                    onClick={() => setIsDispatchModalOpen(true)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs transition-colors cursor-pointer"
                   >
-                    <Icon name="phone" size={15} className="text-slate-600" />
+                    <Icon name="file-text" size={14} />
                     <span>District EOC Dispatch</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* Card B: Verified Ground Reports */}
-          <section
-            aria-labelledby="ground-reports-heading"
-            className="border border-slate-200 rounded-lg bg-white p-4 sm:p-5 space-y-3.5 shadow-xs"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Icon name="shield" size={18} className="text-teal-600" />
-                <h3 id="ground-reports-heading" className="text-base font-bold text-slate-900">
-                  Verified Ground Reports
-                </h3>
+          {/* B. Verified Ground Reports Feed */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-sm">
+                <Icon name="check" size={17} className="text-emerald-600" />
+                <span>Verified Ground Reports</span>
               </div>
               <Link
                 href={`/${locale}/report`}
-                className="text-xs font-bold text-teal-700 hover:text-teal-900 hover:underline flex items-center gap-1"
+                className="text-xs font-bold text-sky-600 hover:text-sky-700 dark:text-sky-400 flex items-center gap-1"
               >
                 <span>Submit Field Report</span>
-                <span className="text-sm font-bold">&oplus;</span>
+                <span>⊕</span>
               </Link>
             </div>
 
-            {/* Report 1 */}
-            <div className="border border-slate-200 rounded-lg p-3.5 space-y-2 hover:bg-slate-50/70 transition-colors">
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 font-bold text-slate-900">
-                  <span className="w-5 h-5 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs">
-                    &bull;
-                  </span>
+            {/* Report 1: Road Inundation */}
+            <div className="space-y-1.5 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div className="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-slate-100">
+                <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
+                  <span>⚠️</span>
                   <span>NH-15 Submerged near Gogamukh Bypass</span>
-                </div>
-                <span className="text-slate-400 font-mono text-[11px] font-semibold">
+                </span>
+                <span className="text-[11px] text-slate-500 uppercase tracking-wide">
                   35 MINS AGO
                 </span>
               </div>
-
-              <blockquote className="text-xs sm:text-sm text-slate-700 italic leading-relaxed pl-3 border-l-2 border-red-300">
+              <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed italic">
                 &ldquo;NH-15 submerged under 1.5 ft rushing water near Gogamukh bypass. Small
                 vehicles &amp; auto-rickshaws completely stranded. Heavy trucks crawling. Local
                 volunteers assisting pedestrians across railway culvert.&rdquo;
-              </blockquote>
-
-              <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-100">
-                <span className="text-emerald-700 font-medium">
-                  &check; Approved Volunteer Report &bull; Dhemaji Quick Reaction Unit
+              </p>
+              <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1">
+                <span className="text-emerald-700 dark:text-emerald-400 font-semibold flex items-center gap-1">
+                  <span>✓</span> Approved Volunteer Report &bull; Dhemaji Quick Reaction Unit
                 </span>
-                <span className="font-mono text-slate-400">
-                  GPS: 27.4811&deg; N, 94.5422&deg; E
-                </span>
+                <span>GPS: 27.4811° N, 94.5422° E</span>
               </div>
             </div>
 
-            {/* Report 2 */}
-            <div className="border border-slate-200 rounded-lg p-3.5 space-y-2 hover:bg-slate-50/70 transition-colors">
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 font-bold text-slate-900">
-                  <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs">
-                    &bull;
-                  </span>
+            {/* Report 2: Relief Camp Active */}
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center justify-between text-xs font-bold text-slate-900 dark:text-slate-100">
+                <span className="flex items-center gap-1.5 text-sky-700 dark:text-sky-400">
+                  <span>⛺</span>
                   <span>Relief Camp Operational at Dhemaji Higher Secondary</span>
-                </div>
-                <span className="text-slate-400 font-mono text-[11px] font-semibold">1 HR AGO</span>
+                </span>
+                <span className="text-[11px] text-slate-500 uppercase tracking-wide">1 HR AGO</span>
               </div>
-
-              <blockquote className="text-xs sm:text-sm text-slate-700 italic leading-relaxed pl-3 border-l-2 border-blue-300">
+              <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed italic">
                 &ldquo;Relief Camp formally activated at Dhemaji Higher Secondary School campus. 2x
                 2,000L clean drinking water tanks delivered. Medical officer on site with ORS
                 packets and antivenom supplies. Capacity for ~450 individuals.&rdquo;
-              </blockquote>
-
-              <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-100">
-                <span className="text-slate-700 font-medium">SDRF Ground Team Station Alpha</span>
-                <span className="font-semibold text-slate-700">Capacity: 142/450 Occupied</span>
+              </p>
+              <div className="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1">
+                <span className="text-slate-600 dark:text-slate-400 font-medium">
+                  SDRF Ground Team Station Alpha
+                </span>
+                <span className="font-bold text-slate-700 dark:text-slate-300">
+                  Capacity: 142/450 Occupied
+                </span>
               </div>
             </div>
-          </section>
+          </div>
         </div>
 
-        {/* ================= RIGHT COLUMN (~35% / 4.5 of 12 cols) ================= */}
-        <div className="lg:col-span-5 xl:col-span-4 space-y-4">
-          {/* Card C: Official Advisories */}
-          <section
-            aria-labelledby="official-advisories-heading"
-            className="border border-slate-200 rounded-lg bg-white p-4 space-y-3.5 shadow-xs"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Icon name="bell" size={17} className="text-red-600" />
-                <h3 id="official-advisories-heading" className="text-sm font-bold text-slate-900">
-                  Official Advisories
-                </h3>
+        {/* RIGHT COLUMN: Official Advisories, Inundation Map, Kit Card */}
+        <div className="lg:col-span-5 space-y-5">
+          {/* A. Official Advisories */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-sm">
+                <span>📢</span>
+                <span>Official Advisories</span>
               </div>
-              <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] tracking-wider uppercase">
+              <span className="px-2 py-0.5 rounded bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-300 text-[10px] font-extrabold uppercase tracking-wide border border-teal-200 dark:border-teal-800">
                 ASDMA VERIFIED
               </span>
             </div>
 
-            {/* Advisory 1 */}
-            <div className="border border-slate-100 rounded-md p-3 space-y-1.5 bg-slate-50/50">
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="font-mono font-bold text-red-600">
+            {/* Advisory 1: Flash Flood / Spate */}
+            <div className="space-y-1.5 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-extrabold text-red-600 dark:text-red-400">
                   #FL-2025-09 &bull; CRITICAL
                 </span>
-                <span className="text-slate-400">Issued 2 hrs ago</span>
+                <span className="text-[11px] text-slate-500">Issued 2 hrs ago</span>
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+              <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
                 Subansiri River Tributary Spate in Dhemaji &amp; Lakhimpur
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              </h2>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Continuous torrential rainfall in foothill ranges of Arunachal Pradesh has triggered
                 sudden flash surges in Jiadhal and Gainadi rivulets. Breaches reported near
                 Sisiborgaon embankment ring.
               </p>
-              <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1">
                 <span>Valid Until: Today, 20:00 IST</span>
-                <span className="font-medium text-slate-600">Source: ASDMA &amp; CWC</span>
+                <span className="font-semibold text-slate-700 dark:text-slate-300">
+                  Source: ASDMA &amp; CWC
+                </span>
               </div>
             </div>
 
-            {/* Advisory 2 */}
-            <div className="border border-slate-100 rounded-md p-3 space-y-1.5 bg-slate-50/50">
-              <div className="flex items-center justify-between text-[11px]">
-                <span className="font-mono font-bold text-amber-700">
+            {/* Advisory 2: Landslide Warning */}
+            <div className="space-y-1.5 pt-1">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-extrabold text-amber-600 dark:text-amber-400">
                   #LS-2025-03 &bull; TRANSIT ALERT
                 </span>
-                <span className="text-slate-400">Updated 45 mins ago</span>
+                <span className="text-[11px] text-slate-500">Updated 45 mins ago</span>
               </div>
-              <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+              <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
                 NH-15 Landslide Clearance near Sonapur / Dima Hasao
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              </h2>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Geological Survey of India (GSI) has flagged slope instability along hill corridors.
                 Heavy mudslip clearance actively underway by Border Roads Organisation (BRO).
                 Civilian traffic diverted through alternate bypass.
               </p>
-              <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 pt-1">
                 <span>Route Status: Partial Blockade</span>
-                <span className="font-medium text-slate-600">Source: GSI &amp; BRO</span>
+                <span className="font-semibold text-slate-700 dark:text-slate-300">
+                  Source: GSI &amp; BRO
+                </span>
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* Card D: Inundation Extent Map */}
-          <section
-            aria-labelledby="inundation-map-heading"
-            className="border border-slate-200 rounded-lg overflow-hidden bg-white shadow-xs"
-          >
-            <div className="p-3 border-b border-slate-100 flex items-center gap-2">
-              <Icon name="map" size={16} className="text-cyan-700" />
-              <h3
-                id="inundation-map-heading"
-                className="text-xs sm:text-sm font-bold text-slate-900"
-              >
-                {activeDistrictName} Inundation Extent Map
-              </h3>
+          {/* B. Dhemaji Inundation Extent Map Card */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-slate-100 text-sm">
+                <span>🗺️</span>
+                <span>{activeDistrictName} Inundation Extent Map</span>
+              </div>
             </div>
 
-            {/* Graphical Map Representation (SVG with river and flood layers) */}
-            <div className="relative bg-[#e6f4ea] h-48 w-full overflow-hidden border-b border-slate-200 flex items-center justify-center">
+            {/* Map Visual Container */}
+            <div className="relative w-full h-44 rounded-lg bg-emerald-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 overflow-hidden flex flex-col justify-between p-3 select-none">
+              {/* Graphic representation of river corridor & flood area */}
               <svg
-                viewBox="0 0 400 200"
-                className="w-full h-full object-cover"
-                preserveAspectRatio="xMidYMid slice"
-                aria-label={`Inundation map for ${activeDistrictName}`}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 400 180"
+                preserveAspectRatio="none"
               >
-                {/* River Channels */}
+                {/* River Basin Flood Poly */}
                 <path
-                  d="M0,70 Q120,60 200,90 T400,80"
-                  fill="none"
-                  stroke="#93c5fd"
-                  strokeWidth="14"
-                  strokeLinecap="round"
+                  d="M0,110 Q100,80 200,120 T400,90 L400,180 L0,180 Z"
+                  fill="rgba(56, 189, 248, 0.25)"
                 />
                 <path
-                  d="M180,90 Q220,130 310,180"
-                  fill="none"
-                  stroke="#bfdbfe"
-                  strokeWidth="8"
-                  strokeLinecap="round"
+                  d="M0,120 Q120,95 240,135 T400,105 L400,180 L0,180 Z"
+                  fill="rgba(2, 132, 199, 0.45)"
                 />
                 <path
-                  d="M50,0 Q90,50 140,65"
-                  fill="none"
-                  stroke="#bfdbfe"
+                  d="M120,0 Q130,60 170,100 T190,180"
+                  stroke="rgba(3, 105, 161, 0.7)"
                   strokeWidth="6"
-                  strokeLinecap="round"
-                />
-
-                {/* Inundation Zones (Translucent Cyan/Aqua) */}
-                <path
-                  d="M70,50 Q130,40 180,75 Q210,110 150,110 Q90,100 70,50 Z"
-                  fill="#38bdf8"
-                  fillOpacity="0.45"
-                />
-                <path
-                  d="M210,85 Q280,70 340,95 Q320,130 250,115 Z"
-                  fill="#38bdf8"
-                  fillOpacity="0.5"
-                />
-
-                {/* Major Roads */}
-                <path
-                  d="M10,160 L120,120 L250,70 L390,40"
                   fill="none"
-                  stroke="#fde047"
-                  strokeWidth="3.5"
-                  strokeDasharray="4 2"
                 />
-
-                {/* Settlement Markers */}
-                <g transform="translate(110, 115)">
-                  <circle r="4" fill="#0f172a" />
-                  <text x="7" y="3" fontSize="9" fontWeight="bold" fill="#0f172a">
-                    Gogamukh
-                  </text>
-                </g>
-                <g transform="translate(230, 65)">
-                  <circle r="4" fill="#0f172a" />
-                  <text x="7" y="3" fontSize="9" fontWeight="bold" fill="#0f172a">
-                    Sisiborgaon
-                  </text>
-                </g>
-                <g transform="translate(280, 140)">
-                  <circle r="4" fill="#dc2626" />
-                  <text x="7" y="3" fontSize="9" fontWeight="bold" fill="#dc2626">
-                    Dhemaji HQ
-                  </text>
-                </g>
+                {/* Breached embankment zones */}
+                <circle cx="170" cy="95" r="7" fill="#ef4444" opacity="0.85" />
+                <circle cx="280" cy="115" r="7" fill="#ef4444" opacity="0.85" />
               </svg>
+
+              {/* Map Checkpoint Labels */}
+              <div className="relative z-10 flex justify-between text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                <span className="bg-white/85 dark:bg-slate-900/85 px-1.5 py-0.5 rounded shadow-xs">
+                  Jiadhal Rivulet
+                </span>
+                <span className="bg-white/85 dark:bg-slate-900/85 px-1.5 py-0.5 rounded shadow-xs text-red-600">
+                  ● Breach Ring #2
+                </span>
+              </div>
+
+              <div className="relative z-10 flex justify-between text-[11px] font-bold text-slate-700 dark:text-slate-300">
+                <span className="bg-white/85 dark:bg-slate-900/85 px-1.5 py-0.5 rounded shadow-xs">
+                  Gogamukh Bypass
+                </span>
+                <span className="bg-white/85 dark:bg-slate-900/85 px-1.5 py-0.5 rounded shadow-xs">
+                  Brahmaputra Nematighat
+                </span>
+              </div>
             </div>
 
-            {/* Map Legend & Link */}
-            <div className="p-2.5 bg-slate-50 flex items-center justify-between text-[11px] font-medium text-slate-600">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 inline-block" />
+            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-1">
+              <span className="flex items-center gap-1.5 font-medium">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                 <span>Active Flood Layer &bull; CWC Satellite Mesh</span>
               </span>
               <Link
                 href={`/${locale}/shelters`}
-                className="text-teal-700 font-bold hover:underline"
+                className="font-bold text-sky-600 hover:text-sky-700 dark:text-sky-400 flex items-center gap-1"
               >
-                Full Map &rarr;
+                <span>Full Map</span>
+                <span>↗</span>
               </Link>
             </div>
-          </section>
+          </div>
 
-          {/* Card E: Emergency Kit Ready? */}
-          <div className="border border-slate-200 rounded-lg p-3.5 bg-white flex items-center justify-between shadow-xs">
+          {/* C. Emergency Kit Ready? Promo Card */}
+          <div className="bg-sky-50 dark:bg-slate-800/80 border border-sky-200 dark:border-slate-700 rounded-xl p-4 flex items-center justify-between gap-3 shadow-xs">
             <div className="flex items-center gap-3">
-              <span className="p-2 rounded-lg bg-sky-50 text-sky-700 shrink-0">
-                <Icon name="first-aid" size={22} />
-              </span>
+              <div className="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center shrink-0">
+                <Icon name="first-aid" size={20} />
+              </div>
               <div>
-                <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-tight">
+                <div className="font-extrabold text-sm text-slate-900 dark:text-slate-100">
                   Emergency Kit Ready?
-                </h4>
-                <p className="text-[11px] text-slate-500 mt-0.5">
+                </div>
+                <div className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                   Check essential ORS, dry rations &amp; torch checklist.
-                </p>
+                </div>
               </div>
             </div>
 
             <Link
               href={`/${locale}/kit`}
-              className="text-xs px-3 py-1.5 rounded-md border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-800 font-semibold transition-colors cursor-pointer shrink-0"
+              className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-600/80 whitespace-nowrap shadow-xs transition-colors shrink-0"
             >
               Open Checklist
             </Link>
           </div>
         </div>
       </div>
+
+      {/* Share Location Modal */}
+      {isShareModalOpen && (
+        <Dialog
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          title="Share GPS SOS Coordinates"
+          description="Transmits your live coordinates via encrypted WhatsApp or SMS payload without requiring mobile web access."
+        >
+          <div className="py-2">
+            <ShareLocation locale={locale} />
+          </div>
+        </Dialog>
+      )}
+
+      {/* District EOC Dispatch Modal */}
+      {isDispatchModalOpen && (
+        <Dialog
+          isOpen={isDispatchModalOpen}
+          onClose={() => setIsDispatchModalOpen(false)}
+          title="District EOC Field Dispatch #DHM-2025-08"
+          description="Issued by District Disaster Management Authority (DDMA), Dhemaji, Assam."
+        >
+          <div className="space-y-4 py-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            <div className="p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 rounded-lg font-semibold text-red-800 dark:text-red-300">
+              MANDATORY EVACUATION PROTOCOL: Low-lying Wards 4, 5, 6, 7, 8 and 9.
+            </div>
+            <p>
+              Due to continuous precipitation in Arunachal foothills, Jiadhal river discharge has
+              exceeded peak capacity. SDRF boats are positioned along Gogamukh and Sisiborgaon
+              crossing points.
+            </p>
+            <ul className="list-disc list-inside space-y-1 pl-1">
+              <li>Primary designated relief camp: Dhemaji Higher Secondary School</li>
+              <li>Medical emergency helpline: 108 / 112</li>
+              <li>District Emergency Operations Centre (DEOC): 1077 / 03753-224222</li>
+            </ul>
+            <div className="pt-2 flex justify-end">
+              <a
+                href="tel:1077"
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xs"
+              >
+                Call District DEOC (1077)
+              </a>
+            </div>
+          </div>
+        </Dialog>
+      )}
     </div>
   );
 }
