@@ -17,6 +17,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
+    "icons:generate": "node scripts/generate-icons.mjs",
     "audit": "npm audit --audit-level=high",
     "lhci": "lhci autorun",
     "prepare": "husky"
@@ -28,6 +29,7 @@
   "dependencies": {
     "@types/leaflet": "^1.9.22",
     "leaflet": "^1.9.4",
+    "mongodb": "^7.9.1",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -49,6 +51,7 @@
     "@vitest/coverage-v8": "^5.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "fake-indexeddb": "^6.2.8",
     "husky": "^9.1.7",
     "jsdom": "^31.0.1",
     "lint-staged": "^17.6.1",

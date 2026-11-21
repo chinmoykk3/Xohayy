@@ -193,5 +193,10 @@
   "shelters.map.toggle": "Toggle map view",
   "shelters.map.title": "Shelter and emergency facility map",
   "shelters.map.offlineNotice": "Map is unavailable while offline. Use the list view below.",
-  "shelters.map.loading": "Loading map..."
+  "shelters.map.loading": "Loading map...",
+  "offline.banner": "You are offline. Showing saved information from {dateTime}.",
+  "offline.bannerNoDate": "You are offline. Showing saved information.",
+  "sw.updateAvailable": "A new version is available.",
+  "sw.refresh": "Refresh",
+  "sw.unsavedFormWarning": "Please save or submit your open form before refreshing."
 }

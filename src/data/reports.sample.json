@@ -1,0 +1,52 @@
+[
+  {
+    "id": "report-001",
+    "districtId": "dhemaji",
+    "type": "road_blocked",
+    "note": "Silapathar highway submerged under 1.5 ft water near mile 12. Only heavy trucks passing slowly.",
+    "place": "Silapathar-Jonai Highway, Mile 12",
+    "status": "approved",
+    "createdAt": "2026-11-21T09:30:00Z",
+    "clientHash": "hash-seed-001"
+  },
+  {
+    "id": "report-002",
+    "districtId": "majuli",
+    "type": "need_help",
+    "note": "Kamalabari ghat ferry crossing halted due to rising Brahmaputra currents. Stranded passengers awaiting evacuation boat.",
+    "place": "Kamalabari Ghat",
+    "status": "approved",
+    "createdAt": "2026-11-21T08:45:00Z",
+    "clientHash": "hash-seed-002"
+  },
+  {
+    "id": "report-003",
+    "districtId": "lakhimpur",
+    "type": "area_flooded",
+    "note": "Embankment breach reported near Subansiri riverbank. Water entering paddy fields and lower village.",
+    "place": "Subansiri Riverbank, Ward 4",
+    "status": "approved",
+    "createdAt": "2026-11-21T08:15:00Z",
+    "clientHash": "hash-seed-003"
+  },
+  {
+    "id": "report-004",
+    "districtId": "kamrup-metropolitan",
+    "type": "road_blocked",
+    "note": "Chandmari flyover approach waterlogged; single lane operational with heavy congestion.",
+    "place": "Chandmari Flyover Approach",
+    "status": "approved",
+    "createdAt": "2026-11-21T07:20:00Z",
+    "clientHash": "hash-seed-004"
+  },
+  {
+    "id": "report-005",
+    "districtId": "cachar",
+    "type": "bridge_damaged",
+    "note": "Kashipur wooden bridge approach showing minor soil erosion. Caution advised for two-wheelers.",
+    "place": "Kashipur Link Road Bridge",
+    "status": "approved",
+    "createdAt": "2026-11-21T06:50:00Z",
+    "clientHash": "hash-seed-005"
+  }
+]

@@ -193,5 +193,10 @@
   "shelters.map.toggle": "मैप दृश्य टॉगल करें",
   "shelters.map.title": "राहत शिविर और आपातकालीन सुविधा मैप",
   "shelters.map.offlineNotice": "ऑफ़लाइन होने पर मैप उपलब्ध नहीं है। कृपया नीचे दी गई सूची का उपयोग करें।",
-  "shelters.map.loading": "मैप लोड हो रहा है..."
+  "shelters.map.loading": "मैप लोड हो रहा है...",
+  "offline.banner": "आप ऑफ़लाइन हैं। {dateTime} से सहेजी गई जानकारी दिखाई जा रही है।",
+  "offline.bannerNoDate": "आप ऑफ़लाइन हैं। सहेजी गई जानकारी दिखाई जा रही है।",
+  "sw.updateAvailable": "एक नया संस्करण उपलब्ध है।",
+  "sw.refresh": "रिफ्रेश करें",
+  "sw.unsavedFormWarning": "कृपया रिफ्रेश करने से पहले अपना खुला फ़ॉर्म सहेजें या सबमिट करें।"
 }

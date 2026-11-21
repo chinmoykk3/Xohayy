@@ -186,10 +186,69 @@ export const reportsQuerySchema = z.object({
   districtId: z.string().transform(cleanText).optional(),
 });
 
+// District allow-list for Assam basins
+export const SEEDED_DISTRICT_IDS = [
+  "dhemaji",
+  "lakhimpur",
+  "majuli",
+  "dibrugarh",
+  "barpeta",
+  "morigaon",
+  "kamrup-metropolitan",
+  "cachar",
+  "jorhat",
+  "golaghat",
+] as const;
+
+export type SeededDistrictId = (typeof SEEDED_DISTRICT_IDS)[number];
+
+/**
+ * Checks for Indian phone number patterns (10-digit mobile, STD landlines, +91 prefixes)
+ * to reject personal numbers from public crowd reports.
+ */
+export function hasPhoneNumber(text: string): boolean {
+  if (!text || typeof text !== "string") return false;
+  // Matches 10-digit mobile numbers with/without +91, with spaces or hyphens, or landline formats
+  const phonePattern =
+    /(?:(?:\+|0{0,2})91[\s-]*)?(?:[6-9]\d{9}\b|[6-9]\d{4}[\s-]\d{5}\b|\b\d{3,5}[-\s]\d{5,8}\b|\b\d{10,12}\b)/;
+  return phonePattern.test(text);
+}
+
+/**
+ * Checks for email address patterns to protect reporter privacy.
+ */
+export function hasEmailAddress(text: string): boolean {
+  if (!text || typeof text !== "string") return false;
+  const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/i;
+  return emailPattern.test(text);
+}
+
 export const createReportSchema = z.object({
-  districtId: cleanTextSchema(1, 64),
+  districtId: z.enum(SEEDED_DISTRICT_IDS, {
+    error: "Unknown or invalid district ID",
+  }),
   type: reportTypeSchema,
-  note: cleanTextSchema(1, 200),
-  place: cleanTextSchema(1, 80).optional(),
-  honeypot: z.string().max(0, "Spam detected").optional().or(z.literal("")),
+  note: z
+    .string({ error: "Note must be a string" })
+    .transform(cleanText)
+    .pipe(
+      z
+        .string()
+        .min(1, "Note is required and cannot be empty")
+        .max(200, "Note must be at most 200 characters")
+        .refine(
+          (val) => !hasPhoneNumber(val),
+          "For privacy reasons, please do not include phone numbers in reports."
+        )
+        .refine(
+          (val) => !hasEmailAddress(val),
+          "For privacy reasons, please do not include email addresses in reports."
+        )
+    ),
+  place: z
+    .string({ error: "Place must be a string" })
+    .transform(cleanText)
+    .pipe(z.string().max(80, "Place must be at most 80 characters"))
+    .optional(),
+  honeypot: z.string().optional(),
 });

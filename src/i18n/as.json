@@ -193,5 +193,10 @@
   "shelters.map.toggle": "মেপ দৃশ্য টগল কৰক",
   "shelters.map.title": "আশ্ৰয় শিবিৰ আৰু জৰুৰীকালীন কেন্দ্ৰৰ মেপ",
   "shelters.map.offlineNotice": "অফলাইনত মেপ উপলব্ধ নহয়। অনুগ্ৰহ কৰি তলৰ তালিকাখন ব্যৱহাৰ কৰক।",
-  "shelters.map.loading": "মেপ লোড হৈ আছে..."
+  "shelters.map.loading": "মেপ লোড হৈ আছে...",
+  "offline.banner": "আপুনি অফলাইনত আছে। {dateTime} ৰ সংৰক্ষিত তথ্য দেখুওৱা হৈছে।",
+  "offline.bannerNoDate": "আপুনি অফলাইনত আছে। সংৰক্ষিত তথ্য দেখুওৱা হৈছে।",
+  "sw.updateAvailable": "এটা নতুন সংস্কৰণ উপলব্ধ হৈছে।",
+  "sw.refresh": "সতেজ কৰক",
+  "sw.unsavedFormWarning": "অনুগ্ৰহ কৰি সতেজ কৰাৰ আগতে আপোনাৰ খোলা প্ৰপত্ৰ সংৰক্ষণ বা জমা দিয়ক।"
 }

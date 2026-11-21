@@ -1,15 +1,36 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, beforeEach, vi, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
-import { useOnlineStatus } from "@/hooks/useOnlineStatus";
+import {
+  useOnlineStatus,
+  verifyOnlineStatus,
+  __resetOnlineStatusForTesting,
+} from "@/hooks/useOnlineStatus";
 
-describe("useOnlineStatus Hook (Phase 15)", () => {
-  it("returns true when navigator is online", () => {
+describe("useOnlineStatus Hook (Phase 17)", () => {
+  beforeEach(() => {
+    __resetOnlineStatusForTesting();
+    vi.restoreAllMocks();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns true when navigator is online and health check succeeds", async () => {
     Object.defineProperty(window.navigator, "onLine", {
       configurable: true,
       value: true,
     });
 
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 200 }));
+
     const { result } = renderHook(() => useOnlineStatus());
+    expect(result.current).toBe(true);
+
+    await act(async () => {
+      await verifyOnlineStatus();
+    });
+
     expect(result.current).toBe(true);
   });
 
@@ -51,5 +72,43 @@ describe("useOnlineStatus Hook (Phase 15)", () => {
     });
 
     expect(result.current).toBe(true);
+  });
+
+  it("verifies with /api/health and turns false if browser flag is online but ping fails", async () => {
+    Object.defineProperty(window.navigator, "onLine", {
+      configurable: true,
+      value: true,
+    });
+
+    // Mock fetch to simulate network drop / dead gateway even though navigator.onLine is true
+    vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("Network connection dropped"));
+
+    const { result } = renderHook(() => useOnlineStatus());
+    expect(result.current).toBe(true);
+
+    await act(async () => {
+      const verified = await verifyOnlineStatus();
+      expect(verified).toBe(false);
+    });
+
+    expect(result.current).toBe(false);
+  });
+
+  it("turns false if /api/health returns non-ok status code", async () => {
+    Object.defineProperty(window.navigator, "onLine", {
+      configurable: true,
+      value: true,
+    });
+
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(null, { status: 503 }));
+
+    const { result } = renderHook(() => useOnlineStatus());
+
+    await act(async () => {
+      const verified = await verifyOnlineStatus();
+      expect(verified).toBe(false);
+    });
+
+    expect(result.current).toBe(false);
   });
 });

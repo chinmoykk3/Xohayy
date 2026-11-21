@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/Card";
@@ -11,8 +11,9 @@ import { AlertCard } from "@/components/alerts/AlertCard";
 import { useDistrict } from "@/hooks/useDistrict";
 import { getSampleAlerts } from "@/lib/data";
 import { filterAlerts, sortAlerts } from "@/lib/alerts";
+import { fetcher } from "@/lib/fetcher";
 import { DEFAULT_LOCALE, t } from "@/i18n/config";
-import type { Hazard, Locale } from "@/types";
+import type { Alert, Hazard, Locale } from "@/types";
 
 interface AlertsViewProps {
   locale?: Locale;
@@ -43,7 +44,90 @@ export function AlertsView({ locale = DEFAULT_LOCALE }: AlertsViewProps) {
     }
   }, [queryDistrict, district?.id, setDistrict]);
 
-  const rawAlerts = useMemo(() => getSampleAlerts(), []);
+  const [rawAlerts, setRawAlerts] = useState<Alert[]>(() => getSampleAlerts());
+
+  const districtId = district?.id;
+
+  const loadAlerts = useCallback(async () => {
+    try {
+      const params = new URLSearchParams();
+      if (districtId) params.set("districtId", districtId);
+      if (selectedHazard !== "all") params.set("hazard", selectedHazard);
+      if (includeExpired) params.set("includeExpired", "true");
+
+      const queryStr = params.toString();
+      const url = queryStr ? `/api/alerts?${queryStr}` : "/api/alerts";
+
+      const data = await fetcher<{ alerts: Alert[]; fetchedAt: string }>(url, {
+        timeout: 6000,
+        locale,
+      });
+
+      if (data?.alerts) {
+        setRawAlerts(data.alerts);
+      }
+    } catch {
+      // Fetcher already falls back to cache; on total cold start without network, sample alerts remain
+    }
+  }, [districtId, selectedHazard, includeExpired, locale]);
+
+  // Fetch when filters change
+  useEffect(() => {
+    let ignore = false;
+    void (async () => {
+      try {
+        const params = new URLSearchParams();
+        if (districtId) params.set("districtId", districtId);
+        if (selectedHazard !== "all") params.set("hazard", selectedHazard);
+        if (includeExpired) params.set("includeExpired", "true");
+
+        const queryStr = params.toString();
+        const url = queryStr ? `/api/alerts?${queryStr}` : "/api/alerts";
+
+        const data = await fetcher<{ alerts: Alert[]; fetchedAt: string }>(url, {
+          timeout: 6000,
+          locale,
+        });
+
+        if (!ignore && data?.alerts) {
+          setRawAlerts(data.alerts);
+        }
+      } catch {
+        // Fallback
+      }
+    })();
+    return () => {
+      ignore = true;
+    };
+  }, [districtId, selectedHazard, includeExpired, locale]);
+
+  // Task 5: Avoid aggressive polling: refresh alerts on page focus and on a long interval only (5 minutes = 300,000ms)
+  useEffect(() => {
+    const handleFocus = () => {
+      loadAlerts();
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        loadAlerts();
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Refresh only on a long interval (5 mins), not short polling
+    const LONG_INTERVAL_MS = 5 * 60 * 1000;
+    const intervalId = setInterval(() => {
+      loadAlerts();
+    }, LONG_INTERVAL_MS);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      clearInterval(intervalId);
+    };
+  }, [loadAlerts]);
 
   // Filter and sort alerts
   const visibleAlerts = useMemo(() => {

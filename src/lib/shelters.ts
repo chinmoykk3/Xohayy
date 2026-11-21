@@ -84,5 +84,5 @@ export function getFacilitiesRepository(): FacilitiesRepository {
   if (!repositoryInstance) {
     repositoryInstance = new SeedFacilitiesRepository();
   }
-  return repositoryInstance;
+  return repositoryInstance!;
 }

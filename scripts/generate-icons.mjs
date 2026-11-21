@@ -78,8 +78,6 @@ function createStandardIconSvg(size) {
  */
 function createMaskableIconSvg(size) {
   // SVG viewBox 0 0 512 512
-  // Safe zone radius is 204px (40% of 512). Center is at 256, 256.
-  // Motif scaled down to fit within radius ~185px.
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="${size}" height="${size}">
   <defs>

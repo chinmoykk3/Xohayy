@@ -1,4 +1,4 @@
-﻿# ADR 001: Next.js App Router as Core Framework
+# ADR 001: Next.js App Router as Core Framework
 
 ## Status
 

@@ -107,5 +107,5 @@ export function getAlertsRepository(): AlertsRepository {
   if (!repositoryInstance) {
     repositoryInstance = new SeedAlertsRepository();
   }
-  return repositoryInstance;
+  return repositoryInstance!;
 }

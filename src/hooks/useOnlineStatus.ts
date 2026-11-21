@@ -2,21 +2,103 @@
 
 import { useSyncExternalStore } from "react";
 
-function subscribe(callback: () => void): () => void {
-  if (typeof window === "undefined") {
-    return () => {};
+let isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
+const listeners = new Set<() => void>();
+
+function notify() {
+  for (const listener of listeners) {
+    listener();
   }
-  window.addEventListener("online", callback);
-  window.addEventListener("offline", callback);
+}
+
+let healthCheckPromise: Promise<boolean> | null = null;
+
+/**
+ * Actively pings the lightweight /api/health route to verify real internet connectivity.
+ * Updates online status and notifies subscribers.
+ */
+export async function verifyOnlineStatus(): Promise<boolean> {
+  if (typeof navigator !== "undefined" && !navigator.onLine) {
+    if (isOnline !== false) {
+      isOnline = false;
+      notify();
+    }
+    return false;
+  }
+
+  if (typeof window === "undefined" || typeof fetch === "undefined") {
+    return isOnline;
+  }
+
+  if (healthCheckPromise) {
+    return healthCheckPromise;
+  }
+
+  healthCheckPromise = (async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const url =
+        typeof window !== "undefined" && window.location?.origin
+          ? `${window.location.origin}/api/health`
+          : "/api/health";
+
+      const res = await fetch(url, {
+        method: "HEAD",
+        cache: "no-store",
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      const ok = res.ok;
+      if (isOnline !== ok) {
+        isOnline = ok;
+        notify();
+      }
+      return ok;
+    } catch {
+      if (isOnline !== false) {
+        isOnline = false;
+        notify();
+      }
+      return false;
+    } finally {
+      healthCheckPromise = null;
+    }
+  })();
+
+  return healthCheckPromise;
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("online", () => {
+    isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
+    notify();
+    verifyOnlineStatus();
+  });
+
+  window.addEventListener("offline", () => {
+    isOnline = false;
+    notify();
+  });
+
+  window.addEventListener("focus", () => {
+    verifyOnlineStatus();
+  });
+}
+
+function subscribe(callback: () => void): () => void {
+  listeners.add(callback);
   return () => {
-    window.removeEventListener("online", callback);
-    window.removeEventListener("offline", callback);
+    listeners.delete(callback);
   };
 }
 
 function getSnapshot(): boolean {
-  if (typeof navigator === "undefined") return true;
-  return navigator.onLine;
+  if (typeof navigator !== "undefined" && !navigator.onLine) {
+    return false;
+  }
+  return isOnline;
 }
 
 function getServerSnapshot(): boolean {
@@ -25,8 +107,21 @@ function getServerSnapshot(): boolean {
 
 /**
  * React hook that returns true when online, false when offline.
- * Defaults to true on the server to prevent hydration mismatch.
+ * Listens to online and offline events and verifies with /api/health.
  */
 export function useOnlineStatus(): boolean {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+/**
+ * Testing helpers
+ */
+export function __setOnlineStatusForTesting(status: boolean) {
+  isOnline = status;
+  notify();
+}
+
+export function __resetOnlineStatusForTesting() {
+  isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
+  notify();
 }

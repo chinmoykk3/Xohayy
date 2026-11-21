@@ -10,6 +10,7 @@ import { useDistrict } from "@/hooks/useDistrict";
 import { useOnlineStatus } from "@/hooks/useOnlineStatus";
 import { filterFacilities } from "@/lib/shelters";
 import { getFacilities } from "@/lib/data";
+import { fetcher } from "@/lib/fetcher";
 import { t } from "@/i18n/config";
 import type { Facility, FacilityType, Locale } from "@/types";
 
@@ -64,9 +65,10 @@ export function ShelterList({ initialFacilities, locale, className = "" }: Shelt
         if (districtId) params.set("districtId", districtId);
         if (selectedType !== "all") params.set("type", selectedType);
 
-        const res = await fetch(`/api/shelters?${params.toString()}`);
-        if (!res.ok) throw new Error("Failed to load facilities");
-        const data = await res.json();
+        const data = await fetcher<{ facilities: Facility[]; fetchedAt: string }>(
+          `/api/shelters?${params.toString()}`,
+          { timeout: 6000, locale }
+        );
         if (!cancelled && data.facilities) {
           setFacilities(data.facilities);
         }
@@ -83,7 +85,7 @@ export function ShelterList({ initialFacilities, locale, className = "" }: Shelt
     return () => {
       cancelled = true;
     };
-  }, [districtId, selectedType]);
+  }, [districtId, selectedType, locale]);
 
   // Filter facilities locally
   const filteredFacilities = useMemo(() => {
