@@ -53,8 +53,8 @@ self.addEventListener("install", (event) => {
             await shellCache.put(fullUrl, res.clone());
             await shellCache.put(route, res);
           }
-        } catch {
-          // Silently continue for offline resilience
+        } catch (err) {
+          console.warn("[SW PRECACHE FAILED]", route, err);
         }
       }
 

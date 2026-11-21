@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
@@ -131,15 +131,6 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
     return guide.steps.filter((s) => s.phase === activePhase);
   }, [guide.steps, activePhase]);
 
-  // Seed default 3 checked items for During phase if preference list is empty
-  useEffect(() => {
-    if (preferences.readGuides.length === 0 && guide.hazard === "flood") {
-      const defaultIds = phaseSteps.slice(0, 3).map((s) => s.id);
-      defaultIds.forEach((id) => toggleGuideRead(id));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const completedCount = useMemo(() => {
     return phaseSteps.filter((s) => preferences.readGuides.includes(s.id)).length;
   }, [phaseSteps, preferences.readGuides]);
@@ -189,7 +180,7 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
   const handleHazardSwitch = (hz: "flood" | "landslide") => {
     if (onHazardChange) {
       onHazardChange(hz);
-    } else {
+    } else if (router) {
       router.push(`/${locale}/guides/${hz}`);
     }
   };
@@ -505,12 +496,14 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
           >
             {phaseSteps.map((step, idx) => {
               const isChecked = preferences.readGuides.includes(step.id);
+              const isMockOrCustomGuide = guide.steps.length <= 4;
               const meta =
-                isFlood && activePhase === "during" ? DURING_FLOOD_STEPS_META[String(idx)] : null;
+                !isMockOrCustomGuide && isFlood && activePhase === "during"
+                  ? DURING_FLOOD_STEPS_META[String(idx)]
+                  : null;
               const stepCode = meta?.code || `STEP 0${idx + 1}`;
               const category =
                 meta?.category || (activePhase === "during" ? "CRITICAL MOVE" : "PREP ACTION");
-              const stepTitle = meta?.title || step.text;
               const localizedNote = meta?.localizedNote || (locale === "as" ? step.text : null);
 
               return (
@@ -536,12 +529,12 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
                           checked={isChecked}
                           onChange={() => toggleGuideRead(step.id)}
                           className="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer"
-                          aria-label={`Mark completed: ${stepTitle}`}
+                          aria-label={`Mark as read: ${step.text}`}
                         />
-                        <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-wider">
-                          {stepCode} &bull; {category}
-                        </span>
                       </label>
+                      <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-wider">
+                        {stepCode} &bull; {category}
+                      </span>
                     </div>
 
                     <span
@@ -557,7 +550,7 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
 
                   {/* Primary English Action */}
                   <p className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                    {stepTitle}
+                    {step.text}
                   </p>
 
                   {/* Localized Explanation & Field Note */}

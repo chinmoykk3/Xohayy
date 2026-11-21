@@ -41,8 +41,13 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
   const navTabs = [
     {
       href: `/${locale}`,
-      label: "Dashboard & Alerts",
+      label: "Dashboard",
       isActive: pathname === `/${locale}` || pathname === `/${locale}/` || pathname === "/",
+    },
+    {
+      href: `/${locale}/alerts`,
+      label: "District Alerts",
+      isActive: pathname.includes("/alerts"),
     },
     {
       href: `/${locale}/emergency`,
