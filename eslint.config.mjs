@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
       "react-hooks/exhaustive-deps": "warn",
     },
   },
+  {
+    files: ["scripts/**"],
+    rules: {
+      "no-console": "off",
+    },
+  },
   globalIgnores([
     ".next/**",
     "out/**",

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline Emergency | Xahay (সহায়)</title>
+    <meta name="theme-color" content="#0369a1" />
+    <style>
+      :root {
+        --color-bg-page: #f7fafc;
+        --color-bg-card: #ffffff;
+        --color-border: #cbd5e1;
+        --color-text-main: #0f172a;
+        --color-text-muted: #334155;
+        --color-primary-bg: #0369a1;
+        --color-primary-hover: #0284c7;
+        --color-emergency-bg: #b91c1c;
+        --color-emergency-hover: #991b1b;
+        --font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background-color: var(--color-bg-page);
+        color: var(--color-text-main);
+        line-height: 1.5;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .offline-alert {
+        background-color: #fef2f2;
+        border: 2px solid #f87171;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+      }
+
+      .offline-badge {
+        display: inline-block;
+        background-color: #ef4444;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        margin-bottom: 8px;
+      }
+
+      .offline-alert h1 {
+        font-size: 20px;
+        color: #991b1b;
+        margin-bottom: 6px;
+      }
+
+      .offline-alert p {
+        font-size: 15px;
+        color: #7f1d1d;
+      }
+
+      .hero-emergency {
+        background-color: var(--color-emergency-bg);
+        color: #ffffff;
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(185, 28, 28, 0.25);
+      }
+
+      .hero-emergency h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        opacity: 0.95;
+      }
+
+      .call-btn-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background-color: #ffffff;
+        color: var(--color-emergency-bg);
+        text-decoration: none;
+        font-size: 26px;
+        font-weight: 800;
+        padding: 16px 24px;
+        border-radius: 12px;
+        margin-top: 14px;
+        min-height: 56px;
+        border: 3px solid #ffffff;
+        transition: background-color 150ms ease;
+      }
+
+      .call-btn-main:hover,
+      .call-btn-main:focus {
+        background-color: #fee2e2;
+        outline: 3px solid #ffffff;
+      }
+
+      .translations {
+        font-size: 14px;
+        margin-top: 8px;
+        opacity: 0.9;
+      }
+
+      .helpline-card {
+        background-color: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .helpline-card h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: var(--color-text-main);
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 8px;
+      }
+
+      .helpline-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .helpline-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        gap: 12px;
+      }
+
+      .helpline-info {
+        flex: 1;
+      }
+
+      .helpline-name-en {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--color-text-main);
+      }
+
+      .helpline-name-local {
+        font-size: 13px;
+        color: var(--color-text-muted);
+        margin-top: 2px;
+      }
+
+      .call-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-primary-bg);
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 10px 18px;
+        border-radius: 8px;
+        min-width: 90px;
+        min-height: 48px;
+        white-space: nowrap;
+        text-align: center;
+        transition: background-color 150ms ease;
+      }
+
+      .call-link:hover,
+      .call-link:focus {
+        background-color: var(--color-primary-hover);
+        outline: 2px solid var(--color-primary-bg);
+        outline-offset: 2px;
+      }
+
+      .call-link.emergency {
+        background-color: var(--color-emergency-bg);
+      }
+
+      .call-link.emergency:hover,
+      .call-link.emergency:focus {
+        background-color: var(--color-emergency-hover);
+      }
+
+      .actions-card {
+        background-color: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+      }
+
+      .retry-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background-color: var(--color-primary-bg);
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        min-height: 48px;
+        width: 100%;
+        transition: background-color 150ms ease;
+      }
+
+      .retry-btn:hover,
+      .retry-btn:focus {
+        background-color: var(--color-primary-hover);
+        outline: 2px solid var(--color-primary-bg);
+        outline-offset: 2px;
+      }
+
+      .retry-subtext {
+        margin-top: 8px;
+        font-size: 13px;
+        color: var(--color-text-muted);
+      }
+
+      footer {
+        text-align: center;
+        font-size: 12px;
+        color: var(--color-text-muted);
+        padding: 12px 0 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Offline Indicator -->
+      <header class="offline-alert" role="status" aria-live="polite">
+        <span class="offline-badge">Offline / অফলাইন / ऑफ़लाइन</span>
+        <h1>No Internet Connection</h1>
+        <p>আপুনি অফলাইনত আছে • आप वर्तमान में ऑफ़लाइन हैं</p>
+        <p style="margin-top: 4px; font-size: 14px">
+          All emergency numbers below work offline without internet directly through cellular phone
+          calls.
+        </p>
+      </header>
+
+      <!-- 112 Hero Card -->
+      <section class="hero-emergency" aria-labelledby="hero-title">
+        <h2 id="hero-title">National Emergency Number</h2>
+        <div class="translations">ৰাষ্ট্ৰীয় জৰুৰীকালীন সাহায্য • राष्ट्रीय आपातकालीन हेल्पलाइन</div>
+        <a href="tel:112" class="call-btn-main" aria-label="Call 112 National Emergency Helpline">
+          <span aria-hidden="true">📞</span> Call 112
+        </a>
+        <div class="translations" style="margin-top: 10px">
+          Available 24x7 across all North East states and India
+        </div>
+      </section>
+
+      <!-- Main Helplines List -->
+      <section class="helpline-card" aria-labelledby="helplines-title">
+        <h3 id="helplines-title">Emergency Helplines (জৰুৰী নম্বৰসমূহ • आपातकालीन नंबर)</h3>
+        <ul class="helpline-list" role="list">
+          <!-- 108 Ambulance -->
+          <li class="helpline-item">
+            <div class="helpline-info">
+              <div class="helpline-name-en">Medical Emergency & Ambulance (108)</div>
+              <div class="helpline-name-local">
+                চিকিৎসা জৰুৰীকালীন আৰু এম্বুলেন্স • चिकित्सा आपातकाल और एम्बुलेंस
+              </div>
+            </div>
+            <a href="tel:108" class="call-link emergency" aria-label="Call 108 Ambulance">
+              📞 108
+            </a>
+          </li>
+
+          <!-- 101 Fire -->
+          <li class="helpline-item">
+            <div class="helpline-info">
+              <div class="helpline-name-en">Fire & Emergency Services (101)</div>
+              <div class="helpline-name-local">
+                অগ্নি আৰু জৰুৰীকালীন সেৱা • अग्निशमन और आपातकालीन सेवाएं
+              </div>
+            </div>
+            <a href="tel:101" class="call-link" aria-label="Call 101 Fire Services"> 📞 101 </a>
+          </li>
+
+          <!-- 100 Police -->
+          <li class="helpline-item">
+            <div class="helpline-info">
+              <div class="helpline-name-en">Police Control Room (100)</div>
+              <div class="helpline-name-local">আৰক্ষী নিয়ন্ত্ৰণ কক্ষ • पुलिस नियंत्रण कक्ष</div>
+            </div>
+            <a href="tel:100" class="call-link" aria-label="Call 100 Police"> 📞 100 </a>
+          </li>
+
+          <!-- 1070 Disaster Management -->
+          <li class="helpline-item">
+            <div class="helpline-info">
+              <div class="helpline-name-en">Disaster Management Control (1070)</div>
+              <div class="helpline-name-local">
+                ৰাজ্যিক দুৰ্যোগ ব্যৱস্থাপনা কক্ষ • राज्य आपदा प्रबंधन नियंत्रण कक्ष
+              </div>
+            </div>
+            <a href="tel:1070" class="call-link" aria-label="Call 1070 Disaster Control">
+              📞 1070
+            </a>
+          </li>
+
+          <!-- 1079 Flood Control -->
+          <li class="helpline-item">
+            <div class="helpline-info">
+              <div class="helpline-name-en">Flood Control Room (1079)</div>
+              <div class="helpline-name-local">বান নিয়ন্ত্ৰণ কক্ষ • बाढ़ नियंत्रण कक्ष</div>
+            </div>
+            <a href="tel:1079" class="call-link" aria-label="Call 1079 Flood Control"> 📞 1079 </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Retry Section -->
+      <section class="actions-card" aria-label="Connection retry">
+        <a
+          href="/"
+          onclick="
+            window.location.reload();
+            return false;
+          "
+          class="retry-btn"
+          id="retry-link"
+        >
+          <span aria-hidden="true">↻</span> Retry Connection / পুনৰ চেষ্টা কৰক / पुनः प्रयास करें
+        </a>
+        <p class="retry-subtext">
+          Clicking retry will attempt to reconnect and load live disaster data.
+        </p>
+      </section>
+
+      <footer>
+        <p>Xahay (সহায়) — North East Emergency Assistant</p>
+        <p>Offline fallback page. Verified helpline data.</p>
+      </footer>
+    </div>
+  </body>
+</html>

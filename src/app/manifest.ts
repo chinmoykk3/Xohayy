@@ -1,0 +1,72 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Xahay",
+    short_name: "Xahay",
+    description:
+      "Offline-first community emergency assistant for floods and landslides in North East India.",
+    start_url: "/en/",
+    scope: "/",
+    display: "standalone",
+    orientation: "portrait-primary",
+    background_color: "#f7fafc",
+    theme_color: "#0369a1",
+    icons: [
+      {
+        src: "/icons/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/icons/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        src: "/icons/icon-maskable-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+    ],
+    shortcuts: [
+      {
+        name: "Emergency numbers",
+        short_name: "Emergency",
+        description: "Immediate access to 112 and emergency helplines",
+        url: "/en/emergency",
+        icons: [
+          {
+            src: "/icons/icon-192.png",
+            sizes: "192x192",
+          },
+        ],
+      },
+      {
+        name: "Safety guides",
+        short_name: "Guides",
+        description: "Offline flood and landslide survival guides",
+        url: "/en/guides",
+        icons: [
+          {
+            src: "/icons/icon-192.png",
+            sizes: "192x192",
+          },
+        ],
+      },
+      {
+        name: "Shelters",
+        short_name: "Shelters",
+        description: "Find verified relief shelters and relief camps",
+        url: "/en/shelters",
+        icons: [
+          {
+            src: "/icons/icon-192.png",
+            sizes: "192x192",
+          },
+        ],
+      },
+    ],
+  };
+}
