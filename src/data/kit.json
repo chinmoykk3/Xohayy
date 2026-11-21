@@ -1,0 +1,182 @@
+[
+  {
+    "id": "water_tablets",
+    "name": {
+      "en": "Drinking water and water purification tablets",
+      "as": "খোৱাপানী আৰু পানী বিশুদ্ধকৰণ টেবলেট",
+      "hi": "पीने का पानी और पानी शुद्ध करने की गोलियां"
+    },
+    "description": {
+      "en": "At least 3-4 litres per person per day, plus chlorine or halogen tablets.",
+      "as": "প্ৰতিজন ব্যক্তিৰ বাবে দৈনিক কমেও ৩-৪ লিটাৰ পানী আৰু ক্ল'ৰিন টেবলেট।",
+      "hi": "प्रति व्यक्ति प्रतिदिन कम से कम 3-4 लीटर पानी और क्लोरीन की गोलियां।"
+    },
+    "category": "hydration_food",
+    "icon": "droplets"
+  },
+  {
+    "id": "dry_food",
+    "name": {
+      "en": "Dry food that needs no cooking",
+      "as": "ৰন্ধাৰ প্ৰয়োজন নোহোৱা শুকান খাদ্য",
+      "hi": "बिना पकाए खाने योग्य सूखा भोजन"
+    },
+    "description": {
+      "en": "Chira (flattened rice), biscuits, roasted gram, jaggery, and dry fruits for 72 hours.",
+      "as": "চিৰা, বিস্কুট, মুৰি, গুড় আৰু শুকান ফল ৩ দিনৰ বাবে সাজু ৰাখক।",
+      "hi": "चूड़ा, बिस्कुट, भुना चना, गुड़ और सूखे मेवे कम से कम 72 घंटों के लिए।"
+    },
+    "category": "hydration_food",
+    "icon": "check"
+  },
+  {
+    "id": "torch_batteries",
+    "name": {
+      "en": "Torch with spare batteries",
+      "as": "অতিৰিক্ত বেটাৰীসহ টৰ্চ",
+      "hi": "अतिरिक्त बैटरी के साथ टॉर्च"
+    },
+    "description": {
+      "en": "Waterproof LED torch with fresh spare batteries in a sealed pouch.",
+      "as": "বন্ধ পলিথিনত অতিৰিক্ত বেটাৰীসহ জলৰোধী এলইডি টৰ্চ।",
+      "hi": "सीलबंद पाउच में अतिरिक्त बैटरियों के साथ वाटरप्रूफ एलईडी टॉर्च।"
+    },
+    "category": "power_light",
+    "icon": "info"
+  },
+  {
+    "id": "power_bank",
+    "name": {
+      "en": "Power bank, fully charged",
+      "as": "সম্পূৰ্ণ চাৰ্জ কৰা পাৱাৰ বেংক",
+      "hi": "पूरी तरह चार्ज किया हुआ पावर बैंक"
+    },
+    "description": {
+      "en": "High-capacity mobile battery pack and charging cable in a waterproof bag.",
+      "as": "জলৰোধী বেগ বা পলিথিনত মোবাইল চাৰ্জিং বেংক আৰু কেবল।",
+      "hi": "वाटरप्रूफ बैग में उच्च क्षमता वाला पावर बैंक और चार्जिंग केबल।"
+    },
+    "category": "power_light",
+    "icon": "check"
+  },
+  {
+    "id": "portable_radio",
+    "name": {
+      "en": "Portable radio",
+      "as": "পোর্টেবল ৰেডিঅ'",
+      "hi": "पोर्टेबल रेडियो"
+    },
+    "description": {
+      "en": "Battery or solar-powered AM/FM radio for All India Radio emergency weather bulletins.",
+      "as": "আকাশবাণীৰ জৰুৰী বতৰ বাৰ্তা শুনিবলৈ বেটাৰীযুক্ত ৰেডিঅ'।",
+      "hi": "आकाशवाणी के आपातकालीन मौसम बुलेटिन सुनने के लिए बैटरी संचालित रेडियो।"
+    },
+    "category": "power_light",
+    "icon": "radio"
+  },
+  {
+    "id": "first_aid_medicines",
+    "name": {
+      "en": "First-aid kit and regular medicines",
+      "as": "প্ৰাথমিক চিকিৎসা বাকচ আৰু নিয়মীয়া ঔষধ",
+      "hi": "प्राथमिक चिकित्सा किट और नियमित दवाएं"
+    },
+    "description": {
+      "en": "ORS packets, antiseptic, bandages, paracetamol, and 7 days of daily prescription medicines.",
+      "as": "ORS পেকেট, বীজাণুনাশক, বেণ্ডেজ, পেৰাচিটামল আৰু এসপ্তাহৰ নিয়মীয়া ঔষধ।",
+      "hi": "ओआरएस के पैकेट, एंटीसेप्टिक, पट्टियां, पैरासिटामोल और 7 दिनों की नियमित दवाएं।"
+    },
+    "category": "medical_safety",
+    "icon": "first-aid"
+  },
+  {
+    "id": "id_documents",
+    "name": {
+      "en": "Copies of identity documents in a waterproof bag",
+      "as": "জলৰোধী বেগ বা পলিথিনত পৰিচয় পত্ৰৰ প্ৰতিলিপি",
+      "hi": "वाटरप्रूफ बैग में पहचान पत्रों की प्रतियां"
+    },
+    "description": {
+      "en": "Aadhaar, voter ID, bank passbook, and land papers inside a sealed zip bag.",
+      "as": "আধাৰ, ভোটাৰ কাৰ্ড, বেংক পাছবুক আৰু মাটিৰ নথিৰ প্ৰতিলিপি।",
+      "hi": "आधार, वोटर आईडी, बैंक पासबुक और महत्वपूर्ण दस्तावेजों की प्रतियां।"
+    },
+    "category": "documents_money",
+    "icon": "file-text"
+  },
+  {
+    "id": "cash_small_notes",
+    "name": {
+      "en": "Cash in small notes",
+      "as": "সৰু নোটৰ নগদ ধন",
+      "hi": "छोटे नोटों में नकद राशि"
+    },
+    "description": {
+      "en": "ATMs and digital UPI networks typically fail during floods and electrical blackouts.",
+      "as": "বানপানী বা বিদ্যুৎ ব্যাহত হ'লে এটিএম আৰু ইউপিআই বিকল হ'ব পাৰে।",
+      "hi": "बाढ़ और बिजली गुल होने के दौरान एटीएम और यूपीआई काम नहीं करते हैं।"
+    },
+    "category": "documents_money",
+    "icon": "check"
+  },
+  {
+    "id": "whistle",
+    "name": {
+      "en": "Whistle",
+      "as": "হুইচেল (সংকেত দিবলৈ)",
+      "hi": "सीटी (आपातकालीन संकेत हेतु)"
+    },
+    "description": {
+      "en": "To signal rescue teams (SDRF/NDRF) through darkness or thick vegetation without losing voice.",
+      "as": "কণ্ঠস্বৰ ভাগৰি নপৰাকৈ উদ্ধাৰকাৰী দলক সংকেত দিবলৈ হুইচেল।",
+      "hi": "बचाव दल को अपनी आवाज खोए बिना अंधेरे या पानी में संकेत देने के लिए।"
+    },
+    "category": "survival",
+    "icon": "bell"
+  },
+  {
+    "id": "warm_clothes_sheet",
+    "name": {
+      "en": "Warm clothes and a plastic sheet",
+      "as": "উমাল কাপোৰ আৰু প্লাষ্টিকৰ ত্রিপাল",
+      "hi": "गर्म कपड़े और प्लास्टिक की शीट"
+    },
+    "description": {
+      "en": "Rain jacket or tarpaulin sheet to prevent hypothermia while exposed to heavy rain.",
+      "as": "মুকলি আকাশৰ তলত বৰষুণৰ পৰা বাচিবলৈ ত্রিপাল আৰু বৰষুণ কাপোৰ।",
+      "hi": "भारी बारिश और ठंड से बचने के लिए तिरपाल और गर्म कपड़े।"
+    },
+    "category": "survival",
+    "icon": "shield"
+  },
+  {
+    "id": "contact_list_paper",
+    "name": {
+      "en": "Emergency contact list on paper",
+      "as": "কাগজত লিখা জৰুৰীকালীন যোগাযোগ নম্বৰৰ তালিকা",
+      "hi": "कागज पर लिखी आपातकालीन संपर्क सूची"
+    },
+    "description": {
+      "en": "Written list of relatives, 112, 1070 (State), 1077 (District), and local community leaders.",
+      "as": "আত্মীয়, ১১২, ১০৭০, ১০৭৭ আৰু গাঁওবুঢ়া বা পঞ্চায়তৰ নম্বৰ লিখিত তালিকা।",
+      "hi": "रिश्तेदारों, 112, 1070, 1077 और स्थानीय प्रधानों के फोन नंबर की लिखित सूची।"
+    },
+    "category": "documents_money",
+    "icon": "phone"
+  },
+  {
+    "id": "family_special_needs",
+    "name": {
+      "en": "Baby, elderly or pet supplies if needed",
+      "as": "শিশু, বয়োজ্যেষ্ঠ বা পোহনীয়া জীৱৰ প্ৰয়োজনীয় সামগ্ৰী",
+      "hi": "शिशुओं, बुजुर्गों या पालतू जानवरों के लिए आवश्यक सामग्री"
+    },
+    "description": {
+      "en": "Baby formula, diapers, mobility aids, extra spectacles, or livestock ropes.",
+      "as": "শিশু খাদ্য, ডায়েপাৰ, জেষ্ঠৰ চশমা বা সহায়ক সামগ্ৰী, আৰু পোহনীয়া জন্তুৰ ৰছী।",
+      "hi": "शिशु आहार, डायपर, बुजुर्गों के चश्मे व दवाइयां और मवेशियों की रस्सियां।"
+    },
+    "category": "medical_safety",
+    "icon": "first-aid"
+  }
+]

@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { Card } from "@/components/ui/Card";
 import { RiskBadge } from "./RiskBadge";
 import { Icon } from "@/components/ui/Icon";
@@ -6,6 +7,10 @@ import { isAlertExpired } from "@/lib/alerts";
 import { formatDateTime } from "@/lib/format";
 import { DEFAULT_LOCALE, t } from "@/i18n/config";
 import type { Alert, Locale } from "@/types";
+
+const ReadAloud = dynamic(() => import("@/components/speech/ReadAloud"), {
+  ssr: false,
+});
 
 export interface AlertCardProps {
   alert: Alert;
@@ -71,6 +76,11 @@ export function AlertCard({ alert, locale = DEFAULT_LOCALE, className = "" }: Al
           <p className="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
             {message}
           </p>
+        </div>
+
+        {/* Read-Aloud control */}
+        <div className="pt-1">
+          <ReadAloud text={`${title}. ${message}`} locale={locale} compact />
         </div>
 
         {/* Timestamps & Source attribution */}

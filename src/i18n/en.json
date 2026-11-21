@@ -15,7 +15,6 @@
   "common.expired": "Expired",
   "common.source": "Source: {source}",
   "common.all": "All",
-
   "emergency.title": "Emergency Helplines & Assistance",
   "emergency.subtitle": "Reach national, state, and district disaster responders immediately.",
   "emergency.openFab": "Emergency Help - 112",
@@ -37,7 +36,6 @@
   "emergency.districtControlRoom": "{district} District Control Room",
   "emergency.noDistrictSelected": "Select a district for local control room",
   "emergency.offlineNotice": "Helplines are bundled on this device and work completely offline.",
-
   "home.title": "Disaster Response (PS05)",
   "home.subtitle": "Emergency flood and landslide lifeline for North East India.",
   "home.emergencyPriority": "Emergency Priority",
@@ -51,7 +49,6 @@
   "home.riskSummary": "Risk Summary",
   "home.recentReports": "Recent Verified Reports",
   "home.noReports": "No reports submitted in this area recently.",
-
   "alerts.title": "District Alerts",
   "alerts.subtitle": "Live advisories for floods, landslides, and heavy rainfall.",
   "alerts.noAlerts": "No active alerts for this district right now.",
@@ -67,7 +64,6 @@
   "alerts.validUntil": "Valid until: {time}",
   "alerts.source": "Source: {source}",
   "alerts.viewGuides": "View safety guidelines",
-
   "guides.title": "Safety & Evacuation Guides",
   "guides.subtitle": "Practical step-by-step actions for flood and landslide survival.",
   "guides.hazard.flood": "Flood Safety",
@@ -89,7 +85,6 @@
   "guides.readAloud.statePlaying": "Reading aloud in progress",
   "guides.readAloud.statePaused": "Reading aloud paused",
   "guides.readAloud.stateStopped": "Reading aloud stopped",
-
   "shelters.title": "Shelters & Emergency Facilities",
   "shelters.subtitle": "Find nearby relief camps, shelters, and medical centres.",
   "shelters.filter.type": "Facility Type",
@@ -105,7 +100,6 @@
   "shelters.capacity": "Capacity: {count} people",
   "shelters.lastVerified": "Verified: {date}",
   "shelters.demoNotice": "Sample shelter and hospital locations for demonstration.",
-
   "report.title": "Submit Ground Report",
   "report.subtitle": "Help emergency teams and neighbors by reporting hazards.",
   "report.type.label": "Hazard or Condition Type",
@@ -128,13 +122,16 @@
   "report.success": "Report submitted successfully. Reports are verified before public listing.",
   "report.queued": "You are currently offline. Report has been queued and will send automatically when online.",
   "report.error": "Failed to submit report. Please check the details and try again.",
-
   "kit.title": "Emergency Kit Checklist",
   "kit.subtitle": "Essential supplies to keep packed in a waterproof bag.",
   "kit.progress": "{checked} of {total} items packed",
   "kit.reset": "Reset Checklist",
   "kit.print": "Print Checklist",
-
+  "kit.resetConfirmTitle": "Reset Kit Checklist?",
+  "kit.resetConfirmMessage": "Are you sure you want to uncheck all items? This will reset your packed checklist on this device.",
+  "kit.resetConfirmBtn": "Reset All",
+  "kit.resetCancelBtn": "Cancel",
+  "kit.allPacked": "All 12 essential items are packed and ready!",
   "about.title": "About Xahay",
   "about.subtitle": "Offline-first disaster resilience platform for North East India.",
   "about.mission": "Designed for PS05 to deliver rapid, reliable emergency guidance and verified reports during monsoon crises.",
@@ -143,7 +140,12 @@
   "about.privacy": "Privacy Policy & Zero Data Collection",
   "about.accessibility": "Accessibility Statement",
   "about.license": "Open Source MIT License",
-
+  "about.emergencyNotice": "Important: Xahay complements official emergency channels. For immediate life-safety emergencies, evacuation, or medical rescue, always call 112 directly.",
+  "about.privacyStatement": "We believe privacy is an essential human right during a crisis. Xahay does not track your identity, does not require an account, does not use tracking cookies, and never sends your location to our servers. All preferences and checklist states remain on your device.",
+  "about.moderationDetails": "All community ground reports are submitted to a moderation queue and verified against official sources and field teams before publication to prevent false alarms and panic.",
+  "about.accessibilityDetails": "Xahay is built to WCAG 2.2 Level AA standards, featuring high-contrast modes, text scaling up to 150%, full keyboard navigation, and screen reader compatibility.",
+  "about.contact": "Contact & Support",
+  "about.contactDetails": "For official inquiries, data integrations, or assistance, contact your State Emergency Operations Centre (1070) or District Control Room (1077).",
   "settings.title": "Preferences & Accessibility",
   "settings.open": "Settings",
   "settings.description": "Customize language, readability, and visual comfort.",
@@ -158,14 +160,12 @@
   "settings.contrast.high": "High Contrast (WCAG AAA)",
   "settings.motion": "Reduce Motion",
   "settings.readAloud": "Text-to-Speech Settings",
-
   "errors.network": "Network connection error. Showing cached emergency data.",
   "errors.validation": "Invalid input provided. Please verify the form fields.",
   "errors.rateLimit": "Too many requests. Please wait a moment before trying again.",
   "errors.generic": "An unexpected error occurred. Please try again.",
   "errors.notFound": "The requested emergency resource could not be found.",
   "errors.serverError": "Server error. Cached emergency data remains available offline.",
-
   "home.actions.emergency": "Emergency Numbers",
   "home.actions.emergencyDesc": "112, Police, Fire, Ambulance & Control Rooms",
   "home.actions.guides": "Safety Guides",
@@ -180,7 +180,6 @@
   "home.viewAdvisories": "View all advisories",
   "home.normalConditions": "Normal River & Weather Conditions",
   "home.normalConditionsDesc": "No active flood or landslide warnings in effect for this district.",
-
   "district.selectPlaceholder": "Choose or search your district...",
   "district.searchPlaceholder": "Type district name...",
   "district.clear": "Clear district selection",
@@ -188,5 +187,11 @@
   "district.selected": "{district} selected",
   "district.label": "Assigned District",
   "district.change": "Change district",
-  "district.count": "{count} districts available"
+  "district.count": "{count} districts available",
+  "shelters.map.show": "Show map",
+  "shelters.map.hide": "Hide map",
+  "shelters.map.toggle": "Toggle map view",
+  "shelters.map.title": "Shelter and emergency facility map",
+  "shelters.map.offlineNotice": "Map is unavailable while offline. Use the list view below.",
+  "shelters.map.loading": "Loading map..."
 }

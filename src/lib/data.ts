@@ -1,17 +1,19 @@
 import { z } from "zod";
-import type { District, Helpline, Facility, Alert, Hazard, Locale } from "@/types";
+import type { District, Helpline, Facility, Alert, Hazard, Locale, KitItem } from "@/types";
 import {
   districtSchema,
   helplineSchema,
   facilitySchema,
   alertSchema,
   localeGuideSchema,
+  kitItemSchema,
 } from "./validators";
 
 import districtsJson from "@/data/districts.json";
 import helplinesJson from "@/data/helplines.json";
 import sheltersJson from "@/data/shelters.json";
 import alertsSampleJson from "@/data/alerts.sample.json";
+import kitJson from "@/data/kit.json";
 
 import floodGuideEn from "@/data/guides/flood.en.json";
 import floodGuideAs from "@/data/guides/flood.as.json";
@@ -84,4 +86,11 @@ export function getGuide(hazard: "flood" | "landslide", locale: Locale = "en"): 
   if (!raw) return null;
 
   return localeGuideSchema.parse(raw) as LocaleGuide;
+}
+
+/**
+ * Loads and validates emergency kit checklist items.
+ */
+export function getKitItems(): KitItem[] {
+  return z.array(kitItemSchema).parse(kitJson) as KitItem[];
 }

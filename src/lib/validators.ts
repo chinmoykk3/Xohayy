@@ -124,6 +124,15 @@ export const localeGuideSchema = z.object({
   steps: z.array(localeGuideStepSchema),
 });
 
+// Kit Item
+export const kitItemSchema = z.object({
+  id: cleanTextSchema(1, 64),
+  name: localizedStringSchema,
+  description: localizedStringSchema.optional(),
+  category: cleanTextSchema(1, 64).optional(),
+  icon: cleanTextSchema(1, 64).optional(),
+});
+
 // Report
 export const reportTypeSchema = z.enum([
   "road_blocked",

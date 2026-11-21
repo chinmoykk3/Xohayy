@@ -20,6 +20,7 @@ export interface PreferencesContextValue {
   setDistrictId: (districtId?: string | null) => void;
   toggleGuideRead: (stepId: string) => void;
   toggleKitItem: (itemId: string) => void;
+  resetKitItems: () => void;
   resetPreferences: () => void;
 }
 
@@ -141,6 +142,14 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
     });
   }, []);
 
+  const resetKitItems = useCallback(() => {
+    setPreferences((prev) => {
+      const next: Preferences = { ...prev, kitChecked: [] };
+      writePreferences(next);
+      return next;
+    });
+  }, []);
+
   const resetPreferences = useCallback(() => {
     setPreferences((prev) => {
       const reset = getDefaultPreferences(prev.locale);
@@ -161,6 +170,7 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
       setDistrictId,
       toggleGuideRead,
       toggleKitItem,
+      resetKitItems,
       resetPreferences,
     }),
     [
@@ -174,6 +184,7 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
       setDistrictId,
       toggleGuideRead,
       toggleKitItem,
+      resetKitItems,
       resetPreferences,
     ]
   );

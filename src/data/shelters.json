@@ -15,7 +15,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dhemaji"
+    "districtId": "dhemaji",
+    "lat": 27.4925,
+    "lng": 94.5885
   },
   {
     "capacity": 250,
@@ -33,7 +35,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dhemaji"
+    "districtId": "dhemaji",
+    "lat": 27.4655,
+    "lng": 94.5912
   },
   {
     "capacity": 400,
@@ -51,7 +55,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dhemaji"
+    "districtId": "dhemaji",
+    "lat": 27.4855,
+    "lng": 94.5665
   },
   {
     "capacity": 150,
@@ -69,7 +75,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "dhemaji"
+    "districtId": "dhemaji",
+    "lat": 27.4715,
+    "lng": 94.5708,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -87,7 +96,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "dhemaji"
+    "districtId": "dhemaji",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -105,7 +115,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "lakhimpur"
+    "districtId": "lakhimpur",
+    "lat": 27.2525,
+    "lng": 94.1085
   },
   {
     "capacity": 250,
@@ -123,7 +135,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "lakhimpur"
+    "districtId": "lakhimpur",
+    "lat": 27.2255,
+    "lng": 94.1112
   },
   {
     "capacity": 400,
@@ -141,7 +155,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "lakhimpur"
+    "districtId": "lakhimpur",
+    "lat": 27.2455,
+    "lng": 94.0865
   },
   {
     "capacity": 150,
@@ -159,7 +175,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "lakhimpur"
+    "districtId": "lakhimpur",
+    "lat": 27.2315,
+    "lng": 94.0908,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -177,7 +196,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "lakhimpur"
+    "districtId": "lakhimpur",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -195,7 +215,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "majuli"
+    "districtId": "majuli",
+    "lat": 26.9625,
+    "lng": 94.2185
   },
   {
     "capacity": 250,
@@ -213,7 +235,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "majuli"
+    "districtId": "majuli",
+    "lat": 26.9355,
+    "lng": 94.2212
   },
   {
     "capacity": 400,
@@ -231,7 +255,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "majuli"
+    "districtId": "majuli",
+    "lat": 26.9555,
+    "lng": 94.1965
   },
   {
     "capacity": 150,
@@ -249,7 +275,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "majuli"
+    "districtId": "majuli",
+    "lat": 26.9415,
+    "lng": 94.2008,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -267,7 +296,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "majuli"
+    "districtId": "majuli",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -285,7 +315,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dibrugarh"
+    "districtId": "dibrugarh",
+    "lat": 27.4825,
+    "lng": 94.9185
   },
   {
     "capacity": 250,
@@ -303,7 +335,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dibrugarh"
+    "districtId": "dibrugarh",
+    "lat": 27.4555,
+    "lng": 94.9212
   },
   {
     "capacity": 400,
@@ -321,7 +355,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "dibrugarh"
+    "districtId": "dibrugarh",
+    "lat": 27.4755,
+    "lng": 94.8965
   },
   {
     "capacity": 150,
@@ -339,7 +375,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "dibrugarh"
+    "districtId": "dibrugarh",
+    "lat": 27.4615,
+    "lng": 94.9008,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -357,7 +396,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "dibrugarh"
+    "districtId": "dibrugarh",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -375,7 +415,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "barpeta"
+    "districtId": "barpeta",
+    "lat": 26.3325,
+    "lng": 91.0185
   },
   {
     "capacity": 250,
@@ -393,7 +435,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "barpeta"
+    "districtId": "barpeta",
+    "lat": 26.3055,
+    "lng": 91.0212
   },
   {
     "capacity": 400,
@@ -411,7 +455,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "barpeta"
+    "districtId": "barpeta",
+    "lat": 26.3255,
+    "lng": 90.9965
   },
   {
     "capacity": 150,
@@ -429,7 +475,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "barpeta"
+    "districtId": "barpeta",
+    "lat": 26.3115,
+    "lng": 91.0008,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -447,7 +496,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "barpeta"
+    "districtId": "barpeta",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -465,7 +515,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "morigaon"
+    "districtId": "morigaon",
+    "lat": 26.2625,
+    "lng": 92.3485
   },
   {
     "capacity": 250,
@@ -483,7 +535,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "morigaon"
+    "districtId": "morigaon",
+    "lat": 26.2355,
+    "lng": 92.3512
   },
   {
     "capacity": 400,
@@ -501,7 +555,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "morigaon"
+    "districtId": "morigaon",
+    "lat": 26.2555,
+    "lng": 92.3265
   },
   {
     "capacity": 150,
@@ -519,7 +575,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "morigaon"
+    "districtId": "morigaon",
+    "lat": 26.2415,
+    "lng": 92.3308,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -537,7 +596,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "morigaon"
+    "districtId": "morigaon",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -555,7 +615,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "kamrup-metropolitan"
+    "districtId": "kamrup-metropolitan",
+    "lat": 26.1525,
+    "lng": 91.7485
   },
   {
     "capacity": 250,
@@ -573,7 +635,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "kamrup-metropolitan"
+    "districtId": "kamrup-metropolitan",
+    "lat": 26.1255,
+    "lng": 91.7512
   },
   {
     "capacity": 400,
@@ -591,7 +655,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "kamrup-metropolitan"
+    "districtId": "kamrup-metropolitan",
+    "lat": 26.1455,
+    "lng": 91.7265
   },
   {
     "capacity": 150,
@@ -609,7 +675,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "kamrup-metropolitan"
+    "districtId": "kamrup-metropolitan",
+    "lat": 26.1315,
+    "lng": 91.7308,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -627,7 +696,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "kamrup-metropolitan"
+    "districtId": "kamrup-metropolitan",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -645,7 +715,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "cachar"
+    "districtId": "cachar",
+    "lat": 24.8425,
+    "lng": 92.7885
   },
   {
     "capacity": 250,
@@ -663,7 +735,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "cachar"
+    "districtId": "cachar",
+    "lat": 24.8155,
+    "lng": 92.7912
   },
   {
     "capacity": 400,
@@ -681,7 +755,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "cachar"
+    "districtId": "cachar",
+    "lat": 24.8355,
+    "lng": 92.7665
   },
   {
     "capacity": 150,
@@ -699,7 +775,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "cachar"
+    "districtId": "cachar",
+    "lat": 24.8215,
+    "lng": 92.7708,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -717,7 +796,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "cachar"
+    "districtId": "cachar",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -735,7 +815,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "jorhat"
+    "districtId": "jorhat",
+    "lat": 26.7625,
+    "lng": 94.2285
   },
   {
     "capacity": 250,
@@ -753,7 +835,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "jorhat"
+    "districtId": "jorhat",
+    "lat": 26.7355,
+    "lng": 94.2312
   },
   {
     "capacity": 400,
@@ -771,7 +855,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "jorhat"
+    "districtId": "jorhat",
+    "lat": 26.7555,
+    "lng": 94.2065
   },
   {
     "capacity": 150,
@@ -789,7 +875,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "jorhat"
+    "districtId": "jorhat",
+    "lat": 26.7415,
+    "lng": 94.2108,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -807,7 +896,8 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "jorhat"
+    "districtId": "jorhat",
+    "phone": "0361210444"
   },
   {
     "capacity": 300,
@@ -825,7 +915,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "golaghat"
+    "districtId": "golaghat",
+    "lat": 26.5325,
+    "lng": 93.9785
   },
   {
     "capacity": 250,
@@ -843,7 +935,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "golaghat"
+    "districtId": "golaghat",
+    "lat": 26.5055,
+    "lng": 93.9812
   },
   {
     "capacity": 400,
@@ -861,7 +955,9 @@
     },
     "type": "shelter",
     "lastVerified": "2026-11-20",
-    "districtId": "golaghat"
+    "districtId": "golaghat",
+    "lat": 26.5255,
+    "lng": 93.9565
   },
   {
     "capacity": 150,
@@ -879,7 +975,10 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "golaghat"
+    "districtId": "golaghat",
+    "lat": 26.5115,
+    "lng": 93.9608,
+    "phone": "0361210333"
   },
   {
     "capacity": 100,
@@ -897,6 +996,7 @@
     },
     "type": "hospital",
     "lastVerified": "2026-11-20",
-    "districtId": "golaghat"
+    "districtId": "golaghat",
+    "phone": "0361210444"
   }
 ]

@@ -28,17 +28,40 @@ export function Footer({ locale = DEFAULT_LOCALE }: FooterProps) {
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-2">
           <Link
             href={`/${locale}/about`}
-            className="hover:text-[var(--color-text-main)] underline min-h-[48px] inline-flex items-center"
+            className="hover:text-[var(--color-text-main)] underline min-h-[44px] inline-flex items-center"
           >
             {t(locale, "about.title")}
           </Link>
           <span className="hidden sm:inline" aria-hidden="true">
             &bull;
           </span>
-          <p className="m-0">{t(locale, "about.privacy")}</p>
+          <Link
+            href={`/${locale}/about#privacy`}
+            className="hover:text-[var(--color-text-main)] underline min-h-[44px] inline-flex items-center"
+          >
+            {t(locale, "about.privacy")}
+          </Link>
+          <span className="hidden sm:inline" aria-hidden="true">
+            &bull;
+          </span>
+          <Link
+            href={`/${locale}/about#sources`}
+            className="hover:text-[var(--color-text-main)] underline min-h-[44px] inline-flex items-center"
+          >
+            {t(locale, "about.sources")}
+          </Link>
+          <span className="hidden sm:inline" aria-hidden="true">
+            &bull;
+          </span>
+          <Link
+            href={`/${locale}/kit`}
+            className="hover:text-[var(--color-text-main)] underline min-h-[44px] inline-flex items-center"
+          >
+            {t(locale, "kit.title")}
+          </Link>
         </div>
       </div>
     </footer>

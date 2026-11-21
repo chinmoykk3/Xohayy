@@ -76,6 +76,14 @@ export interface Guide {
   steps: GuideStep[];
 }
 
+export interface KitItem {
+  id: string;
+  name: Record<Locale, string>;
+  description?: Record<Locale, string>;
+  category?: string;
+  icon?: string;
+}
+
 export type ReportType =
   "road_blocked" | "area_flooded" | "landslide" | "bridge_damaged" | "need_help" | "safe_shelter";
 
