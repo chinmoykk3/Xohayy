@@ -20,3 +20,19 @@ This report verifies all design token pairs against WCAG 2.2 AA requirements (4.
 | High Contrast Text on High Contrast Background | `#000000`  | `#FFFFFF`  |    **21:1**    |      7:1       | ✅ PASS |
 
 _All measurements generated automatically by `tests/unit/contrast.test.ts` via `src/lib/contrast.ts`._
+
+## Phase 8: Emergency Panel & Navigation WCAG 2.2 AA Audit
+
+- **Automated Axe Accessibility Audit**: 0 violations detected via `@axe-core/playwright` on `<div role="dialog">` (EmergencyPanel) and layout landmarks.
+- **Focus Management**:
+  - Focus is trapped within the EmergencyPanel dialog when opened.
+  - Dialog closes cleanly with the `Escape` key and returns focus appropriately.
+- **Accessible Names (WCAG 2.5.3 Label in Name)**:
+  - All emergency `CallButton` anchors contain exact matching text and number in their accessible names (e.g. `Call National Emergency Helpline 112`, `Call Police Control Room 100`).
+  - Secondary action buttons (copy number fallback) provide accessible names with clear state feedback (`aria-live="polite"`).
+- **Touch Target & Landmark Navigation**:
+  - `EmergencyFab`: 56px minimum target size, fixed bottom-right, styled in high-contrast emergency red (`#B91C1C`) with white text (`6.47:1` contrast ratio).
+  - Reachable as the first target after `<SkipLink />`.
+  - Header provides direct 112 emergency access.
+- **Mobile Reflow (WCAG 1.4.10)**:
+  - Responsive reflow at 320px viewport width tested across English, Assamese, and Hindi with 0 horizontal overflow (`scrollWidth <= clientWidth`).

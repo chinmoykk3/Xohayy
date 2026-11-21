@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
-test.describe("Layout & Accessibility Smoke Suite", () => {
+test.describe("Layout & Emergency Smoke Suite", () => {
   test("smoke test loads root page and redirects to default locale with landmarks", async ({
     page,
   }) => {
@@ -11,6 +12,49 @@ test.describe("Layout & Accessibility Smoke Suite", () => {
     await expect(page.locator("main#main-content")).toBeVisible();
     await expect(page.locator("footer")).toBeVisible();
     await expect(page.locator("a[href='#main-content']")).toHaveCount(1);
+  });
+
+  test("emergency FAB is visible and opens emergency panel dialog in one tap", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+
+    const fab = page.locator("#emergency-fab");
+    await expect(fab).toBeVisible();
+
+    // Click FAB to open dialog
+    await fab.click();
+
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText("Emergency Helplines & Assistance")).toBeVisible();
+
+    // Verify 112 is present as prominent tel link
+    const call112 = dialog.locator("a[href='tel:112']");
+    await expect(call112).toBeVisible();
+
+    // Run automated Axe accessibility scan on the open dialog
+    const accessibilityScanResults = await new AxeBuilder({ page })
+      .include("div[role='dialog']")
+      .analyze();
+
+    expect(accessibilityScanResults.violations).toEqual([]);
+
+    // Escape closes dialog
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+  });
+
+  test("header 112 button navigates to standalone emergency page", async ({ page }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+
+    const header112 = page.locator("header a[aria-label*='112']");
+    await expect(header112).toBeVisible();
+    await header112.click();
+
+    await expect(page).toHaveURL(/\/en\/emergency/);
+    await expect(
+      page.getByRole("heading", { name: "Emergency Helplines & Assistance" })
+    ).toBeVisible();
+    await expect(page.locator("main a[href='tel:112']").first()).toBeVisible();
   });
 
   test("allows switching language to Assamese", async ({ page }) => {

@@ -74,10 +74,10 @@ export function LanguageSwitcher({
       </label>
       <div className="relative flex items-center">
         <span
-          className="absolute left-2.5 text-[var(--color-text-muted)] pointer-events-none"
+          className="absolute left-2 text-[var(--color-text-muted)] pointer-events-none"
           aria-hidden="true"
         >
-          <Icon name="globe" size={16} />
+          <Icon name="globe" size={14} />
         </span>
         <select
           id={id}
@@ -85,7 +85,7 @@ export function LanguageSwitcher({
           disabled={isPending}
           onChange={(e) => handleLocaleChange(e.target.value as Locale)}
           aria-label="Language"
-          className="appearance-none bg-[var(--color-bg-card)] text-[var(--color-text-main)] border border-[var(--color-border-card)] rounded-[var(--radius-card)] pl-8 pr-7 py-1.5 text-sm font-medium min-h-[48px] focus:outline-none focus:ring-2 focus:ring-[var(--color-focus-ring)] cursor-pointer disabled:opacity-50"
+          className="appearance-none bg-[var(--color-bg-card)] text-[var(--color-text-main)] border border-[var(--color-border-card)] rounded-[var(--radius-card)] pl-6 pr-5 sm:pl-8 sm:pr-7 py-1 text-xs sm:text-sm font-medium min-h-[40px] sm:min-h-[48px] focus:outline-none focus:ring-2 focus:ring-[var(--color-focus-ring)] cursor-pointer disabled:opacity-50"
         >
           {LOCALES.map((locale) => (
             <option key={locale} value={locale}>
@@ -94,7 +94,7 @@ export function LanguageSwitcher({
           ))}
         </select>
         <span
-          className="absolute right-2 text-[var(--color-text-muted)] pointer-events-none text-xs"
+          className="absolute right-1.5 text-[var(--color-text-muted)] pointer-events-none text-xs"
           aria-hidden="true"
         >
           &#9662;

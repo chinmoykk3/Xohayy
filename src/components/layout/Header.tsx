@@ -21,20 +21,21 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
     { href: `/${locale}/guides`, label: t(locale, "guides.title") },
     { href: `/${locale}/shelters`, label: t(locale, "shelters.title") },
     { href: `/${locale}/report`, label: t(locale, "report.title") },
+    { href: `/${locale}/emergency`, label: t(locale, "common.emergency") },
   ];
 
   return (
     <header className="w-full bg-[var(--color-bg-card)] border-b border-[var(--color-border-card)] sticky top-0 z-40">
-      <div className="max-w-[960px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+      <div className="max-w-[960px] mx-auto px-2 sm:px-6 h-16 flex items-center justify-between gap-1 sm:gap-2">
         {/* Brand */}
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-2 text-xl font-bold text-[var(--color-text-main)] min-h-[48px] min-w-[48px] py-2"
+          className="flex items-center gap-1.5 text-xl font-bold text-[var(--color-text-main)] min-h-[44px] min-w-[44px] sm:min-h-[48px] sm:min-w-[48px] py-2 shrink-0"
         >
           <span className="w-8 h-8 rounded-[var(--radius-card)] bg-[var(--color-primary-bg)] text-[var(--color-primary-text)] flex items-center justify-center text-sm font-bold">
             X
           </span>
-          <span className="tracking-tight">Xahay</span>
+          <span className="tracking-tight hidden xs:inline">Xahay</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -50,8 +51,18 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Header Right Actions: Language Switcher, Settings Menu & Mobile Toggle */}
-        <div className="flex items-center gap-2">
+        {/* Header Right Actions: Emergency 112, Language Switcher, Settings & Mobile Toggle */}
+        <div className="flex items-center gap-1 sm:gap-2">
+          {/* Header Quick Emergency 112 Link */}
+          <Link
+            href={`/${locale}/emergency`}
+            aria-label={`${t(locale, "emergency.callAction")} 112`}
+            className="inline-flex items-center justify-center min-h-[40px] px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--radius-card)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-bold text-xs sm:text-sm tracking-wide transition-colors"
+          >
+            <Icon name="phone" size={14} className="mr-1 sm:mr-1.5" />
+            <span>112</span>
+          </Link>
+
           <LanguageSwitcher currentLocale={locale} />
           <SettingsMenu locale={locale} />
 
@@ -63,9 +74,9 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-navigation"
               aria-label={isMenuOpen ? t(locale, "common.close") : t(locale, "common.menu")}
-              className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] p-2 text-[var(--color-text-main)] rounded-md hover:bg-[var(--color-bg-page)]"
+              className="inline-flex items-center justify-center min-h-[40px] min-w-[40px] sm:min-h-[48px] sm:min-w-[48px] p-1.5 text-[var(--color-text-main)] rounded-md hover:bg-[var(--color-bg-page)]"
             >
-              <Icon name={isMenuOpen ? "close" : "menu"} size={26} />
+              <Icon name={isMenuOpen ? "close" : "menu"} size={22} />
             </button>
           </div>
         </div>
