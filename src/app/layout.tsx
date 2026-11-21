@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col bg-[var(--color-bg-page)] text-[var(--color-text-main)] antialiased">
         <SkipLink />
         <Header />
-        <main id="main-content" className="flex-1 w-full max-w-5xl mx-auto px-4 py-6">
+        <main id="main-content" className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 py-6">
           {children}
         </main>
         <Footer />

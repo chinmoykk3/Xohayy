@@ -1,31 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  /* Typography Scale */
+  /* Strict 5-size type scale based on 18px mobile baseline */
   --font-base-size: 18px;
   --line-height-base: 1.5;
+  --text-xs: 0.75rem; /* 13.5px */
+  --text-sm: 0.875rem; /* 15.75px */
+  --text-base: 1rem; /* 18px */
+  --text-lg: 1.25rem; /* 22.5px */
+  --text-xl: 1.5rem; /* 27px */
 
-  /* Surfaces & Borders */
+  /* Surfaces & 1px Hairline Borders */
   --color-bg-page: #f7fafc;
   --color-bg-card: #ffffff;
   --color-border-card: #cbd5e1;
 
-  /* Text Colors */
+  /* Typography Colors */
   --color-text-main: #0f172a;
   --color-text-muted: #334155;
   --color-text-placeholder: #475569;
 
-  /* Primary Action (Sky Blue) */
+  /* Primary Action (Restrained Sky Blue) */
   --color-primary-bg: #0369a1;
   --color-primary-text: #ffffff;
   --color-primary-hover: #0284c7;
 
-  /* Emergency Action (Red) */
+  /* Emergency Action (Reserved Red) */
   --color-emergency-bg: #b91c1c;
   --color-emergency-text: #ffffff;
   --color-emergency-hover: #991b1b;
 
-  /* Risk Tints (Pastel bg + dark text) */
+  /* Pastel Risk Tints */
   --color-risk-low-bg: #dcfce7;
   --color-risk-low-text: #14532d;
   --color-risk-low-border: #86efac;
@@ -131,12 +136,12 @@ body {
   overflow-x: hidden;
 }
 
-/* Accessible interactive focus states */
+/* Accessible focus states with 1px hairline offsets */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid var(--color-focus-ring);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }

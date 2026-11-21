@@ -25,7 +25,7 @@ export function Toast({ isOpen, message, type = "info", onClose }: ToastProps) {
     <div
       role="status"
       aria-live="polite"
-      className={`fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 z-50 p-4 border rounded-[var(--radius-card)] shadow-lg flex items-center justify-between gap-3 ${typeStyles[type]}`}
+      className={`fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 z-50 p-4 border rounded-[var(--radius-card)] shadow-sm flex items-center justify-between gap-3 ${typeStyles[type]}`}
     >
       <div className="flex items-center gap-2">
         <Icon

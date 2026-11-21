@@ -8,26 +8,27 @@ export default function Home() {
     <div className="space-y-6">
       {/* Emergency Header Banner */}
       <section aria-labelledby="emergency-heading">
-        <Card className="border-l-4 border-l-[var(--color-emergency-bg)] bg-[var(--color-bg-card)]">
+        <Card className="bg-[var(--color-bg-card)] border border-[var(--color-border-card)]">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-[var(--color-risk-danger-bg)] text-[var(--color-risk-danger-text)] border border-[var(--color-risk-danger-border)]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[var(--radius-pill)] text-sm font-medium bg-[var(--color-risk-danger-bg)] text-[var(--color-risk-danger-text)] border border-[var(--color-risk-danger-border)]">
                 <Icon name="alert-triangle" size={16} />
-                <span>Immediate Disaster Response</span>
+                <span>Emergency Priority</span>
               </span>
               <h1
                 id="emergency-heading"
-                className="text-2xl sm:text-3xl font-extrabold mt-2 text-[var(--color-text-main)]"
+                className="text-2xl sm:text-3xl font-bold mt-2 text-[var(--color-text-main)] tracking-tight"
               >
-                Emergency Assistance (PS05)
+                Disaster Response (PS05)
               </h1>
-              <p className="text-base text-[var(--color-text-muted)] mt-1">
-                Floods and landslide lifeline for Assam, Meghalaya, and North East communities.
+              <p className="text-base text-[var(--color-text-muted)] mt-1 max-w-xl">
+                Emergency flood and landslide lifeline for Assam, Meghalaya, and North East
+                communities.
               </p>
             </div>
             <a
               href="tel:112"
-              className="w-full sm:w-auto inline-flex items-center justify-center min-h-[56px] min-w-[56px] px-6 py-3 rounded-[var(--radius-card)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-black text-xl tracking-wide shadow-md transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center min-h-[56px] min-w-[56px] px-6 py-3 rounded-[var(--radius-card)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-bold text-lg tracking-wide transition-colors"
               aria-label="Call national emergency number 112"
             >
               <Icon name="phone" size={24} className="mr-2" />
@@ -48,7 +49,7 @@ export default function Home() {
 
         <Card as="article">
           <div className="flex items-center gap-3 mb-2">
-            <span className="p-2 rounded-full bg-[var(--color-risk-warning-bg)] text-[var(--color-risk-warning-text)]">
+            <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-warning-bg)] text-[var(--color-risk-warning-text)] border border-[var(--color-risk-warning-border)]">
               <Icon name="warning" size={22} />
             </span>
             <h3 className="text-lg font-bold text-[var(--color-text-main)]">District Alerts</h3>
@@ -65,7 +66,7 @@ export default function Home() {
 
         <Card as="article">
           <div className="flex items-center gap-3 mb-2">
-            <span className="p-2 rounded-full bg-[var(--color-risk-watch-bg)] text-[var(--color-risk-watch-text)]">
+            <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-watch-bg)] text-[var(--color-risk-watch-text)] border border-[var(--color-risk-watch-border)]">
               <Icon name="shield" size={22} />
             </span>
             <h3 className="text-lg font-bold text-[var(--color-text-main)]">Safety Guides</h3>
@@ -82,7 +83,7 @@ export default function Home() {
 
         <Card as="article">
           <div className="flex items-center gap-3 mb-2">
-            <span className="p-2 rounded-full bg-[var(--color-risk-low-bg)] text-[var(--color-risk-low-text)]">
+            <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-low-bg)] text-[var(--color-risk-low-text)] border border-[var(--color-risk-low-border)]">
               <Icon name="map-pin" size={22} />
             </span>
             <h3 className="text-lg font-bold text-[var(--color-text-main)]">Relief Shelters</h3>

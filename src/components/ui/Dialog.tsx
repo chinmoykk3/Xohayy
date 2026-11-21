@@ -20,7 +20,6 @@ export function Dialog({ isOpen, onClose, title, description, children }: Dialog
   useEffect(() => {
     if (!isOpen) return;
 
-    // Capture currently focused element before opening
     previouslyFocusedElementRef.current = document.activeElement as HTMLElement | null;
 
     const currentDialog = dialogRef.current;
@@ -66,7 +65,6 @@ export function Dialog({ isOpen, onClose, title, description, children }: Dialog
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      // Restore focus to trigger element on close
       if (previouslyFocusedElementRef.current) {
         previouslyFocusedElementRef.current.focus();
       }
@@ -77,7 +75,7 @@ export function Dialog({ isOpen, onClose, title, description, children }: Dialog
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -88,7 +86,7 @@ export function Dialog({ isOpen, onClose, title, description, children }: Dialog
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={description ? descId : undefined}
-        className="w-full max-w-lg bg-[var(--color-bg-card)] border border-[var(--color-border-card)] rounded-[var(--radius-card)] p-6 shadow-xl relative animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-lg bg-[var(--color-bg-card)] border border-[var(--color-border-card)] rounded-[var(--radius-card)] p-6 shadow-md relative"
       >
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
@@ -105,7 +103,7 @@ export function Dialog({ isOpen, onClose, title, description, children }: Dialog
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] rounded-full hover:bg-[var(--color-border-card)]/30"
+            className="inline-flex items-center justify-center min-h-[48px] min-w-[48px] p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] rounded-md hover:bg-[var(--color-bg-page)]"
           >
             <Icon name="close" size={24} />
           </button>

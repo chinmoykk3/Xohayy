@@ -17,16 +17,16 @@ export function Header() {
 
   return (
     <header className="w-full bg-[var(--color-bg-card)] border-b border-[var(--color-border-card)] sticky top-0 z-40">
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-[960px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Brand */}
         <Link
           href="/"
           className="flex items-center gap-2 text-xl font-bold text-[var(--color-text-main)] min-h-[48px] min-w-[48px] py-2"
         >
-          <span className="w-8 h-8 rounded-full bg-[var(--color-primary-bg)] text-[var(--color-primary-text)] flex items-center justify-center text-sm font-black">
+          <span className="w-8 h-8 rounded-[var(--radius-card)] bg-[var(--color-primary-bg)] text-[var(--color-primary-text)] flex items-center justify-center text-sm font-bold">
             X
           </span>
-          <span>Xahay</span>
+          <span className="tracking-tight">Xahay</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -62,7 +62,7 @@ export function Header() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile Navigation"
-          className="sm:hidden border-t border-[var(--color-border-card)] bg-[var(--color-bg-card)] px-4 py-3 flex flex-col gap-1 shadow-md"
+          className="sm:hidden border-t border-[var(--color-border-card)] bg-[var(--color-bg-card)] px-4 py-3 flex flex-col gap-1"
         >
           {navLinks.map((link) => (
             <Link
