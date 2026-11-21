@@ -36,11 +36,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const validLocale = locale as Locale;
 
   return (
-    <main
-      id="main-content"
-      tabIndex={-1}
-      className="max-w-[960px] mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8 outline-none"
-    >
+    <div className="space-y-8">
       {/* Page Title */}
       <div className="border-b border-[var(--color-border-card)] pb-4">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-text-main)]">
@@ -222,20 +218,103 @@ export default async function AboutPage({ params }: AboutPageProps) {
         </div>
       </section>
 
-      {/* Accessibility Statement Placeholder (Phase 21) */}
-      <section id="accessibility" className="space-y-3">
+      {/* Real Accessibility Statement (WCAG 2.2 Level AA) */}
+      <section id="accessibility" className="space-y-4">
         <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text-main)] flex items-center gap-2">
           <Icon name="info" size={20} className="text-[var(--color-primary-bg)]" />
           <span>Accessibility Statement</span>
         </h2>
-        <p className="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed">
-          {t(validLocale, "about.accessibilityDetails")}
-        </p>
-        <p className="text-xs text-[var(--color-text-muted)]">
-          Xahay conforms to WCAG 2.2 Level AA accessibility guidelines, offering minimum 48px touch
-          targets, full keyboard navigability, high contrast toggles (4.5:1 / 7:1 contrast ratios),
-          text scaling up to 150%, and screen reader semantic markers.
-        </p>
+        <div className="text-sm sm:text-base text-[var(--color-text-muted)] leading-relaxed space-y-3">
+          <p>
+            Xahay is committed to digital inclusion, ensuring that all citizens in disaster-affected
+            regions—regardless of disability, language, bandwidth, or device capability—have
+            immediate, unhindered access to life-saving emergency directives and relief
+            coordination.
+          </p>
+
+          <h3 className="text-sm font-bold text-[var(--color-text-main)] uppercase tracking-wide">
+            Standards &amp; Conformance
+          </h3>
+          <p>
+            This application is engineered to conform strictly to the{" "}
+            <strong>Web Content Accessibility Guidelines (WCAG) 2.2 Level AA</strong> standards. Key
+            implemented features include:
+          </p>
+          <ul className="list-disc list-inside space-y-1.5 pl-2 text-xs sm:text-sm">
+            <li>
+              <strong>Full Keyboard Navigability:</strong> All actions, dialogs, and filters are
+              operable without a mouse. Skip-to-content links ensure immediate access to primary
+              directives, and focus is trapped inside modals until explicitly dismissed with Escape.
+            </li>
+            <li>
+              <strong>Focus Indicators:</strong> High-visibility focus rings providing at least 3:1
+              contrast against adjacent surface tokens.
+            </li>
+            <li>
+              <strong>Touch Targets:</strong> Interactive elements maintain a minimum target size of
+              48&times;48 CSS pixels with at least 8px clearance.
+            </li>
+            <li>
+              <strong>High Contrast &amp; Forced Colors:</strong> Dedicated high-contrast toggle
+              providing up to 21:1 (AAA) contrast ratios and full Windows Forced Colors / High
+              Contrast Mode support.
+            </li>
+            <li>
+              <strong>Text Scaling &amp; Responsive Reflow:</strong> In-app text scaling (up to
+              150%) and standard 200% browser zoom with complete content reflow down to 320px
+              viewport width without horizontal scrollbars.
+            </li>
+            <li>
+              <strong>Non-Color-Only Meaning:</strong> Risk badges, alert levels, and facility
+              states always combine text labels, semantic icons, and colors.
+            </li>
+            <li>
+              <strong>Assistive Tech Semantics:</strong> Correct ARIA landmark roles (
+              <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>), live
+              regions for dynamic alerts, and polite debounced counters.
+            </li>
+          </ul>
+
+          <h3 className="text-sm font-bold text-[var(--color-text-main)] uppercase tracking-wide">
+            Known Limitations &amp; Mitigations
+          </h3>
+          <ul className="list-disc list-inside space-y-1.5 pl-2 text-xs sm:text-sm">
+            <li>
+              <strong>Assamese Text-to-Speech (TTS) Voice Engine:</strong> Many Android and desktop
+              operating systems do not currently bundle an offline native Assamese (
+              <code>as-IN</code>) synthetic voice. When a native Assamese voice is missing, Xahay
+              automatically provides a transparent fallback notice and offers Hindi (
+              <code>hi-IN</code>) synthesis or clear step-by-step readable text cards.
+            </li>
+            <li>
+              <strong>Offline Map Tiles:</strong> When operating offline during grid blackouts,
+              third-party OpenStreetMap tile imagery is unavailable. The application gracefully
+              falls back to structured textual address, GPS coordinate, and landmark listings.
+            </li>
+          </ul>
+
+          <h3 className="text-sm font-bold text-[var(--color-text-main)] uppercase tracking-wide">
+            Feedback &amp; Accessibility Assistance
+          </h3>
+          <p>
+            We welcome feedback on the accessibility of Xahay. If you encounter any accessibility
+            barrier or require emergency guidance in an alternative format, please contact our civic
+            response team:
+          </p>
+          <p className="text-xs sm:text-sm font-medium">
+            Email:{" "}
+            <a
+              href="mailto:accessibility@xahay.org"
+              className="text-[var(--color-primary-bg)] underline"
+            >
+              accessibility@xahay.org
+            </a>{" "}
+            | State EOC:{" "}
+            <a href="tel:1070" className="text-[var(--color-primary-bg)] underline">
+              1070
+            </a>
+          </p>
+        </div>
       </section>
 
       {/* Contact & Helplines Placeholder */}
@@ -281,6 +360,6 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

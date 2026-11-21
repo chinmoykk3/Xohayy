@@ -41,9 +41,9 @@ export function KitChecklist({ locale, className = "" }: KitChecklistProps) {
       {/* Header and Print/Reset Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--color-border-card)] pb-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+          <h1 className="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
             {t(locale, "kit.title")}
-          </h2>
+          </h1>
           <p className="text-sm text-[var(--color-text-muted)] mt-1">{t(locale, "kit.subtitle")}</p>
         </div>
 

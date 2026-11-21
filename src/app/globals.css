@@ -156,6 +156,41 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
+/* Forced Colors / Windows High Contrast Mode */
+@media (forced-colors: active) {
+  :root {
+    --color-focus-ring: Highlight;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid Highlight !important;
+    outline-offset: 3px !important;
+  }
+
+  button,
+  [role="button"] {
+    border: 1px solid ButtonText !important;
+  }
+}
+
+/* Wrap long words gracefully to prevent 320px viewport horizontal scrolling */
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+a {
+  overflow-wrap: break-word;
+}
+
 /* Print stylesheet for clean one-page emergency kit printing */
 @media print {
   header,

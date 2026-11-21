@@ -35,10 +35,8 @@ export default async function KitPage({ params }: KitPageProps) {
   const validLocale = locale as Locale;
 
   return (
-    <div className="max-w-[960px] mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
-      <main id="main-content" tabIndex={-1} className="outline-none">
-        <KitChecklist locale={validLocale} />
-      </main>
+    <div className="space-y-6">
+      <KitChecklist locale={validLocale} />
     </div>
   );
 }
