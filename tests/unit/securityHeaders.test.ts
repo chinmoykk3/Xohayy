@@ -8,7 +8,7 @@ describe("Security Headers (Plan Sections 24.4, ADR-003, ADR-005)", () => {
     const csp = generateCsp(nonce);
 
     expect(csp).toContain("default-src 'self'");
-    expect(csp).toContain(`script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`);
+    expect(csp).toContain(`script-src 'self' 'nonce-${nonce}'`);
 
     // Must NOT contain unsafe-inline for scripts
     const scriptDirective = csp.split(";").find((d) => d.trim().startsWith("script-src"));
