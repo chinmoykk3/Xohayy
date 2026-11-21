@@ -1,69 +1,102 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <div className="space-y-6">
+      {/* Emergency Header Banner */}
+      <section aria-labelledby="emergency-heading">
+        <Card className="border-l-4 border-l-[var(--color-emergency-bg)] bg-[var(--color-bg-card)]">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-[var(--color-risk-danger-bg)] text-[var(--color-risk-danger-text)] border border-[var(--color-risk-danger-border)]">
+                <Icon name="alert-triangle" size={16} />
+                <span>Immediate Disaster Response</span>
+              </span>
+              <h1
+                id="emergency-heading"
+                className="text-2xl sm:text-3xl font-extrabold mt-2 text-[var(--color-text-main)]"
+              >
+                Emergency Assistance (PS05)
+              </h1>
+              <p className="text-base text-[var(--color-text-muted)] mt-1">
+                Floods and landslide lifeline for Assam, Meghalaya, and North East communities.
+              </p>
+            </div>
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="tel:112"
+              className="w-full sm:w-auto inline-flex items-center justify-center min-h-[56px] min-w-[56px] px-6 py-3 rounded-[var(--radius-card)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-black text-xl tracking-wide shadow-md transition-colors"
+              aria-label="Call national emergency number 112"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <Icon name="phone" size={24} className="mr-2" />
+              <span>Call 112</span>
+            </a>
+          </div>
+        </Card>
+      </section>
+
+      {/* Action Quick Access Grid */}
+      <section
+        aria-labelledby="actions-heading"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <h2 id="actions-heading" className="sr-only">
+          Quick Actions
+        </h2>
+
+        <Card as="article">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="p-2 rounded-full bg-[var(--color-risk-warning-bg)] text-[var(--color-risk-warning-text)]">
+              <Icon name="warning" size={22} />
+            </span>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">District Alerts</h3>
+          </div>
+          <p className="text-sm text-[var(--color-text-muted)] mb-4">
+            Check official flood levels, rain warnings, and road blockages for your district.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+          <Link href="/alerts" className="w-full block">
+            <Button variant="primary" className="w-full">
+              View Alerts
+            </Button>
+          </Link>
+        </Card>
+
+        <Card as="article">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="p-2 rounded-full bg-[var(--color-risk-watch-bg)] text-[var(--color-risk-watch-text)]">
+              <Icon name="shield" size={22} />
+            </span>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">Safety Guides</h3>
+          </div>
+          <p className="text-sm text-[var(--color-text-muted)] mb-4">
+            Step-by-step instructions for flash floods and landslide evacuation procedures.
+          </p>
+          <Link href="/guides" className="w-full block">
+            <Button variant="secondary" className="w-full">
+              Read Guides
+            </Button>
+          </Link>
+        </Card>
+
+        <Card as="article">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="p-2 rounded-full bg-[var(--color-risk-low-bg)] text-[var(--color-risk-low-text)]">
+              <Icon name="map-pin" size={22} />
+            </span>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">Relief Shelters</h3>
+          </div>
+          <p className="text-sm text-[var(--color-text-muted)] mb-4">
+            Find active shelter locations, relief camps, and nearest emergency hospitals.
+          </p>
+          <Link href="/shelters" className="w-full block">
+            <Button variant="secondary" className="w-full">
+              Find Shelters
+            </Button>
+          </Link>
+        </Card>
+      </section>
     </div>
   );
 }

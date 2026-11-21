@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Typography Scale */
+  --font-base-size: 18px;
+  --line-height-base: 1.5;
+
+  /* Surfaces & Borders */
+  --color-bg-page: #f7fafc;
+  --color-bg-card: #ffffff;
+  --color-border-card: #cbd5e1;
+
+  /* Text Colors */
+  --color-text-main: #0f172a;
+  --color-text-muted: #334155;
+  --color-text-placeholder: #475569;
+
+  /* Primary Action (Sky Blue) */
+  --color-primary-bg: #0369a1;
+  --color-primary-text: #ffffff;
+  --color-primary-hover: #0284c7;
+
+  /* Emergency Action (Red) */
+  --color-emergency-bg: #b91c1c;
+  --color-emergency-text: #ffffff;
+  --color-emergency-hover: #991b1b;
+
+  /* Risk Tints (Pastel bg + dark text) */
+  --color-risk-low-bg: #dcfce7;
+  --color-risk-low-text: #14532d;
+  --color-risk-low-border: #86efac;
+
+  --color-risk-watch-bg: #fef9c3;
+  --color-risk-watch-text: #713f12;
+  --color-risk-watch-border: #fde047;
+
+  --color-risk-warning-bg: #ffedd5;
+  --color-risk-warning-text: #7c2d12;
+  --color-risk-warning-border: #fdba74;
+
+  --color-risk-danger-bg: #fee2e2;
+  --color-risk-danger-text: #7f1d1d;
+  --color-risk-danger-border: #fca5a5;
+
+  /* Focus Ring */
+  --color-focus-ring: #0284c7;
+
+  /* Radii */
+  --radius-card: 12px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-speed: 150ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* High Contrast Mode */
+[data-contrast="high"] {
+  --color-bg-page: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-border-card: #000000;
+
+  --color-text-main: #000000;
+  --color-text-muted: #000000;
+  --color-text-placeholder: #1e293b;
+
+  --color-primary-bg: #000000;
+  --color-primary-text: #ffffff;
+  --color-primary-hover: #1e293b;
+
+  --color-emergency-bg: #880000;
+  --color-emergency-text: #ffffff;
+  --color-emergency-hover: #660000;
+
+  --color-risk-low-bg: #dcfce7;
+  --color-risk-low-text: #000000;
+  --color-risk-low-border: #000000;
+
+  --color-risk-watch-bg: #fef9c3;
+  --color-risk-watch-text: #000000;
+  --color-risk-watch-border: #000000;
+
+  --color-risk-warning-bg: #ffedd5;
+  --color-risk-warning-text: #000000;
+  --color-risk-warning-border: #000000;
+
+  --color-risk-danger-bg: #fee2e2;
+  --color-risk-danger-text: #000000;
+  --color-risk-danger-border: #000000;
+
+  --color-focus-ring: #000000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Text Scaling */
+[data-text-scale="1"] {
+  --font-base-size: 18px;
+}
+[data-text-scale="1.25"] {
+  --font-base-size: 22.5px;
+}
+[data-text-scale="1.5"] {
+  --font-base-size: 27px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
+html {
+  font-size: var(--font-base-size);
+  line-height: var(--line-height-base);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Accessible interactive focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }
