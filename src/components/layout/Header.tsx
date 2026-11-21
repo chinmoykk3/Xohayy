@@ -1,10 +1,9 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { LanguageSwitcher } from "@/components/settings/LanguageSwitcher";
 import { SettingsMenu } from "@/components/settings/SettingsMenu";
+import { MobileMenu } from "./MobileMenu";
 import { DEFAULT_LOCALE, t } from "@/i18n/config";
 import type { Locale } from "@/types";
 
@@ -13,8 +12,6 @@ interface HeaderProps {
 }
 
 export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const navLinks = [
     { href: `/${locale}`, label: t(locale, "home.title") },
     { href: `/${locale}/alerts`, label: t(locale, "alerts.title") },
@@ -66,41 +63,10 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
           <LanguageSwitcher currentLocale={locale} />
           <SettingsMenu locale={locale} />
 
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center">
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen((prev) => !prev)}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-navigation"
-              aria-label={isMenuOpen ? t(locale, "common.close") : t(locale, "common.menu")}
-              className="inline-flex items-center justify-center min-h-[40px] min-w-[40px] sm:min-h-[48px] sm:min-w-[48px] p-1.5 text-[var(--color-text-main)] rounded-md hover:bg-[var(--color-bg-page)]"
-            >
-              <Icon name={isMenuOpen ? "close" : "menu"} size={22} />
-            </button>
-          </div>
+          {/* Mobile Collapsible Navigation Menu */}
+          <MobileMenu locale={locale} navLinks={navLinks} />
         </div>
       </div>
-
-      {/* Mobile Collapsible Navigation Menu */}
-      {isMenuOpen && (
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile Navigation"
-          className="md:hidden border-t border-[var(--color-border-card)] bg-[var(--color-bg-card)] px-4 py-3 flex flex-col gap-1"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsMenuOpen(false)}
-              className="flex items-center min-h-[48px] px-3 py-2 text-base font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] rounded-md hover:bg-[var(--color-bg-page)]"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
     </header>
   );
 }

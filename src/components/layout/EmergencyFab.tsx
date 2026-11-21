@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@/components/ui/Icon";
-import { t } from "@/i18n/config";
 import type { Locale } from "@/types";
 
 const EmergencyPanel = dynamic(
@@ -21,22 +20,29 @@ export function EmergencyFab({ locale, className = "" }: EmergencyFabProps) {
 
   return (
     <>
-      <button
-        id="emergency-fab"
-        type="button"
-        onClick={() => setIsOpen(true)}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        className={`fixed bottom-5 right-5 z-40 min-h-[56px] min-w-[56px] px-5 py-3 rounded-[var(--radius-pill)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-bold text-base shadow-lg flex items-center justify-center gap-2.5 transition-all transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-red-400/50 cursor-pointer ${className}`}
+      <div
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center rounded-full overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 text-white transition-all transform hover:scale-[1.02] ${className}`}
       >
-        <span
-          className="p-1 rounded-full bg-white/20 flex items-center justify-center"
-          aria-hidden="true"
+        {/* Status Pill on Left */}
+        <div className="hidden sm:flex items-center gap-2 pl-4 pr-3 py-2.5 text-xs font-semibold text-slate-200 select-none">
+          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span>Brahmaputra Basin Alert Active</span>
+        </div>
+
+        {/* Action Button on Right */}
+        <button
+          id="emergency-fab"
+          type="button"
+          onClick={() => setIsOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-label="Broadcast SOS Emergency 112"
+          className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 flex items-center gap-2 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-red-400"
         >
-          <Icon name="phone" size={22} />
-        </span>
-        <span className="tracking-wide">{t(locale, "common.emergency")} 112</span>
-      </button>
+          <Icon name="phone" size={16} />
+          <span>Broadcast SOS</span>
+        </button>
+      </div>
 
       {/* Emergency Overlay Dialog */}
       {isOpen && (

@@ -2,12 +2,13 @@ import { NextRequest } from "next/server";
 import { getDistricts } from "@/lib/data";
 import { conditionalOkResponse, errorResponse } from "@/lib/api";
 
-export async function GET(request: NextRequest) {
+export async function GET(request?: NextRequest) {
   try {
     const districts = getDistricts();
 
+    const req = request ?? new NextRequest("http://localhost:3000/api/districts");
     return conditionalOkResponse(
-      request,
+      req,
       {
         districts,
         fetchedAt: new Date().toISOString(),

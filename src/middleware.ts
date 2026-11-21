@@ -33,12 +33,14 @@ export function generateCsp(nonce: string): string {
 /**
  * Applies strict security headers to response headers (Plan Section 24.4).
  */
-export function applySecurityHeaders(headers: Headers, csp: string) {
+export function applySecurityHeaders(headers: Headers, csp: string, isHttpsOrProd: boolean = true) {
   headers.set("Content-Security-Policy", csp);
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("Permissions-Policy", "geolocation=(self), camera=(), microphone=(), payment=()");
-  headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  if (isHttpsOrProd) {
+    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  }
   headers.set("Cross-Origin-Opener-Policy", "same-origin");
 }
 
@@ -77,6 +79,11 @@ export function middleware(request: NextRequest) {
   requestHeaders.set("content-security-policy", csp);
 
   const { pathname } = request.nextUrl;
+  const isLocalhost =
+    request.nextUrl.hostname === "localhost" ||
+    request.nextUrl.hostname === "127.0.0.1" ||
+    request.nextUrl.protocol === "http:";
+  const isSecure = !isLocalhost || request.nextUrl.protocol === "https:";
 
   // Handle API routes and public static files with security headers
   if (
@@ -90,7 +97,7 @@ export function middleware(request: NextRequest) {
         headers: requestHeaders,
       },
     });
-    applySecurityHeaders(response.headers, csp);
+    applySecurityHeaders(response.headers, csp, isSecure);
     return response;
   }
 
@@ -105,7 +112,7 @@ export function middleware(request: NextRequest) {
         headers: requestHeaders,
       },
     });
-    applySecurityHeaders(response.headers, csp);
+    applySecurityHeaders(response.headers, csp, isSecure);
     return response;
   }
 
@@ -124,7 +131,7 @@ export function middleware(request: NextRequest) {
   const redirectUrl = request.nextUrl.clone();
   redirectUrl.pathname = `/${targetLocale}${pathname === "/" ? "" : pathname}`;
   const redirectResponse = NextResponse.redirect(redirectUrl);
-  applySecurityHeaders(redirectResponse.headers, csp);
+  applySecurityHeaders(redirectResponse.headers, csp, isSecure);
   return redirectResponse;
 }
 

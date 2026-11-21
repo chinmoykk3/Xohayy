@@ -8,12 +8,12 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // 2. Wait for the service worker to register and become active
+    // 2. Wait for the service worker to register, become active, and control the page
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
         const reg = await navigator.serviceWorker.getRegistration();
-        return Boolean(reg && reg.active);
+        return Boolean(reg && reg.active && navigator.serviceWorker.controller);
       },
       undefined,
       { timeout: 15000 }
@@ -57,12 +57,12 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online to warm service worker cache
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // Wait for the service worker to be active
+    // Wait for the service worker to register, become active, and control the page
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
         const reg = await navigator.serviceWorker.getRegistration();
-        return Boolean(reg && reg.active);
+        return Boolean(reg && reg.active && navigator.serviceWorker.controller);
       },
       undefined,
       { timeout: 15000 }

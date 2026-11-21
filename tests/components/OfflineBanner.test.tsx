@@ -21,7 +21,9 @@ describe("OfflineBanner Component (Phase 17, Task 2 & 7)", () => {
   });
 
   it("does not render when online status is true", () => {
-    __setOnlineStatusForTesting(true);
+    act(() => {
+      __setOnlineStatusForTesting(true);
+    });
 
     const { container } = render(<OfflineBanner locale="en" />);
     expect(container).toBeEmptyDOMElement();
@@ -29,11 +31,11 @@ describe("OfflineBanner Component (Phase 17, Task 2 & 7)", () => {
   });
 
   it("shows when status becomes false with role status and aria-live polite", () => {
-    __setOnlineStatusForTesting(false);
-
     act(() => {
-      render(<OfflineBanner locale="en" />);
+      __setOnlineStatusForTesting(false);
     });
+
+    render(<OfflineBanner locale="en" />);
 
     const banner = screen.getByRole("status");
     expect(banner).toBeInTheDocument();
@@ -42,12 +44,12 @@ describe("OfflineBanner Component (Phase 17, Task 2 & 7)", () => {
   });
 
   it("displays saved information timestamp accurately from prop or storage", () => {
-    __setOnlineStatusForTesting(false);
+    act(() => {
+      __setOnlineStatusForTesting(false);
+    });
     setLastFetchedAt("2026-11-21T10:30:00.000Z");
 
-    act(() => {
-      render(<OfflineBanner locale="en" />);
-    });
+    render(<OfflineBanner locale="en" />);
 
     const banner = screen.getByRole("status");
     expect(banner).toHaveTextContent(/You are offline\. Showing saved information from/i);
@@ -55,11 +57,11 @@ describe("OfflineBanner Component (Phase 17, Task 2 & 7)", () => {
   });
 
   it("appears and disappears dynamically when status transitions", () => {
-    __setOnlineStatusForTesting(true);
-
     act(() => {
-      render(<OfflineBanner locale="en" />);
+      __setOnlineStatusForTesting(true);
     });
+
+    render(<OfflineBanner locale="en" />);
     expect(screen.queryByRole("status")).not.toBeInTheDocument();
 
     // Transition to offline
@@ -78,17 +80,14 @@ describe("OfflineBanner Component (Phase 17, Task 2 & 7)", () => {
   });
 
   it("renders localized text for Assamese and Hindi", () => {
-    __setOnlineStatusForTesting(false);
-
-    let renderResult: ReturnType<typeof render>;
     act(() => {
-      renderResult = render(<OfflineBanner locale="as" />);
+      __setOnlineStatusForTesting(false);
     });
+
+    const { rerender } = render(<OfflineBanner locale="as" />);
     expect(screen.getByRole("status")).toHaveTextContent(/আপুনি অফলাইনত আছে/);
 
-    act(() => {
-      renderResult.rerender(<OfflineBanner locale="hi" />);
-    });
+    rerender(<OfflineBanner locale="hi" />);
     expect(screen.getByRole("status")).toHaveTextContent(/आप ऑफ़लाइन हैं/);
   });
 });
