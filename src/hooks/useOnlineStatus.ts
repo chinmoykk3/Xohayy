@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useEffect } from "react";
 
 let isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
 const listeners = new Set<() => void>();
