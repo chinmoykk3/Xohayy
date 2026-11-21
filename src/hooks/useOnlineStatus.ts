@@ -115,7 +115,15 @@ export function toggleSimulateOffline() {
  * Listens to online and offline events and verifies with /api/health.
  */
 export function useOnlineStatus(): boolean {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const status = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "test") {
+      void verifyOnlineStatus();
+    }
+  }, []);
+
+  return status;
 }
 
 /**

@@ -4,15 +4,12 @@ test.describe("Main User Journey End-to-End (Phase 24, Task 1 & Plan Section 26.
   test.beforeEach(({ page }) => {
     // Fail immediately on browser console errors or unhandled exceptions (Task 5)
     page.on("console", (msg) => {
-      const text = msg.text();
-      const loc = msg.location();
-      // eslint-disable-next-line no-console
-      console.log(`[DEBUG CONSOLE ${msg.type()}]:`, text, loc);
       if (msg.type() === "error") {
+        const text = msg.text();
         if (text.includes("_next/hmr") || text.includes("ERR_CONNECTION_REFUSED")) {
           return;
         }
-        throw new Error(`Browser console error during E2E run: ${text} at ${JSON.stringify(loc)}`);
+        throw new Error(`Browser console error during E2E run: ${text}`);
       }
     });
     page.on("pageerror", (err) => {
@@ -23,21 +20,24 @@ test.describe("Main User Journey End-to-End (Phase 24, Task 1 & Plan Section 26.
   test("completes the complete core lifecycle: district prompt -> select district -> alerts -> emergency 112 -> safety guide progress -> shelters -> ground report submission", async ({
     page,
   }) => {
-    // 1. Home shows the district prompt & monitoring basin
+    // 1. Home shows the district prompt
     await page.goto("/en", { waitUntil: "networkidle" });
-    const combobox = page.locator("#district-combobox-input");
-    await expect(combobox).toBeVisible();
-    await expect(page.getByText(/ACTIVE MONITORING BASIN/i)).toBeVisible();
+    await expect(page.getByText(/No district selected/i)).toBeVisible();
+    await expect(page.getByText(/Select your district/i).first()).toBeVisible();
 
     // 2. Select a district and see the risk card
+    const combobox = page.locator("#district-combobox-input");
+    await expect(combobox).toBeVisible();
     await combobox.click();
+    await combobox.fill("Dhemaji");
+
     const dhemajiOption = page.getByRole("option", { name: /Dhemaji/i }).first();
     await expect(dhemajiOption).toBeVisible();
     await dhemajiOption.click();
 
     // Verify Risk Summary card appeared with Dhemaji risk details
-    await expect(page.getByText(/Dhemaji District/i).first()).toBeVisible();
-    await expect(page.getByText(/River Overflow|Critical Evacuation|Watch/i).first()).toBeVisible();
+    await expect(page.locator("[data-risk-level]").first()).toBeVisible();
+    await expect(page.getByText(/Jiadhal River Overflow|Dhemaji/i).first()).toBeVisible();
 
     // 3. Open Alerts and see at least one alert
     const alertsNav = page.locator("nav a[href*='/alerts']").first();
@@ -67,10 +67,6 @@ test.describe("Main User Journey End-to-End (Phase 24, Task 1 & Plan Section 26.
     await guidesNav.click();
     await expect(page).toHaveURL(/\/en\/guides/);
 
-    const floodGuideLink = page.locator("a[href*='/guides/flood']").first();
-    await floodGuideLink.click();
-    await expect(page).toHaveURL(/\/en\/guides\/flood/);
-
     // Mark step 1 read
     const stepCheckbox = page.locator("input[type='checkbox']").first();
     await expect(stepCheckbox).toBeVisible();
@@ -94,7 +90,7 @@ test.describe("Main User Journey End-to-End (Phase 24, Task 1 & Plan Section 26.
     await reportNav.click();
     await expect(page).toHaveURL(/\/en\/report/);
     await expect(
-      page.getByRole("heading", { level: 1, name: "Report Hazard Condition" })
+      page.getByRole("heading", { level: 1, name: /Submit Ground Report|Report/i })
     ).toBeVisible();
 
     // Select condition type

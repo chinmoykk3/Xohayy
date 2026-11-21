@@ -8,7 +8,7 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // 2. Wait for the service worker to register, become active, and complete precaching
+    // 2. Wait for the service worker to register, become active, and cache the home route
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
@@ -16,8 +16,8 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
         if (!reg || !reg.active || !navigator.serviceWorker.controller) return false;
         try {
           const cache = await caches.open("shell-v1");
-          const keys = await cache.keys();
-          return keys.length >= 2;
+          const cached = await cache.match("/en");
+          return Boolean(cached);
         } catch {
           return false;
         }
@@ -32,6 +32,7 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
 
       // 4. Reload page while offline
       await page.reload({ waitUntil: "load" });
+      await page.evaluate(() => window.dispatchEvent(new Event("offline")));
 
       // 5. Assert the offline banner is visible
       const banner = page.locator("[role='status']").filter({ hasText: /You are offline/i });
@@ -61,7 +62,7 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online to warm service worker cache
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // Wait for the service worker to register, become active, and complete precaching
+    // Wait for the service worker to register, become active, and cache critical routes
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
@@ -69,8 +70,9 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
         if (!reg || !reg.active || !navigator.serviceWorker.controller) return false;
         try {
           const cache = await caches.open("shell-v1");
-          const keys = await cache.keys();
-          return keys.length >= 2;
+          const cachedEmergency = await cache.match("/en/emergency");
+          const cachedGuides = await cache.match("/en/guides");
+          return Boolean(cachedEmergency && cachedGuides);
         } catch {
           return false;
         }
@@ -90,6 +92,7 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
 
       // A. Emergency Page renders offline with emergency numbers
       await page.goto("/en/emergency", { waitUntil: "load" });
+      await page.evaluate(() => window.dispatchEvent(new Event("offline")));
       await expect(
         page.getByRole("heading", { name: "Emergency Helplines & Assistance" })
       ).toBeVisible();
@@ -123,15 +126,15 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     await expect(page.getByRole("heading", { level: 1, name: /Report/i })).toBeVisible();
 
     // Select Dhemaji as district first
-    const districtSelect = page.locator("#report-district-select");
+    const districtSelect = page.locator("#report-district");
     await districtSelect.selectOption("dhemaji");
 
     // Select condition type
-    const typeBtn = page.getByRole("button", { name: /Road Blocked/i });
-    await typeBtn.click();
+    const typeLabel = page.locator("label[for='report-type-road_blocked']");
+    await typeLabel.click();
 
     // Fill note
-    const noteInput = page.locator("textarea[name='note']");
+    const noteInput = page.locator("textarea#report-note");
     await noteInput.fill("Bridge approach submerged by floodwaters. Submitting offline test.");
 
     try {

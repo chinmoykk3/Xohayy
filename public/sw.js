@@ -207,6 +207,27 @@ async function networkFirst(request, cacheName) {
  */
 async function handleNavigation(request) {
   const url = new URL(request.url);
+
+  // If navigator is offline, immediately return cached response or offline.html
+  if (typeof navigator !== "undefined" && !navigator.onLine) {
+    const cache = await caches.open(SHELL_CACHE);
+    const altPath = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname + "/";
+    const cached =
+      (await cache.match(request)) ||
+      (await cache.match(url.pathname)) ||
+      (await cache.match(altPath)) ||
+      (await caches.match(request)) ||
+      (await caches.match(url.pathname)) ||
+      (await cache.match("/offline.html")) ||
+      (await caches.match("/offline.html"));
+
+    if (cached) return cached;
+    return new Response("Offline", {
+      status: 503,
+      headers: { "Content-Type": "text/html" },
+    });
+  }
+
   try {
     const networkResponse = await fetch(request);
     if (networkResponse && networkResponse.ok) {
@@ -217,30 +238,17 @@ async function handleNavigation(request) {
     return networkResponse;
   } catch {
     const cache = await caches.open(SHELL_CACHE);
-    // 1. Try matching exact request
-    let cached = await cache.match(request);
-    if (cached) return cached;
-
-    // 2. Try matching url.pathname
-    cached = await cache.match(url.pathname);
-    if (cached) return cached;
-
-    // 3. Try matching alternate pathname (with or without trailing slash)
     const altPath = url.pathname.endsWith("/") ? url.pathname.slice(0, -1) : url.pathname + "/";
-    cached = await cache.match(altPath);
-    if (cached) return cached;
+    const cached =
+      (await cache.match(request)) ||
+      (await cache.match(url.pathname)) ||
+      (await cache.match(altPath)) ||
+      (await caches.match(request)) ||
+      (await caches.match(url.pathname)) ||
+      (await cache.match("/offline.html")) ||
+      (await caches.match("/offline.html"));
 
-    // 4. Try matching global caches
-    cached = await caches.match(request);
     if (cached) return cached;
-    cached = await caches.match(url.pathname);
-    if (cached) return cached;
-
-    // 5. Uncached first-visit or unvisited route offline -> fallback to offline.html
-    const fallback = (await cache.match("/offline.html")) || (await caches.match("/offline.html"));
-    if (fallback) {
-      return fallback;
-    }
 
     return new Response("Offline", {
       status: 503,

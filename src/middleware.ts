@@ -13,7 +13,7 @@ export function generateCsp(nonce: string): string {
   const isDev = process.env.NODE_ENV === "development";
 
   const scriptDirective = isDev
-    ? "script-src 'self' 'unsafe-eval' 'unsafe-inline'"
+    ? `script-src 'self' 'nonce-${nonce}' 'unsafe-eval' 'unsafe-inline'`
     : `script-src 'self' 'nonce-${nonce}'`;
 
   const directives = [

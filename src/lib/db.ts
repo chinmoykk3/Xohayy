@@ -1,4 +1,4 @@
-import { MongoClient, type Db, type ObjectId } from "mongodb";
+import { MongoClient, type Db } from "mongodb";
 import type {
   Report,
   ReportStatus,

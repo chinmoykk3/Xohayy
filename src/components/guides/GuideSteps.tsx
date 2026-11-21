@@ -531,10 +531,10 @@ export function GuideSteps({ guide, locale, className = "", onHazardChange }: Gu
                           className="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer"
                           aria-label={`Mark as read: ${step.text}`}
                         />
+                        <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-wider">
+                          {stepCode} &bull; {category}
+                        </span>
                       </label>
-                      <span className="font-mono text-xs font-bold text-slate-500 uppercase tracking-wider">
-                        {stepCode} &bull; {category}
-                      </span>
                     </div>
 
                     <span
