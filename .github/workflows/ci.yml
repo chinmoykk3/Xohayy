@@ -21,6 +21,12 @@ jobs:
       - run: npm run test:coverage
       - run: npm audit --audit-level=high
       - run: npm run build
+      - name: Verify no secrets leaked into client bundle
+        run: npm run verify:secrets
+      - name: Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # TODO: Phase 24 will make e2e and lhci blocking in CI
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium

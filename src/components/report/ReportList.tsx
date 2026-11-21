@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { getDistricts } from "@/lib/data";
@@ -17,6 +17,11 @@ export interface ReportListProps {
 }
 
 export function ReportList({ reports, locale, limit, className = "" }: ReportListProps) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const districts = useMemo(() => getDistricts(), []);
   const districtMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -57,7 +62,7 @@ export function ReportList({ reports, locale, limit, className = "" }: ReportLis
         const districtName = districtMap.get(report.districtId) || report.districtId;
         const iconName = getReportTypeIcon(report.type);
         const typeLabel = getReportTypeLabel(report.type, locale);
-        const timeAgo = formatRelativeTime(report.createdAt, locale);
+        const timeAgo = isMounted ? formatRelativeTime(report.createdAt, locale) : "";
 
         return (
           <Card
