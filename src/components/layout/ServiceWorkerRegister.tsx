@@ -66,8 +66,8 @@ export function ServiceWorkerRegister({ locale = DEFAULT_LOCALE }: ServiceWorker
   const [warningMessage, setWarningMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    // Only register in production (or when explicitly forced)
-    if (process.env.NODE_ENV !== "production" || !("serviceWorker" in navigator)) {
+    // Skip in test environment or if service workers are unsupported
+    if (process.env.NODE_ENV === "test" || !("serviceWorker" in navigator)) {
       return;
     }
 
@@ -101,23 +101,12 @@ export function ServiceWorkerRegister({ locale = DEFAULT_LOCALE }: ServiceWorker
             }
           });
         });
-      } catch (error) {
-        // Silently catch registration failures in development or restrictive sandbox
-        if (process.env.NODE_ENV !== "production") {
-          console.error("[SW] Registration error:", error);
-        }
+      } catch {
+        // Silently catch registration failures in restrictive sandbox
       }
     };
 
-    if (document.readyState === "complete") {
-      registerWorker();
-    } else {
-      window.addEventListener("load", registerWorker);
-      return () => {
-        isMounted = false;
-        window.removeEventListener("load", registerWorker);
-      };
-    }
+    registerWorker();
 
     return () => {
       isMounted = false;
