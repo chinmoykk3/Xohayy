@@ -1,0 +1,902 @@
+﻿[
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "dhemaji-shelter-a",
+    "name": {
+      "hi": "Dhemaji नमूना राहत शिविर क",
+      "en": "Dhemaji Sample Relief Camp A",
+      "as": "Dhemaji নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dhemaji"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "dhemaji-shelter-b",
+    "name": {
+      "hi": "Dhemaji नमूना राहत शिविर ख",
+      "en": "Dhemaji Sample Relief Camp B",
+      "as": "Dhemaji নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dhemaji"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "dhemaji-shelter-c",
+    "name": {
+      "hi": "Dhemaji नमूना राहत शिविर ग",
+      "en": "Dhemaji Sample Relief Camp C",
+      "as": "Dhemaji নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dhemaji"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "dhemaji-hospital-1",
+    "name": {
+      "hi": "Dhemaji नमूना जिला अस्पताल",
+      "en": "Dhemaji Sample District Hospital",
+      "as": "Dhemaji নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "dhemaji"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "dhemaji-hospital-2",
+    "name": {
+      "hi": "Dhemaji नमूना उप-मंडलीय अस्पताल",
+      "en": "Dhemaji Sample Sub-Divisional Hospital",
+      "as": "Dhemaji নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "dhemaji"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "lakhimpur-shelter-a",
+    "name": {
+      "hi": "Lakhimpur नमूना राहत शिविर क",
+      "en": "Lakhimpur Sample Relief Camp A",
+      "as": "Lakhimpur নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "lakhimpur"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "lakhimpur-shelter-b",
+    "name": {
+      "hi": "Lakhimpur नमूना राहत शिविर ख",
+      "en": "Lakhimpur Sample Relief Camp B",
+      "as": "Lakhimpur নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "lakhimpur"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "lakhimpur-shelter-c",
+    "name": {
+      "hi": "Lakhimpur नमूना राहत शिविर ग",
+      "en": "Lakhimpur Sample Relief Camp C",
+      "as": "Lakhimpur নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "lakhimpur"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "lakhimpur-hospital-1",
+    "name": {
+      "hi": "Lakhimpur नमूना जिला अस्पताल",
+      "en": "Lakhimpur Sample District Hospital",
+      "as": "Lakhimpur নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "lakhimpur"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "lakhimpur-hospital-2",
+    "name": {
+      "hi": "Lakhimpur नमूना उप-मंडलीय अस्पताल",
+      "en": "Lakhimpur Sample Sub-Divisional Hospital",
+      "as": "Lakhimpur নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "lakhimpur"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "majuli-shelter-a",
+    "name": {
+      "hi": "Majuli नमूना राहत शिविर क",
+      "en": "Majuli Sample Relief Camp A",
+      "as": "Majuli নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "majuli"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "majuli-shelter-b",
+    "name": {
+      "hi": "Majuli नमूना राहत शिविर ख",
+      "en": "Majuli Sample Relief Camp B",
+      "as": "Majuli নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "majuli"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "majuli-shelter-c",
+    "name": {
+      "hi": "Majuli नमूना राहत शिविर ग",
+      "en": "Majuli Sample Relief Camp C",
+      "as": "Majuli নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "majuli"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "majuli-hospital-1",
+    "name": {
+      "hi": "Majuli नमूना जिला अस्पताल",
+      "en": "Majuli Sample District Hospital",
+      "as": "Majuli নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "majuli"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "majuli-hospital-2",
+    "name": {
+      "hi": "Majuli नमूना उप-मंडलीय अस्पताल",
+      "en": "Majuli Sample Sub-Divisional Hospital",
+      "as": "Majuli নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "majuli"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "dibrugarh-shelter-a",
+    "name": {
+      "hi": "Dibrugarh नमूना राहत शिविर क",
+      "en": "Dibrugarh Sample Relief Camp A",
+      "as": "Dibrugarh নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dibrugarh"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "dibrugarh-shelter-b",
+    "name": {
+      "hi": "Dibrugarh नमूना राहत शिविर ख",
+      "en": "Dibrugarh Sample Relief Camp B",
+      "as": "Dibrugarh নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dibrugarh"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "dibrugarh-shelter-c",
+    "name": {
+      "hi": "Dibrugarh नमूना राहत शिविर ग",
+      "en": "Dibrugarh Sample Relief Camp C",
+      "as": "Dibrugarh নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "dibrugarh"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "dibrugarh-hospital-1",
+    "name": {
+      "hi": "Dibrugarh नमूना जिला अस्पताल",
+      "en": "Dibrugarh Sample District Hospital",
+      "as": "Dibrugarh নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "dibrugarh"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "dibrugarh-hospital-2",
+    "name": {
+      "hi": "Dibrugarh नमूना उप-मंडलीय अस्पताल",
+      "en": "Dibrugarh Sample Sub-Divisional Hospital",
+      "as": "Dibrugarh নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "dibrugarh"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "barpeta-shelter-a",
+    "name": {
+      "hi": "Barpeta नमूना राहत शिविर क",
+      "en": "Barpeta Sample Relief Camp A",
+      "as": "Barpeta নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "barpeta"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "barpeta-shelter-b",
+    "name": {
+      "hi": "Barpeta नमूना राहत शिविर ख",
+      "en": "Barpeta Sample Relief Camp B",
+      "as": "Barpeta নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "barpeta"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "barpeta-shelter-c",
+    "name": {
+      "hi": "Barpeta नमूना राहत शिविर ग",
+      "en": "Barpeta Sample Relief Camp C",
+      "as": "Barpeta নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "barpeta"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "barpeta-hospital-1",
+    "name": {
+      "hi": "Barpeta नमूना जिला अस्पताल",
+      "en": "Barpeta Sample District Hospital",
+      "as": "Barpeta নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "barpeta"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "barpeta-hospital-2",
+    "name": {
+      "hi": "Barpeta नमूना उप-मंडलीय अस्पताल",
+      "en": "Barpeta Sample Sub-Divisional Hospital",
+      "as": "Barpeta নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "barpeta"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "morigaon-shelter-a",
+    "name": {
+      "hi": "Morigaon नमूना राहत शिविर क",
+      "en": "Morigaon Sample Relief Camp A",
+      "as": "Morigaon নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "morigaon"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "morigaon-shelter-b",
+    "name": {
+      "hi": "Morigaon नमूना राहत शिविर ख",
+      "en": "Morigaon Sample Relief Camp B",
+      "as": "Morigaon নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "morigaon"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "morigaon-shelter-c",
+    "name": {
+      "hi": "Morigaon नमूना राहत शिविर ग",
+      "en": "Morigaon Sample Relief Camp C",
+      "as": "Morigaon নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "morigaon"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "morigaon-hospital-1",
+    "name": {
+      "hi": "Morigaon नमूना जिला अस्पताल",
+      "en": "Morigaon Sample District Hospital",
+      "as": "Morigaon নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "morigaon"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "morigaon-hospital-2",
+    "name": {
+      "hi": "Morigaon नमूना उप-मंडलीय अस्पताल",
+      "en": "Morigaon Sample Sub-Divisional Hospital",
+      "as": "Morigaon নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "morigaon"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "kamrup-metropolitan-shelter-a",
+    "name": {
+      "hi": "Kamrup Metropolitan नमूना राहत शिविर क",
+      "en": "Kamrup Metropolitan Sample Relief Camp A",
+      "as": "Kamrup Metropolitan নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "kamrup-metropolitan"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "kamrup-metropolitan-shelter-b",
+    "name": {
+      "hi": "Kamrup Metropolitan नमूना राहत शिविर ख",
+      "en": "Kamrup Metropolitan Sample Relief Camp B",
+      "as": "Kamrup Metropolitan নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "kamrup-metropolitan"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "kamrup-metropolitan-shelter-c",
+    "name": {
+      "hi": "Kamrup Metropolitan नमूना राहत शिविर ग",
+      "en": "Kamrup Metropolitan Sample Relief Camp C",
+      "as": "Kamrup Metropolitan নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "kamrup-metropolitan"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "kamrup-metropolitan-hospital-1",
+    "name": {
+      "hi": "Kamrup Metropolitan नमूना जिला अस्पताल",
+      "en": "Kamrup Metropolitan Sample District Hospital",
+      "as": "Kamrup Metropolitan নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "kamrup-metropolitan"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "kamrup-metropolitan-hospital-2",
+    "name": {
+      "hi": "Kamrup Metropolitan नमूना उप-मंडलीय अस्पताल",
+      "en": "Kamrup Metropolitan Sample Sub-Divisional Hospital",
+      "as": "Kamrup Metropolitan নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "kamrup-metropolitan"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "cachar-shelter-a",
+    "name": {
+      "hi": "Cachar नमूना राहत शिविर क",
+      "en": "Cachar Sample Relief Camp A",
+      "as": "Cachar নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "cachar"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "cachar-shelter-b",
+    "name": {
+      "hi": "Cachar नमूना राहत शिविर ख",
+      "en": "Cachar Sample Relief Camp B",
+      "as": "Cachar নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "cachar"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "cachar-shelter-c",
+    "name": {
+      "hi": "Cachar नमूना राहत शिविर ग",
+      "en": "Cachar Sample Relief Camp C",
+      "as": "Cachar নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "cachar"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "cachar-hospital-1",
+    "name": {
+      "hi": "Cachar नमूना जिला अस्पताल",
+      "en": "Cachar Sample District Hospital",
+      "as": "Cachar নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "cachar"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "cachar-hospital-2",
+    "name": {
+      "hi": "Cachar नमूना उप-मंडलीय अस्पताल",
+      "en": "Cachar Sample Sub-Divisional Hospital",
+      "as": "Cachar নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "cachar"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "jorhat-shelter-a",
+    "name": {
+      "hi": "Jorhat नमूना राहत शिविर क",
+      "en": "Jorhat Sample Relief Camp A",
+      "as": "Jorhat নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "jorhat"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "jorhat-shelter-b",
+    "name": {
+      "hi": "Jorhat नमूना राहत शिविर ख",
+      "en": "Jorhat Sample Relief Camp B",
+      "as": "Jorhat নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "jorhat"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "jorhat-shelter-c",
+    "name": {
+      "hi": "Jorhat नमूना राहत शिविर ग",
+      "en": "Jorhat Sample Relief Camp C",
+      "as": "Jorhat নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "jorhat"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "jorhat-hospital-1",
+    "name": {
+      "hi": "Jorhat नमूना जिला अस्पताल",
+      "en": "Jorhat Sample District Hospital",
+      "as": "Jorhat নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "jorhat"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "jorhat-hospital-2",
+    "name": {
+      "hi": "Jorhat नमूना उप-मंडलीय अस्पताल",
+      "en": "Jorhat Sample Sub-Divisional Hospital",
+      "as": "Jorhat নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "jorhat"
+  },
+  {
+    "capacity": 300,
+    "isDemo": true,
+    "landmark": {
+      "hi": "उप-संभाग मैदान के पास",
+      "en": "Near Sub-Division Field",
+      "as": "মহকুমা খেলপথাৰৰ কাষত"
+    },
+    "id": "golaghat-shelter-a",
+    "name": {
+      "hi": "Golaghat नमूना राहत शिविर क",
+      "en": "Golaghat Sample Relief Camp A",
+      "as": "Golaghat নমূনা আশ্ৰয় শিবিৰ ক"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "golaghat"
+  },
+  {
+    "capacity": 250,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सामुदायिक भवन के पास",
+      "en": "Near Community Hall",
+      "as": "সামূহিক ভৱনৰ কাষত"
+    },
+    "id": "golaghat-shelter-b",
+    "name": {
+      "hi": "Golaghat नमूना राहत शिविर ख",
+      "en": "Golaghat Sample Relief Camp B",
+      "as": "Golaghat নমূনা আশ্ৰয় শিবিৰ খ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "golaghat"
+  },
+  {
+    "capacity": 400,
+    "isDemo": true,
+    "landmark": {
+      "hi": "हाई स्कूल मैदान के पास",
+      "en": "Near High School Ground",
+      "as": "উচ্চ মাধ্যমিক বিদ্যালয়ৰ কাষত"
+    },
+    "id": "golaghat-shelter-c",
+    "name": {
+      "hi": "Golaghat नमूना राहत शिविर ग",
+      "en": "Golaghat Sample Relief Camp C",
+      "as": "Golaghat নমূনা আশ্ৰয় শিবিৰ গ"
+    },
+    "type": "shelter",
+    "lastVerified": "2026-11-20",
+    "districtId": "golaghat"
+  },
+  {
+    "capacity": 150,
+    "isDemo": true,
+    "landmark": {
+      "hi": "सिविल स्टेशन रोड के पास",
+      "en": "Near Civil Station Road",
+      "as": "চিভিল ষ্টেচন পথৰ কাষত"
+    },
+    "id": "golaghat-hospital-1",
+    "name": {
+      "hi": "Golaghat नमूना जिला अस्पताल",
+      "en": "Golaghat Sample District Hospital",
+      "as": "Golaghat নমূনা জিলা চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "golaghat"
+  },
+  {
+    "capacity": 100,
+    "isDemo": true,
+    "landmark": {
+      "hi": "केंद्रीय बस स्टैंड के पास",
+      "en": "Near Central Bus Terminus",
+      "as": "কেন্দ্ৰীয় বাছ আস্থানৰ সমীপত"
+    },
+    "id": "golaghat-hospital-2",
+    "name": {
+      "hi": "Golaghat नमूना उप-मंडलीय अस्पताल",
+      "en": "Golaghat Sample Sub-Divisional Hospital",
+      "as": "Golaghat নমূনা মহকুমা অসামৰিক চিকিৎসালয়"
+    },
+    "type": "hospital",
+    "lastVerified": "2026-11-20",
+    "districtId": "golaghat"
+  }
+]

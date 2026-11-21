@@ -81,6 +81,8 @@ describe("Input Sanitization & Validation Schemas", () => {
       number: "112",
       scope: "national",
       available: "24x7",
+      source: "Ministry of Home Affairs",
+      verifiedOn: "2026-11-20",
     };
 
     expect(helplineSchema.parse(validHelpline).number).toBe("112");

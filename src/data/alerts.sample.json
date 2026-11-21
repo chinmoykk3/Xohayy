@@ -1,0 +1,162 @@
+[
+  {
+    "id": "alert-001",
+    "districtId": "dhemaji",
+    "hazard": "flood",
+    "risk": "severe",
+    "title": {
+      "en": "Jiadhal River Overflow Alert",
+      "as": "জিয়াঢল নদীৰ বান সতৰ্কতা",
+      "hi": "जियाधल नदी में भीषण बाढ़ की चेतावनी"
+    },
+    "message": {
+      "en": "Water level breached danger mark by 1.2 meters. Low-lying areas must evacuate to designated relief camps immediately.",
+      "as": "পানীৰ স্তৰ বিপদসীমাতকৈ ১.২ মিটাৰ ওপৰত বৈছে। অঞ্চলবাসী তৎকালীনভাৱে সাহায্য শিবিৰলৈ যাওক।",
+      "hi": "जलस्तर खतरे के निशान से 1.2 मीटर ऊपर। निचले इलाकों के लोग तुरंत राहत शिविरों में जाएं।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T05:00:00Z",
+    "validUntil": "2026-11-24T18:00:00Z"
+  },
+  {
+    "id": "alert-002",
+    "districtId": "dhemaji",
+    "hazard": "general",
+    "risk": "low",
+    "title": {
+      "en": "Drinking Water Purification Advisory",
+      "as": "খোৱাপানী বিশুদ্ধকৰণ পৰামৰ্শ",
+      "hi": "पेयजल शुद्धिकरण परामर्श"
+    },
+    "message": {
+      "en": "Health teams distributing chlorine tablets across relief camps. Boil all drinking water for minimum 10 minutes.",
+      "as": "স্বাস্থ্য বিভাগে ক্ল'ৰিন বড়ি বিতৰণ কৰিছে। খোৱাপানী কমেও ১০ মিনিট উতলাই খাওক।",
+      "hi": "स्वास्थ्य दल क्लोरीन की गोलियां बांट रहे हैं। पीने का पानी कम से कम 10 मिनट उबालें।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T06:30:00Z",
+    "validUntil": "2026-11-25T12:00:00Z"
+  },
+  {
+    "id": "alert-003",
+    "districtId": "majuli",
+    "hazard": "flood",
+    "risk": "high",
+    "title": {
+      "en": "Brahmaputra Embankment Inundation",
+      "as": "ব্ৰহ্মপুত্ৰৰ মথাউৰি জলমগ্ন",
+      "hi": "ब्रह्मपुत्र तटबंध जलमग्न"
+    },
+    "message": {
+      "en": "High seepage detected near Salmora embankment. Repair teams on site; avoid river bank routes.",
+      "as": "শালমৰা মথাউৰিত পানী নিৰ্গমন ধৰা পৰিছে। নদীৰ পাৰৰ পথ ব্যৱহাৰ নকৰিব।",
+      "hi": "सालमोरा तटबंध के पास पानी का रिसाव। नदी किनारे के रास्तों से बचें।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T07:00:00Z",
+    "validUntil": "2026-11-23T20:00:00Z"
+  },
+  {
+    "id": "alert-004",
+    "districtId": "majuli",
+    "hazard": "storm",
+    "risk": "moderate",
+    "title": {
+      "en": "Ferry Service Suspension Warning",
+      "as": "ফেৰী সেৱা সাময়িক বন্ধ",
+      "hi": "फेरी सेवा अस्थायी रूप से स्थगित"
+    },
+    "message": {
+      "en": "Strong river currents and heavy wind forced suspension of Kamalabari-Neamati ghat boat services.",
+      "as": "প্ৰবল বতাহ আৰু পানীৰ সোঁতৰ বাবে কমলাবাৰী-নিমাতীঘাট ফেৰী সেৱা বন্ধ ৰখা হৈছে।",
+      "hi": "तेज हवा और बहाव के कारण कमलाबाड़ी-निमातीघाट नाव सेवा रोकी गई।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T04:00:00Z",
+    "validUntil": "2026-11-22T18:00:00Z"
+  },
+  {
+    "id": "alert-005",
+    "districtId": "barpeta",
+    "hazard": "flood",
+    "risk": "high",
+    "title": {
+      "en": "Manas River Flash Flood Watch",
+      "as": "মানাহ নদীৰ আকস্মিক বান",
+      "hi": "मानस नदी में आकस्मिक बाढ़ की चेतावनी"
+    },
+    "message": {
+      "en": "Sudden water surge from Bhutan foothills. Villages in Sarthebari circle are advised to move livestock to highland.",
+      "as": "ভুটানৰ পাহাৰৰ পৰা হঠাৎ পানী নামি আহিছে। সৰ্থেবাৰীৰ পশুধন ওখ ঠাইলৈ স্থানান্তৰ কৰক।",
+      "hi": "भूटान की पहाड़ियों से भारी पानी आया। सरथेबारी के लोग पशुओं को सुरक्षित स्थान पर ले जाएं।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T08:00:00Z",
+    "validUntil": "2026-11-24T12:00:00Z"
+  },
+  {
+    "id": "alert-006",
+    "districtId": "cachar",
+    "hazard": "landslide",
+    "risk": "severe",
+    "title": {
+      "en": "Silchar-Haflong Highway Landslide",
+      "as": "শিলচৰ-হাফলং পথত ভূমিস্খলন",
+      "hi": "सिलचर-हाफलोंग मार्ग पर भूस्खलन"
+    },
+    "message": {
+      "en": "Major debris blockage near Harangajao. Highway completely blocked; emergency clearing vehicles deployed.",
+      "as": "হাৰাংগাজাওৰ সমীপত পথ বন্ধ হৈছে। জৰুৰীকালীন উদ্ধাৰকাৰী দল উপস্থিত হৈছে।",
+      "hi": "हारंगाजाओ के पास भारी भूस्खलन। हाईवे पूरी तरह बंद, मलबा हटाने का काम जारी।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T03:00:00Z",
+    "validUntil": "2026-11-23T15:00:00Z"
+  },
+  {
+    "id": "alert-007",
+    "districtId": "cachar",
+    "hazard": "general",
+    "risk": "moderate",
+    "title": {
+      "en": "Barak River Level Advisory",
+      "as": "বৰাক নদীৰ জলপৃষ্ঠৰ খবৰ",
+      "hi": "बराक नदी का जलस्तर अपडेट"
+    },
+    "message": {
+      "en": "Barak river steady at Annapurna ghat. Sluice gates operational under round-the-clock monitoring.",
+      "as": "অন্নপূৰ্ণা ঘাটত বৰাক নদীৰ পানী স্থিৰ অৱস্থাত আছে। গেটসমূহ সতৰ্কভাৱে পৰ্যবেক্ষণ কৰা হৈছে।",
+      "hi": "अन्नपूर्णा घाट पर बराक नदी स्थिर। स्लूस गेट्स की 24 घंटे निगरानी जारी है।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-21T07:15:00Z",
+    "validUntil": "2026-11-22T23:00:00Z"
+  },
+  {
+    "id": "alert-008-expired",
+    "districtId": "barpeta",
+    "hazard": "storm",
+    "risk": "low",
+    "title": {
+      "en": "Expired Squall Wind Advisory",
+      "as": "পুৰণি বতাহৰ সতৰ্কবাণী",
+      "hi": "पुरानी आंधी की चेतावनी"
+    },
+    "message": {
+      "en": "Past thunderstorm advisory for Barpeta town. Weather restored to normal conditions.",
+      "as": "বৰপেটা চহৰৰ পুৰণি ধুমুহাৰ খবৰ। বতৰ বৰ্তমান স্বাভাৱিক।",
+      "hi": "बरपेटा शहर के लिए पुराना आंधी अलर्ट। मौसम अब सामान्य हो चुका है।"
+    },
+    "source": "Demo data",
+    "isDemo": true,
+    "issuedAt": "2026-11-18T06:00:00Z",
+    "validUntil": "2026-11-20T06:00:00Z"
+  }
+]

@@ -43,6 +43,8 @@ export interface Helpline {
   scope: "national" | "state" | "district";
   districtId?: string;
   available: string; // for example '24x7'
+  source: string;
+  verifiedOn: string;
 }
 
 export type FacilityType = "shelter" | "hospital" | "police" | "fire";

@@ -76,6 +76,8 @@ export const helplineSchema = z.object({
   scope: z.enum(["national", "state", "district"]),
   districtId: cleanTextSchema(1, 64).optional(),
   available: cleanTextSchema(1, 50),
+  source: cleanTextSchema(1, 120),
+  verifiedOn: cleanTextSchema(1, 30),
 });
 
 // Facility
@@ -95,7 +97,7 @@ export const facilitySchema = z.object({
   isDemo: z.boolean(),
 });
 
-// Guide
+// Guide Step
 export const guideStepSchema = z.object({
   id: cleanTextSchema(1, 64),
   phase: z.enum(["before", "during", "after"]),
@@ -107,6 +109,19 @@ export const guideSchema = z.object({
   hazard: hazardSchema,
   title: localizedStringSchema,
   steps: z.array(guideStepSchema),
+});
+
+export const localeGuideStepSchema = z.object({
+  id: cleanTextSchema(1, 64),
+  phase: z.enum(["before", "during", "after"]),
+  icon: cleanTextSchema(1, 50),
+  text: cleanTextSchema(1, 200),
+});
+
+export const localeGuideSchema = z.object({
+  hazard: hazardSchema,
+  title: cleanTextSchema(1, 200),
+  steps: z.array(localeGuideStepSchema),
 });
 
 // Report

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "hl-112",
+    "label": {
+      "en": "National Emergency Helpline",
+      "as": "ৰাষ্ট্ৰীয় জৰুৰীকালীন সাহায্য",
+      "hi": "राष्ट्रीय आपातकालीन हेल्पलाइन"
+    },
+    "number": "112",
+    "scope": "national",
+    "available": "24x7",
+    "source": "Ministry of Home Affairs, Government of India",
+    "verifiedOn": "2026-11-20"
+  },
+  {
+    "id": "hl-100",
+    "label": {
+      "en": "Police Control Room",
+      "as": "আৰক্ষী নিয়ন্ত্ৰণ কক্ষ",
+      "hi": "पुलिस नियंत्रण कक्ष"
+    },
+    "number": "100",
+    "scope": "national",
+    "available": "24x7",
+    "source": "State Police Emergency Network",
+    "verifiedOn": "2026-11-20"
+  },
+  {
+    "id": "hl-101",
+    "label": {
+      "en": "Fire and Emergency Services",
+      "as": "অগ্নি আৰু জৰুৰীকালীন সেৱা",
+      "hi": "अग्निशमन और आपातकालीन सेवाएं"
+    },
+    "number": "101",
+    "scope": "national",
+    "available": "24x7",
+    "source": "State Fire Services Directorate",
+    "verifiedOn": "2026-11-20"
+  },
+  {
+    "id": "hl-108",
+    "label": {
+      "en": "Medical Emergency & Ambulance",
+      "as": "চিকিৎসা জৰুৰীকালীন আৰু এম্বুলেন্স",
+      "hi": "चिकित्सा आपातकाल और एम्बुलेंस"
+    },
+    "number": "108",
+    "scope": "national",
+    "available": "24x7",
+    "source": "National Health Mission Assam (108 Mrityunjoy)",
+    "verifiedOn": "2026-11-20"
+  },
+  {
+    "id": "hl-1070",
+    "label": {
+      "en": "State Disaster Management Control Room",
+      "as": "ৰাজ্যিক দুৰ্যোগ ব্যৱস্থাপনা কক্ষ",
+      "hi": "राज्य आपदा प्रबंधन नियंत्रण कक्ष"
+    },
+    "number": "1070",
+    "scope": "state",
+    "available": "24x7",
+    "source": "Assam State Disaster Management Authority (ASDMA)",
+    "verifiedOn": "2026-11-20"
+  },
+  {
+    "id": "hl-1077",
+    "label": {
+      "en": "District Emergency Operations Centre (DEOC)",
+      "as": "জিলা জৰুৰীকালীন কাৰ্যালয় (DEOC)",
+      "hi": "जिला आपातकालीन संचालन केंद्र"
+    },
+    "number": "1077",
+    "scope": "district",
+    "available": "24x7",
+    "source": "District Disaster Management Authorities (DDMA)",
+    "verifiedOn": "2026-11-20"
+  }
+]

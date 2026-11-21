@@ -1,0 +1,122 @@
+[
+  {
+    "id": "dhemaji",
+    "name": {
+      "en": "Dhemaji",
+      "as": "ধেমা",
+      "hi": "धेमाजी"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 27.48,
+    "lng": 94.58
+  },
+  {
+    "id": "lakhimpur",
+    "name": {
+      "en": "Lakhimpur",
+      "as": "লখিমপুৰ",
+      "hi": "लखीमपुर"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 27.24,
+    "lng": 94.1
+  },
+  {
+    "id": "majuli",
+    "name": {
+      "en": "Majuli",
+      "as": "মাজুলী",
+      "hi": "माजुली"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.95,
+    "lng": 94.21
+  },
+  {
+    "id": "dibrugarh",
+    "name": {
+      "en": "Dibrugarh",
+      "as": "ডিব্ৰুগড়",
+      "hi": "डिब्रूगढ़"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 27.47,
+    "lng": 94.91
+  },
+  {
+    "id": "barpeta",
+    "name": {
+      "en": "Barpeta",
+      "as": "বৰপেটা",
+      "hi": "बरपेटा"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.32,
+    "lng": 91.01
+  },
+  {
+    "id": "morigaon",
+    "name": {
+      "en": "Morigaon",
+      "as": "মৰিগাঁও",
+      "hi": "मोरीगांव"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.25,
+    "lng": 92.34
+  },
+  {
+    "id": "kamrup-metropolitan",
+    "name": {
+      "en": "Kamrup Metropolitan",
+      "as": "কামৰূপ মহানগৰ",
+      "hi": "कामरूप महानगर"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.14,
+    "lng": 91.74
+  },
+  {
+    "id": "cachar",
+    "name": {
+      "en": "Cachar",
+      "as": "কাছাৰ",
+      "hi": "कछार"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 24.83,
+    "lng": 92.78
+  },
+  {
+    "id": "jorhat",
+    "name": {
+      "en": "Jorhat",
+      "as": "যোৰহাট",
+      "hi": "जोरहाट"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.75,
+    "lng": 94.22
+  },
+  {
+    "id": "golaghat",
+    "name": {
+      "en": "Golaghat",
+      "as": "গোলাঘাট",
+      "hi": "गोलाघाट"
+    },
+    "state": "Assam",
+    "controlRoom": "1077",
+    "lat": 26.52,
+    "lng": 93.97
+  }
+]

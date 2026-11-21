@@ -1,0 +1,150 @@
+{
+  "hazard": "landslide",
+  "title": "Landslide Safety and Evacuation Guide",
+  "steps": [
+    {
+      "id": "ls-b1",
+      "phase": "before",
+      "icon": "warning",
+      "text": "Inspect hillsides around your home for fresh cracks or tilting trees."
+    },
+    {
+      "id": "ls-b2",
+      "phase": "before",
+      "icon": "info",
+      "text": "Monitor hillside water drainage channels for sudden muddy runoff or blockages."
+    },
+    {
+      "id": "ls-b3",
+      "phase": "before",
+      "icon": "shield",
+      "text": "Prepare an evacuation backpack with dry food and prescription medicines."
+    },
+    {
+      "id": "ls-b4",
+      "phase": "before",
+      "icon": "map-pin",
+      "text": "Identify safe shelter locations away from steep slopes and ravines."
+    },
+    {
+      "id": "ls-b5",
+      "phase": "before",
+      "icon": "check",
+      "text": "Keep battery torches and spare batteries ready in accessible places."
+    },
+    {
+      "id": "ls-b6",
+      "phase": "before",
+      "icon": "warning",
+      "text": "Stay alert during prolonged heavy rainfall, especially during night hours."
+    },
+    {
+      "id": "ls-b7",
+      "phase": "before",
+      "icon": "shield",
+      "text": "Agree on an emergency family meeting place on stable flat ground."
+    },
+    {
+      "id": "ls-b8",
+      "phase": "before",
+      "icon": "phone",
+      "text": "Save local district control room numbers on your phone."
+    },
+    {
+      "id": "ls-d1",
+      "phase": "during",
+      "icon": "alert-triangle",
+      "text": "Evacuate immediately if you hear loud rumbling or cracking sounds."
+    },
+    {
+      "id": "ls-d2",
+      "phase": "during",
+      "icon": "shield",
+      "text": "Move sideways away from the path of mud and falling rocks."
+    },
+    {
+      "id": "ls-d3",
+      "phase": "during",
+      "icon": "alert-triangle",
+      "text": "Never cross or walk through an active debris flow."
+    },
+    {
+      "id": "ls-d4",
+      "phase": "during",
+      "icon": "warning",
+      "text": "Avoid river valleys and low ravines where debris flows concentrate."
+    },
+    {
+      "id": "ls-d5",
+      "phase": "during",
+      "icon": "shield",
+      "text": "Curl into a tight ball and protect your head if trapped."
+    },
+    {
+      "id": "ls-d6",
+      "phase": "during",
+      "icon": "phone",
+      "text": "Call 112 as soon as you reach stable flat ground."
+    },
+    {
+      "id": "ls-d7",
+      "phase": "during",
+      "icon": "alert-triangle",
+      "text": "Warn neighbors along the slope by shouting or blowing whistles."
+    },
+    {
+      "id": "ls-d8",
+      "phase": "during",
+      "icon": "warning",
+      "text": "Do not stop on bridges or under steep road embankments."
+    },
+    {
+      "id": "ls-a1",
+      "phase": "after",
+      "icon": "alert-triangle",
+      "text": "Stay away from slide areas; secondary landslides often occur quickly."
+    },
+    {
+      "id": "ls-a2",
+      "phase": "after",
+      "icon": "shield",
+      "text": "Check for injured or trapped neighbors without entering unstable ground."
+    },
+    {
+      "id": "ls-a3",
+      "phase": "after",
+      "icon": "phone",
+      "text": "Report broken utility lines and damaged gas connections immediately."
+    },
+    {
+      "id": "ls-a4",
+      "phase": "after",
+      "icon": "warning",
+      "text": "Check your building foundation and chimney for fresh structural cracks."
+    },
+    {
+      "id": "ls-a5",
+      "phase": "after",
+      "icon": "check",
+      "text": "Replant damaged ground promptly to reduce risk of future erosion."
+    },
+    {
+      "id": "ls-a6",
+      "phase": "after",
+      "icon": "warning",
+      "text": "Do not drink tap water until authorities declare supplies uncontaminated."
+    },
+    {
+      "id": "ls-a7",
+      "phase": "after",
+      "icon": "info",
+      "text": "Listen to local radio advisories regarding highway and pass openings."
+    },
+    {
+      "id": "ls-a8",
+      "phase": "after",
+      "icon": "shield",
+      "text": "Follow instructions from district rescue personnel and NDRF teams."
+    }
+  ]
+}
