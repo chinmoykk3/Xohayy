@@ -119,6 +119,9 @@
   "about.license": "মুক্ত উৎস MIT অনুজ্ঞাপত্ৰ",
 
   "settings.title": "পছন্দ আৰু প্ৰৱেশযোগ্যতা",
+  "settings.open": "ছেটিংছ",
+  "settings.description": "ভাষা, পঠনযোগ্যতা আৰু দৃশ্যমানতা পৰিৱৰ্তন কৰক।",
+  "settings.reset": "পূৰ্বৰ অৱস্থালৈ আনক",
   "settings.language": "ভাষা",
   "settings.textSize": "আখৰৰ আকাৰ",
   "settings.textSize.normal": "সাধাৰণ (১০০%)",

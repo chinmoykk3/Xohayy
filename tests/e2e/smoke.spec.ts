@@ -14,7 +14,7 @@ test.describe("Layout & Accessibility Smoke Suite", () => {
   });
 
   test("allows switching language to Assamese", async ({ page }) => {
-    await page.goto("/en");
+    await page.goto("/en", { waitUntil: "networkidle" });
     const select = page.locator("select#language-select");
     await expect(select).toBeVisible();
 
@@ -24,13 +24,48 @@ test.describe("Layout & Accessibility Smoke Suite", () => {
   });
 
   test("allows switching language to Hindi", async ({ page }) => {
-    await page.goto("/en");
+    await page.goto("/en", { waitUntil: "networkidle" });
     const select = page.locator("select#language-select");
     await expect(select).toBeVisible();
 
     await select.selectOption("hi");
     await expect(page).toHaveURL(/\/hi/);
     await expect(page.locator("html")).toHaveAttribute("lang", "hi-IN");
+  });
+
+  test("settings menu opens from header and adjusts text scale and contrast surviving reload", async ({
+    page,
+  }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+
+    // Click settings trigger button in header
+    const settingsBtn = page.getByRole("button", { name: "Settings" });
+    await expect(settingsBtn).toBeVisible();
+    await settingsBtn.click();
+
+    // Verify dialog opened
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByText("Preferences & Accessibility")).toBeVisible();
+
+    // Toggle High Contrast
+    const contrastSwitch = dialog.getByRole("switch", { name: /High Contrast/i });
+    await contrastSwitch.click();
+    await expect(page.locator("html")).toHaveAttribute("data-contrast", "high");
+
+    // Select 125% Text Scale
+    const scaleRadio = dialog.getByRole("radio", { name: /Large \(125%\)/i });
+    await scaleRadio.click();
+    await expect(page.locator("html")).toHaveAttribute("data-text-scale", "1.25");
+
+    // Close Dialog with Escape
+    await page.keyboard.press("Escape");
+    await expect(dialog).not.toBeVisible();
+
+    // Reload page to verify persistence in localStorage
+    await page.reload({ waitUntil: "networkidle" });
+    await expect(page.locator("html")).toHaveAttribute("data-contrast", "high");
+    await expect(page.locator("html")).toHaveAttribute("data-text-scale", "1.25");
   });
 
   test("layout reflows at 320px width without horizontal scroll across languages", async ({

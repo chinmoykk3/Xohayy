@@ -5,19 +5,39 @@ import { usePathname, useRouter } from "next/navigation";
 import { LOCALES, LOCALE_NAMES } from "@/i18n/config";
 import type { Locale } from "@/types";
 import { Icon } from "@/components/ui/Icon";
+import { usePreferences } from "@/hooks/usePreferences";
 
 interface LanguageSwitcherProps {
   currentLocale: Locale;
   className?: string;
+  id?: string;
 }
 
-export function LanguageSwitcher({ currentLocale, className = "" }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+  currentLocale,
+  className = "",
+  id = "language-select",
+}: LanguageSwitcherProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
 
+  // Try reading preferences context if available
+  let setPreferencesLocale: ((loc: Locale) => void) | null = null;
+  try {
+    const prefsContext = usePreferences();
+    setPreferencesLocale = prefsContext.setLocale;
+  } catch {
+    // Outside provider in isolated unit tests
+  }
+
   const handleLocaleChange = (newLocale: Locale) => {
     if (newLocale === currentLocale) return;
+
+    // Update preferences state if inside provider
+    if (setPreferencesLocale) {
+      setPreferencesLocale(newLocale);
+    }
 
     // Set cookie for 1 year
     document.cookie = `xahay_locale=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
@@ -35,19 +55,21 @@ export function LanguageSwitcher({ currentLocale, className = "" }: LanguageSwit
       newPathname = `/${newLocale}${pathname === "/" ? "" : pathname}`;
     }
 
-    startTransition(() => {
+    if (typeof window !== "undefined") {
       try {
         // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- full reload is required to re-render root html lang and font tokens across locale segments
         window.location.assign(newPathname);
       } catch {
-        router.push(newPathname);
+        startTransition(() => {
+          router.push(newPathname);
+        });
       }
-    });
+    }
   };
 
   return (
     <div className={`relative inline-flex items-center ${className}`}>
-      <label htmlFor="language-select" className="sr-only">
+      <label htmlFor={id} className="sr-only">
         Select Language
       </label>
       <div className="relative flex items-center">
@@ -58,7 +80,7 @@ export function LanguageSwitcher({ currentLocale, className = "" }: LanguageSwit
           <Icon name="globe" size={16} />
         </span>
         <select
-          id="language-select"
+          id={id}
           value={currentLocale}
           disabled={isPending}
           onChange={(e) => handleLocaleChange(e.target.value as Locale)}

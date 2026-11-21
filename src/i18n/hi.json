@@ -119,6 +119,9 @@
   "about.license": "ओपन सोर्स MIT लाइसेंस",
 
   "settings.title": "प्राथमिकताएं और सुगमता",
+  "settings.open": "सेटिंग्स",
+  "settings.description": "भाषा, सुगमता और विज़ुअल कंट्रास्ट अनुकूलित करें।",
+  "settings.reset": "डिफ़ॉल्ट पर रीसेट करें",
   "settings.language": "भाषा",
   "settings.textSize": "अक्षर का आकार",
   "settings.textSize.normal": "सामान्य (100%)",

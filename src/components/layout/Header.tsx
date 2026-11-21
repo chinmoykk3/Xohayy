@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { LanguageSwitcher } from "@/components/settings/LanguageSwitcher";
+import { SettingsMenu } from "@/components/settings/SettingsMenu";
 import { DEFAULT_LOCALE, t } from "@/i18n/config";
 import type { Locale } from "@/types";
 
@@ -49,9 +50,10 @@ export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Header Right Actions: Language Switcher & Mobile Menu */}
+        {/* Header Right Actions: Language Switcher, Settings Menu & Mobile Toggle */}
         <div className="flex items-center gap-2">
           <LanguageSwitcher currentLocale={locale} />
+          <SettingsMenu locale={locale} />
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">

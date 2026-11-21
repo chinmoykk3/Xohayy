@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PreferencesProvider } from "@/context/PreferencesContext";
 import { inter, notoSansBengali, notoSansDevanagari } from "@/app/fonts";
 import { LOCALES, HTML_LANG_MAP, isValidLocale } from "@/i18n/config";
 import type { Locale } from "@/types";
@@ -42,12 +43,14 @@ export default async function LocaleLayout({
       className={`${inter.variable} ${notoSansBengali.variable} ${notoSansDevanagari.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-[var(--color-bg-page)] text-[var(--color-text-main)] antialiased font-sans">
-        <SkipLink />
-        <Header locale={validLocale} />
-        <main id="main-content" className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 py-6">
-          {children}
-        </main>
-        <Footer locale={validLocale} />
+        <PreferencesProvider initialLocale={validLocale}>
+          <SkipLink />
+          <Header locale={validLocale} />
+          <main id="main-content" className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 py-6">
+            {children}
+          </main>
+          <Footer locale={validLocale} />
+        </PreferencesProvider>
       </body>
     </html>
   );

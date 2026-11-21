@@ -119,6 +119,9 @@
   "about.license": "Open Source MIT License",
 
   "settings.title": "Preferences & Accessibility",
+  "settings.open": "Settings",
+  "settings.description": "Customize language, readability, and visual comfort.",
+  "settings.reset": "Reset to Defaults",
   "settings.language": "Language",
   "settings.textSize": "Text Size",
   "settings.textSize.normal": "Default (100%)",
