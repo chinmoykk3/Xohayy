@@ -85,6 +85,10 @@
   "guides.readAloud.normalSpeed": "1.0x",
   "guides.readAloud.slowSpeed": "0.8x",
   "guides.readAloud.noVoice": "इस डिवाइस पर {language} के लिए कोई वॉइस उपलब्ध नहीं है।",
+  "guides.readAloud.fallbackNotice": "इस डिवाइस पर असमिया वॉइस उपलब्ध नहीं है। फॉलबैक के रूप में हिंदी वॉइस का उपयोग किया जा रहा है।",
+  "guides.readAloud.statePlaying": "बोलकर सुनाया जा रहा है",
+  "guides.readAloud.statePaused": "बोलकर सुनाना रोका गया है",
+  "guides.readAloud.stateStopped": "बोलकर सुनाना बंद कर दिया गया है",
 
   "shelters.title": "राहत शिविर और आपातकालीन सुविधाएं",
   "shelters.subtitle": "नजदीकी राहत शिविर, आश्रय स्थल और अस्पताल खोजें।",

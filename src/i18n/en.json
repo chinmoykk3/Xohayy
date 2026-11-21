@@ -85,6 +85,10 @@
   "guides.readAloud.normalSpeed": "1.0x",
   "guides.readAloud.slowSpeed": "0.8x",
   "guides.readAloud.noVoice": "No voice synthesis available for {language} on this device.",
+  "guides.readAloud.fallbackNotice": "Assamese voice is not supported on this device. Reading aloud using Hindi voice.",
+  "guides.readAloud.statePlaying": "Reading aloud in progress",
+  "guides.readAloud.statePaused": "Reading aloud paused",
+  "guides.readAloud.stateStopped": "Reading aloud stopped",
 
   "shelters.title": "Shelters & Emergency Facilities",
   "shelters.subtitle": "Find nearby relief camps, shelters, and medical centres.",

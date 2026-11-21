@@ -85,6 +85,10 @@
   "guides.readAloud.normalSpeed": "১.০x",
   "guides.readAloud.slowSpeed": "০.৮x",
   "guides.readAloud.noVoice": "এই ডিভাইচত {language} ভাষাৰ বাবে কোনো ভয়েচ উপলব্ধ নহয়।",
+  "guides.readAloud.fallbackNotice": "এই ডিভাইচত অসমীয়া ভয়েচ উপলব্ধ নহয়। বিকল্প হিচাপে হিন্দী ভয়েচ ব্যৱহাৰ কৰা হৈছে।",
+  "guides.readAloud.statePlaying": "পঢ়ি শুনোৱা হৈ আছে",
+  "guides.readAloud.statePaused": "পঢ়ি শুনোৱা স্থগিত কৰা হৈছে",
+  "guides.readAloud.stateStopped": "পঢ়ি শুনোৱা বন্ধ কৰা হৈছে",
 
   "shelters.title": "আশ্ৰয় শিবিৰ আৰু জৰুৰীকালীন কেন্দ্ৰ",
   "shelters.subtitle": "ওচৰৰ সাহাৰ্য শিবিৰ, আশ্ৰয়স্থল আৰু চিকিৎসা কেন্দ্ৰ বিচাৰক।",

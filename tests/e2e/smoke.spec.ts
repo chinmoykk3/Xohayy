@@ -137,7 +137,7 @@ test.describe("Layout & Emergency Smoke Suite", () => {
     await expect(page.getByText("No district selected")).toBeVisible();
 
     // Select Dhemaji via combobox
-    const combobox = page.getByRole("combobox");
+    const combobox = page.locator("#district-combobox-input");
     await expect(combobox).toBeVisible();
     await combobox.click();
 
@@ -153,7 +153,7 @@ test.describe("Layout & Emergency Smoke Suite", () => {
 
     // Reload page to verify persistence in localStorage
     await page.reload({ waitUntil: "networkidle" });
-    await expect(page.getByRole("combobox")).toHaveValue(/Dhemaji/i);
+    await expect(page.locator("#district-combobox-input")).toHaveValue(/Dhemaji/i);
     await expect(page.getByText(/Jiadhal River Overflow/i)).toBeVisible();
 
     // Switch to Assamese
