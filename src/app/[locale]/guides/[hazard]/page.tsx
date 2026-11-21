@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GuideSteps } from "@/components/guides/GuideSteps";
 import { LOCALES, isValidLocale, t } from "@/i18n/config";
@@ -38,32 +37,13 @@ export default async function GuideDetailPage({ params }: GuideDetailPageProps) 
   }
 
   return (
-    <div className="space-y-6">
-      {/* Back to Guides Navigation Link */}
-      <div>
-        <Link
-          href={`/${validLocale}/guides`}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-text-main)] min-h-[44px] px-1 py-1 rounded-[var(--radius-card)] focus:outline-none focus:ring-2 focus:ring-[var(--color-focus-ring)]"
-        >
-          <span aria-hidden="true">&larr;</span>
-          <span>{t(validLocale, "guides.title")}</span>
-        </Link>
-      </div>
+    <div className="space-y-4">
+      {/* Accessible h1 landmark for screen readers */}
+      <h1 className="sr-only">
+        {guide.title} - {t(validLocale, "guides.subtitle")}
+      </h1>
 
-      {/* Guide Header */}
-      <div>
-        <h1
-          tabIndex={-1}
-          className="text-2xl sm:text-3xl font-bold text-[var(--color-text-main)] tracking-tight focus:outline-none"
-        >
-          {guide.title}
-        </h1>
-        <p className="text-base text-[var(--color-text-muted)] mt-1">
-          {t(validLocale, "guides.subtitle")}
-        </p>
-      </div>
-
-      {/* Step by Step Action Checklist & Read Aloud */}
+      {/* Interactive Safety Guide Steps */}
       <GuideSteps guide={guide} locale={validLocale} />
     </div>
   );

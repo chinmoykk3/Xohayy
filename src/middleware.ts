@@ -14,7 +14,7 @@ export function generateCsp(nonce: string): string {
 
   const scriptDirective = isDev
     ? "script-src 'self' 'unsafe-eval' 'unsafe-inline'"
-    : `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`;
+    : `script-src 'self' 'nonce-${nonce}'`;
 
   const directives = [
     "default-src 'self'",

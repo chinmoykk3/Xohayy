@@ -19,16 +19,15 @@ const PRECACHE_ASSETS = [
   "/icons/icon-maskable-512.png",
 ];
 
+// Supported locales & routes
+const LOCALES = ["en", "as", "hi"];
+const CORE_ROUTES = ["/emergency", "/guides", "/alerts", "/shelters"];
+
 // Core localized routes to precache
 const PRECACHE_ROUTES = [
-  "/en",
-  "/as",
-  "/hi",
-  "/en/emergency",
-  "/en/guides",
+  ...LOCALES.map((l) => `/${l}`),
+  ...LOCALES.flatMap((l) => CORE_ROUTES.map((r) => `/${l}${r}`)),
   "/en/guides/flood",
-  "/en/alerts",
-  "/en/shelters",
   "/en/kit",
   "/en/report",
 ];

@@ -8,6 +8,11 @@ import type { LocaleGuide } from "@/lib/data";
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
   usePathname: () => "/en/guides/flood",
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+  }),
 }));
 
 const mockGuide: LocaleGuide = {

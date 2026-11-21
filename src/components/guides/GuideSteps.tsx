@@ -82,8 +82,15 @@ const DURING_FLOOD_STEPS_META: Record<string, EnrichedStepMeta> = {
 };
 
 export function GuideSteps({ guide, locale, className = "", onHazardChange }: GuideStepsProps) {
-  const router = useRouter();
-  const [activePhase, setActivePhase] = useState<GuidePhase>("during");
+  let router: { push: (path: string) => void } | null = null;
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    router = useRouter();
+  } catch {
+    // handled gracefully in test environments
+  }
+
+  const [activePhase, setActivePhase] = useState<GuidePhase>("before");
   const [activeAudioLang, setActiveAudioLang] = useState<Locale>(locale);
   const { preferences, toggleGuideRead } = usePreferences();
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
