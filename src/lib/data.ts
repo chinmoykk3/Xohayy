@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { District, Helpline, Facility, Alert, Hazard } from "@/types";
+import type { District, Helpline, Facility, Alert, Hazard, Locale } from "@/types";
 import {
   districtSchema,
   helplineSchema,
@@ -12,8 +12,14 @@ import districtsJson from "@/data/districts.json";
 import helplinesJson from "@/data/helplines.json";
 import sheltersJson from "@/data/shelters.json";
 import alertsSampleJson from "@/data/alerts.sample.json";
+
 import floodGuideEn from "@/data/guides/flood.en.json";
+import floodGuideAs from "@/data/guides/flood.as.json";
+import floodGuideHi from "@/data/guides/flood.hi.json";
+
 import landslideGuideEn from "@/data/guides/landslide.en.json";
+import landslideGuideAs from "@/data/guides/landslide.as.json";
+import landslideGuideHi from "@/data/guides/landslide.hi.json";
 
 export interface LocaleGuide {
   hazard: Hazard;
@@ -25,6 +31,19 @@ export interface LocaleGuide {
     text: string;
   }[];
 }
+
+const guidesMap: Record<"flood" | "landslide", Record<Locale, unknown>> = {
+  flood: {
+    en: floodGuideEn,
+    as: floodGuideAs,
+    hi: floodGuideHi,
+  },
+  landslide: {
+    en: landslideGuideEn,
+    as: landslideGuideAs,
+    hi: landslideGuideHi,
+  },
+};
 
 /**
  * Loads and validates seeded districts data.
@@ -55,12 +74,13 @@ export function getSampleAlerts(): Alert[] {
 }
 
 /**
- * Loads and validates localized guide by hazard.
+ * Loads and validates localized guide by hazard and locale.
  */
-export function getGuide(hazard: "flood" | "landslide", locale: "en" = "en"): LocaleGuide | null {
-  if (locale !== "en") return null;
+export function getGuide(hazard: "flood" | "landslide", locale: Locale = "en"): LocaleGuide | null {
+  const hazardGuides = guidesMap[hazard];
+  if (!hazardGuides) return null;
 
-  const raw = hazard === "flood" ? floodGuideEn : hazard === "landslide" ? landslideGuideEn : null;
+  const raw = hazardGuides[locale] ?? hazardGuides.en;
   if (!raw) return null;
 
   return localeGuideSchema.parse(raw) as LocaleGuide;

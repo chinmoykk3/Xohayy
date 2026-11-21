@@ -1,150 +1,150 @@
 {
-  "hazard": "landslide",
-  "title": "Landslide Safety and Evacuation Guide",
+  "hazard": "flood",
+  "title": "Flood Safety and Evacuation Guide",
   "steps": [
     {
-      "id": "ls-b1",
-      "phase": "before",
-      "icon": "warning",
-      "text": "Inspect hillsides around your home for fresh cracks or tilting trees."
-    },
-    {
-      "id": "ls-b2",
-      "phase": "before",
-      "icon": "info",
-      "text": "Monitor hillside water drainage channels for sudden muddy runoff or blockages."
-    },
-    {
-      "id": "ls-b3",
+      "id": "fl-b1",
       "phase": "before",
       "icon": "shield",
-      "text": "Prepare an evacuation backpack with dry food and prescription medicines."
+      "text": "Store clean drinking water in sealed containers above flood water level."
     },
     {
-      "id": "ls-b4",
+      "id": "fl-b2",
+      "phase": "before",
+      "icon": "info",
+      "text": "Pack essential medicines, dry rations, and personal identity documents in waterproof bags."
+    },
+    {
+      "id": "fl-b3",
+      "phase": "before",
+      "icon": "shield",
+      "text": "Move livestock, poultry, and valuable household belongings to higher elevated ground."
+    },
+    {
+      "id": "fl-b4",
       "phase": "before",
       "icon": "map-pin",
-      "text": "Identify safe shelter locations away from steep slopes and ravines."
+      "text": "Locate your nearest designated community flood relief shelter and evacuation route."
     },
     {
-      "id": "ls-b5",
+      "id": "fl-b5",
+      "phase": "before",
+      "icon": "phone",
+      "text": "Charge phones and power banks fully before electric power cuts occur."
+    },
+    {
+      "id": "fl-b6",
       "phase": "before",
       "icon": "check",
-      "text": "Keep battery torches and spare batteries ready in accessible places."
+      "text": "Keep emergency battery torches, radios, and spare dry cells ready nearby."
     },
     {
-      "id": "ls-b6",
+      "id": "fl-b7",
       "phase": "before",
       "icon": "warning",
-      "text": "Stay alert during prolonged heavy rainfall, especially during night hours."
+      "text": "Clear neighborhood drainage ditches and gutters to reduce localized water accumulation."
     },
     {
-      "id": "ls-b7",
-      "phase": "before",
-      "icon": "shield",
-      "text": "Agree on an emergency family meeting place on stable flat ground."
-    },
-    {
-      "id": "ls-b8",
+      "id": "fl-b8",
       "phase": "before",
       "icon": "phone",
-      "text": "Save local district control room numbers on your phone."
+      "text": "Save local district disaster control room helpline numbers on your phone."
     },
     {
-      "id": "ls-d1",
+      "id": "fl-d1",
       "phase": "during",
       "icon": "alert-triangle",
-      "text": "Evacuate immediately if you hear loud rumbling or cracking sounds."
+      "text": "Switch off your home main electricity breaker and cooking gas immediately."
     },
     {
-      "id": "ls-d2",
+      "id": "fl-d2",
       "phase": "during",
       "icon": "shield",
-      "text": "Move sideways away from the path of mud and falling rocks."
+      "text": "Evacuate promptly to elevated shelters before flood water reaches your doorway."
     },
     {
-      "id": "ls-d3",
+      "id": "fl-d3",
       "phase": "during",
       "icon": "alert-triangle",
-      "text": "Never cross or walk through an active debris flow."
+      "text": "Never walk or swim through flowing flood water of any depth."
     },
     {
-      "id": "ls-d4",
+      "id": "fl-d4",
       "phase": "during",
       "icon": "warning",
-      "text": "Avoid river valleys and low ravines where debris flows concentrate."
+      "text": "Do not drive motor vehicles through submerged roads or washed bridges."
     },
     {
-      "id": "ls-d5",
+      "id": "fl-d5",
+      "phase": "during",
+      "icon": "alert-triangle",
+      "text": "Stay away from fallen power cables and submerged electric transformers."
+    },
+    {
+      "id": "fl-d6",
       "phase": "during",
       "icon": "shield",
-      "text": "Curl into a tight ball and protect your head if trapped."
+      "text": "Use a strong wooden stick to test ground firmness when walking."
     },
     {
-      "id": "ls-d6",
+      "id": "fl-d7",
+      "phase": "during",
+      "icon": "info",
+      "text": "Move to upper building floors or elevated roofs if suddenly trapped."
+    },
+    {
+      "id": "fl-d8",
       "phase": "during",
       "icon": "phone",
-      "text": "Call 112 as soon as you reach stable flat ground."
+      "text": "Call national emergency helpline 112 immediately if trapped by rising water."
     },
     {
-      "id": "ls-d7",
-      "phase": "during",
-      "icon": "alert-triangle",
-      "text": "Warn neighbors along the slope by shouting or blowing whistles."
-    },
-    {
-      "id": "ls-d8",
-      "phase": "during",
-      "icon": "warning",
-      "text": "Do not stop on bridges or under steep road embankments."
-    },
-    {
-      "id": "ls-a1",
-      "phase": "after",
-      "icon": "alert-triangle",
-      "text": "Stay away from slide areas; secondary landslides often occur quickly."
-    },
-    {
-      "id": "ls-a2",
-      "phase": "after",
-      "icon": "shield",
-      "text": "Check for injured or trapped neighbors without entering unstable ground."
-    },
-    {
-      "id": "ls-a3",
-      "phase": "after",
-      "icon": "phone",
-      "text": "Report broken utility lines and damaged gas connections immediately."
-    },
-    {
-      "id": "ls-a4",
-      "phase": "after",
-      "icon": "warning",
-      "text": "Check your building foundation and chimney for fresh structural cracks."
-    },
-    {
-      "id": "ls-a5",
-      "phase": "after",
-      "icon": "check",
-      "text": "Replant damaged ground promptly to reduce risk of future erosion."
-    },
-    {
-      "id": "ls-a6",
-      "phase": "after",
-      "icon": "warning",
-      "text": "Do not drink tap water until authorities declare supplies uncontaminated."
-    },
-    {
-      "id": "ls-a7",
+      "id": "fl-a1",
       "phase": "after",
       "icon": "info",
-      "text": "Listen to local radio advisories regarding highway and pass openings."
+      "text": "Return home only after local authorities declare flood waters fully receded."
     },
     {
-      "id": "ls-a8",
+      "id": "fl-a2",
       "phase": "after",
       "icon": "shield",
-      "text": "Follow instructions from district rescue personnel and NDRF teams."
+      "text": "Boil all drinking water vigorously for ten minutes before personal consumption."
+    },
+    {
+      "id": "fl-a3",
+      "phase": "after",
+      "icon": "alert-triangle",
+      "text": "Do not touch damp electrical appliances until certified dry and safe."
+    },
+    {
+      "id": "fl-a4",
+      "phase": "after",
+      "icon": "warning",
+      "text": "Watch carefully for snakes and dangerous wild animals inside damaged rooms."
+    },
+    {
+      "id": "fl-a5",
+      "phase": "after",
+      "icon": "shield",
+      "text": "Discard all food items that made contact with contaminated flood water."
+    },
+    {
+      "id": "fl-a6",
+      "phase": "after",
+      "icon": "check",
+      "text": "Disinfect floor surfaces, water wells, and kitchen utensils using chlorine bleach."
+    },
+    {
+      "id": "fl-a7",
+      "phase": "after",
+      "icon": "info",
+      "text": "Photograph property damages thoroughly before initiating repairs for relief claims."
+    },
+    {
+      "id": "fl-a8",
+      "phase": "after",
+      "icon": "phone",
+      "text": "Report blocked local drainage or missing persons to district emergency teams."
     }
   ]
 }

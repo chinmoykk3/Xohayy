@@ -1,9 +1,24 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { isValidLocale, t } from "@/i18n/config";
+import type { Locale } from "@/types";
 
-export default function Home() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Home({ params }: PageProps) {
+  const { locale } = await params;
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
+  const validLocale = locale as Locale;
+
   return (
     <div className="space-y-6">
       {/* Emergency Header Banner */}
@@ -13,26 +28,25 @@ export default function Home() {
             <div>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[var(--radius-pill)] text-sm font-medium bg-[var(--color-risk-danger-bg)] text-[var(--color-risk-danger-text)] border border-[var(--color-risk-danger-border)]">
                 <Icon name="alert-triangle" size={16} />
-                <span>Emergency Priority</span>
+                <span>{t(validLocale, "home.emergencyPriority")}</span>
               </span>
               <h1
                 id="emergency-heading"
                 className="text-2xl sm:text-3xl font-bold mt-2 text-[var(--color-text-main)] tracking-tight"
               >
-                Disaster Response (PS05)
+                {t(validLocale, "home.title")}
               </h1>
               <p className="text-base text-[var(--color-text-muted)] mt-1 max-w-xl">
-                Emergency flood and landslide lifeline for Assam, Meghalaya, and North East
-                communities.
+                {t(validLocale, "home.subtitle")}
               </p>
             </div>
             <a
               href="tel:112"
               className="w-full sm:w-auto inline-flex items-center justify-center min-h-[56px] min-w-[56px] px-6 py-3 rounded-[var(--radius-card)] bg-[var(--color-emergency-bg)] text-[var(--color-emergency-text)] hover:bg-[var(--color-emergency-hover)] font-bold text-lg tracking-wide transition-colors"
-              aria-label="Call national emergency number 112"
+              aria-label={`${t(validLocale, "home.call112")} - 112`}
             >
               <Icon name="phone" size={24} className="mr-2" />
-              <span>Call 112</span>
+              <span>{t(validLocale, "home.call112")}</span>
             </a>
           </div>
         </Card>
@@ -44,7 +58,7 @@ export default function Home() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
         <h2 id="actions-heading" className="sr-only">
-          Quick Actions
+          {t(validLocale, "home.title")}
         </h2>
 
         <Card as="article">
@@ -52,14 +66,16 @@ export default function Home() {
             <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-warning-bg)] text-[var(--color-risk-warning-text)] border border-[var(--color-risk-warning-border)]">
               <Icon name="warning" size={22} />
             </span>
-            <h3 className="text-lg font-bold text-[var(--color-text-main)]">District Alerts</h3>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">
+              {t(validLocale, "alerts.title")}
+            </h3>
           </div>
           <p className="text-sm text-[var(--color-text-muted)] mb-4">
-            Check official flood levels, rain warnings, and road blockages for your district.
+            {t(validLocale, "alerts.subtitle")}
           </p>
-          <Link href="/alerts" className="w-full block">
+          <Link href={`/${validLocale}/alerts`} className="w-full block">
             <Button variant="primary" className="w-full">
-              View Alerts
+              {t(validLocale, "home.cta.alerts")}
             </Button>
           </Link>
         </Card>
@@ -69,14 +85,16 @@ export default function Home() {
             <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-watch-bg)] text-[var(--color-risk-watch-text)] border border-[var(--color-risk-watch-border)]">
               <Icon name="shield" size={22} />
             </span>
-            <h3 className="text-lg font-bold text-[var(--color-text-main)]">Safety Guides</h3>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">
+              {t(validLocale, "guides.title")}
+            </h3>
           </div>
           <p className="text-sm text-[var(--color-text-muted)] mb-4">
-            Step-by-step instructions for flash floods and landslide evacuation procedures.
+            {t(validLocale, "guides.subtitle")}
           </p>
-          <Link href="/guides" className="w-full block">
+          <Link href={`/${validLocale}/guides`} className="w-full block">
             <Button variant="secondary" className="w-full">
-              Read Guides
+              {t(validLocale, "home.cta.guides")}
             </Button>
           </Link>
         </Card>
@@ -86,14 +104,16 @@ export default function Home() {
             <span className="p-2 rounded-[var(--radius-card)] bg-[var(--color-risk-low-bg)] text-[var(--color-risk-low-text)] border border-[var(--color-risk-low-border)]">
               <Icon name="map-pin" size={22} />
             </span>
-            <h3 className="text-lg font-bold text-[var(--color-text-main)]">Relief Shelters</h3>
+            <h3 className="text-lg font-bold text-[var(--color-text-main)]">
+              {t(validLocale, "shelters.title")}
+            </h3>
           </div>
           <p className="text-sm text-[var(--color-text-muted)] mb-4">
-            Find active shelter locations, relief camps, and nearest emergency hospitals.
+            {t(validLocale, "shelters.subtitle")}
           </p>
-          <Link href="/shelters" className="w-full block">
+          <Link href={`/${validLocale}/shelters`} className="w-full block">
             <Button variant="secondary" className="w-full">
-              Find Shelters
+              {t(validLocale, "home.cta.shelters")}
             </Button>
           </Link>
         </Card>

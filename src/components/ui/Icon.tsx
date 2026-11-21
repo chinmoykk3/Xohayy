@@ -10,7 +10,8 @@ export type IconName =
   | "menu"
   | "shield"
   | "map-pin"
-  | "external-link";
+  | "external-link"
+  | "globe";
 
 export interface IconProps {
   name: IconName;
@@ -90,6 +91,14 @@ export function Icon({ name, size = 24, className = "", ariaHidden = true, alt }
         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
       />
     ),
+    globe: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+      />
+    ),
   };
 
   return (
@@ -100,8 +109,8 @@ export function Icon({ name, size = 24, className = "", ariaHidden = true, alt }
       stroke="currentColor"
       width={size}
       height={size}
-      className={`inline-block shrink-0 ${className}`}
-      aria-hidden={ariaHidden && !alt ? true : undefined}
+      className={className}
+      aria-hidden={ariaHidden ? "true" : undefined}
       role={alt ? "img" : undefined}
       aria-label={alt}
     >
