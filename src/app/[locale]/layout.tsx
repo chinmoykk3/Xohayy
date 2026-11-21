@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RouteFocus } from "@/components/layout/RouteFocus";
 import { EmergencyFab } from "@/components/layout/EmergencyFab";
 import { PreferencesProvider } from "@/context/PreferencesContext";
 import { inter, notoSansBengali, notoSansDevanagari } from "@/app/fonts";
@@ -45,6 +46,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-screen flex flex-col bg-[var(--color-bg-page)] text-[var(--color-text-main)] antialiased font-sans">
         <PreferencesProvider initialLocale={validLocale}>
+          <RouteFocus />
           <SkipLink />
           <EmergencyFab locale={validLocale} />
           <Header locale={validLocale} />

@@ -16,7 +16,8 @@ export interface PreferencesContextValue {
   setTextScale: (scale: 1 | 1.25 | 1.5) => void;
   setHighContrast: (highContrast: boolean) => void;
   setReducedMotion: (reducedMotion: boolean) => void;
-  setDistrict: (districtId?: string) => void;
+  setDistrict: (districtId?: string | null) => void;
+  setDistrictId: (districtId?: string | null) => void;
   toggleGuideRead: (stepId: string) => void;
   toggleKitItem: (itemId: string) => void;
   resetPreferences: () => void;
@@ -104,11 +105,13 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
   );
 
   const setDistrict = useCallback(
-    (districtId?: string) => {
-      updatePreferences({ districtId });
+    (districtId?: string | null) => {
+      updatePreferences({ districtId: districtId || undefined });
     },
     [updatePreferences]
   );
+
+  const setDistrictId = setDistrict;
 
   const toggleGuideRead = useCallback((stepId: string) => {
     setPreferences((prev) => {
@@ -155,6 +158,7 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
       setHighContrast,
       setReducedMotion,
       setDistrict,
+      setDistrictId,
       toggleGuideRead,
       toggleKitItem,
       resetPreferences,
@@ -167,6 +171,7 @@ export function PreferencesProvider({ children, initialLocale }: PreferencesProv
       setHighContrast,
       setReducedMotion,
       setDistrict,
+      setDistrictId,
       toggleGuideRead,
       toggleKitItem,
       resetPreferences,

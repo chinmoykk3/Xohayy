@@ -160,5 +160,29 @@
   "errors.rateLimit": "অত্যধিক অনুৰোধ। অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰক।",
   "errors.generic": "অপ্ৰত্যাশিত সমস্যা হ'ল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।",
   "errors.notFound": "বিচৰা জৰুৰীকালীন তথ্য পোৱা নগ'ল।",
-  "errors.serverError": "চাৰ্ভাৰৰ ত্ৰুটি। সংৰক্ষিত জৰুৰী তথ্য অফলাইনত উপলব্ধ থাকিব।"
+  "errors.serverError": "চাৰ্ভাৰৰ ত্ৰুটি। সংৰক্ষিত জৰুৰী তথ্য অফলাইনত উপলব্ধ থাকিব।",
+
+  "home.actions.emergency": "জৰুৰীকালীন নম্বৰসমূহ",
+  "home.actions.emergencyDesc": "১১২, আৰক্ষী, অগ্নিনিৰ্বাপক, এম্বুলেন্স আৰু নিয়ন্ত্ৰণ কক্ষ",
+  "home.actions.guides": "সুৰক্ষা নিৰ্দেশনা",
+  "home.actions.guidesDesc": "বানপানী আৰু ভূমিস্খলনৰ সুৰক্ষা নিৰ্দেশনা",
+  "home.actions.shelters": "ওচৰৰ আশ্ৰয় শিবিৰ",
+  "home.actions.sheltersDesc": "সাহায্য শিবিৰ, খাদ্য যোগান আৰু চিকিৎসা সেৱা",
+  "home.actions.report": "সমস্যাৰ তথ্য দিয়ক",
+  "home.actions.reportDesc": "বন্ধ পথ, জলমগ্নতা বা বিপদৰ তথ্য জনাওক",
+  "home.noDistrictSelected": "কোনো জিলা নিৰ্বাচন কৰা হোৱা নাই",
+  "home.selectDistrictPrompt": "সক্ৰিয় বান সতৰ্কতা আৰু স্থানীয় জৰুৰীকালীন সাহায্য চাবলৈ আপোনাৰ জিলা বাছক।",
+  "home.activeAlertCount": "{count} টা সক্ৰিয় সতৰ্কবাৰ্তা",
+  "home.viewAdvisories": "সকলো সতৰ্কবাৰ্তা চাওক",
+  "home.normalConditions": "স্বাভাৱিক নদী আৰু বতৰৰ অৱস্থা",
+  "home.normalConditionsDesc": "এই জিলাত কোনো সক্ৰিয় বান বা ভূমিস্খলনৰ সতৰ্কতা নাই।",
+
+  "district.selectPlaceholder": "আপোনাৰ জিলা বাছক...",
+  "district.searchPlaceholder": "জিলাৰ নাম লিখক...",
+  "district.clear": "জিলা নিৰ্বাচন মচক",
+  "district.noResults": "'{query}'-ৰ সৈতে মিল থকা কোনো জিলা পোৱা নগ'ল",
+  "district.selected": "{district} নিৰ্বাচিত",
+  "district.label": "নিৰ্বাচিত জিলা",
+  "district.change": "জিলা সলনি কৰক",
+  "district.count": "{count} খন জিলা উপলব্ধ"
 }

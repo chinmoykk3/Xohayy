@@ -160,5 +160,29 @@
   "errors.rateLimit": "बहुत अधिक अनुरोध। कृपया कुछ समय बाद पुनः प्रयास करें।",
   "errors.generic": "अपेक्षित त्रुटि हुई। कृपया पुनः प्रयास करें।",
   "errors.notFound": "अनुरोधित आपातकालीन जानकारी नहीं मिली।",
-  "errors.serverError": "सर्वर त्रुटि। संचित डेटा ऑफलाइन उपलब्ध रहेगा।"
+  "errors.serverError": "सर्वर त्रुटि। संचित डेटा ऑफलाइन उपलब्ध रहेगा।",
+
+  "home.actions.emergency": "आपातकालीन नंबर",
+  "home.actions.emergencyDesc": "112, पुलिस, फायर, एम्बुलेंस और नियंत्रण कक्ष",
+  "home.actions.guides": "सुरक्षा दिशानिर्देश",
+  "home.actions.guidesDesc": "बाढ़ और भूस्खलन से बचाव के कदम",
+  "home.actions.shelters": "निकटतम राहत शिविर",
+  "home.actions.sheltersDesc": "राहत शिविर, भोजन वितरण और चिकित्सा सहायता",
+  "home.actions.report": "समस्या की रिपोर्ट करें",
+  "home.actions.reportDesc": "अवरुद्ध सड़कें, जलभराव या खतरों की सूचना दें",
+  "home.noDistrictSelected": "कोई जिला नहीं चुना गया",
+  "home.selectDistrictPrompt": "सक्रिय बाढ़ चेतावनी और स्थानीय आपातकालीन संचालन देखने के लिए अपना जिला चुनें।",
+  "home.activeAlertCount": "{count} सक्रिय चेतावनियां",
+  "home.viewAdvisories": "सभी चेतावनियां देखें",
+  "home.normalConditions": "सामान्य नदी और मौसम की स्थिति",
+  "home.normalConditionsDesc": "इस जिले के लिए कोई सक्रिय बाढ़ या भूस्खलन की चेतावनी नहीं है।",
+
+  "district.selectPlaceholder": "अपना जिला चुनें...",
+  "district.searchPlaceholder": "जिले का नाम लिखें...",
+  "district.clear": "जिला हटाएं",
+  "district.noResults": "'{query}' से मेल खाता कोई जिला नहीं मिला",
+  "district.selected": "{district} चयनित",
+  "district.label": "चयनित जिला",
+  "district.change": "जिला बदलें",
+  "district.count": "{count} जिले उपलब्ध"
 }

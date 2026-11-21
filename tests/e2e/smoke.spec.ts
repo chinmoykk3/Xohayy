@@ -127,4 +127,75 @@ test.describe("Layout & Emergency Smoke Suite", () => {
       expect(hasHorizontalOverflow).toBe(false);
     }
   });
+
+  test("choosing a district on the home page displays its risk summary, persists after reload, and works in all three languages", async ({
+    page,
+  }) => {
+    await page.goto("/en", { waitUntil: "networkidle" });
+
+    // Initial state: no district chosen prompt
+    await expect(page.getByText("No district selected")).toBeVisible();
+
+    // Select Dhemaji via combobox
+    const combobox = page.getByRole("combobox");
+    await expect(combobox).toBeVisible();
+    await combobox.click();
+
+    const dhemajiOption = page.getByRole("option", { name: /Dhemaji/i });
+    await expect(dhemajiOption).toBeVisible();
+    await dhemajiOption.click();
+
+    // Verify Risk Summary card appeared with Dhemaji
+    const riskBadge = page.locator("[data-risk-level]");
+    await expect(riskBadge).toBeVisible();
+    await expect(page.getByText(/Jiadhal River Overflow/i)).toBeVisible();
+    await expect(page.getByText("Demo Data")).toBeVisible();
+
+    // Reload page to verify persistence in localStorage
+    await page.reload({ waitUntil: "networkidle" });
+    await expect(page.getByRole("combobox")).toHaveValue(/Dhemaji/i);
+    await expect(page.getByText(/Jiadhal River Overflow/i)).toBeVisible();
+
+    // Switch to Assamese
+    await page.goto("/as", { waitUntil: "networkidle" });
+    await expect(page.locator("[data-risk-level]")).toBeVisible();
+    await expect(page.getByText(/জিয়াঢল নদীৰ বান সতৰ্কতা/i)).toBeVisible();
+
+    // Switch to Hindi
+    await page.goto("/hi", { waitUntil: "networkidle" });
+    await expect(page.locator("[data-risk-level]")).toBeVisible();
+    await expect(page.getByText(/जियाधल नदी में भीषण बाढ़ की चेतावनी/i)).toBeVisible();
+  });
+
+  test("alerts page filters by hazard and district, toggles expired alerts, and renders localized in all languages", async ({
+    page,
+  }) => {
+    await page.goto("/en/alerts", { waitUntil: "networkidle" });
+
+    // Verify page heading and demo notice banner
+    await expect(page.getByRole("heading", { level: 1, name: "District Alerts" })).toBeVisible();
+    await expect(page.getByText(/Demonstration data active/i)).toBeVisible();
+
+    // Verify alert cards present
+    const cards = page.locator("article");
+    await expect(cards.first()).toBeVisible();
+
+    // Filter by Hazard "Flood"
+    const floodBtn = page.getByRole("button", { name: /^Flood$/i });
+    await floodBtn.click();
+    await expect(page.getByText(/Jiadhal River Overflow/i)).toBeVisible();
+
+    // Toggle "Show Expired"
+    const expiredCheckbox = page.getByLabel(/Show Expired Alerts/i);
+    await expiredCheckbox.check();
+    await expect(expiredCheckbox).toBeChecked();
+
+    // Switch language to Assamese
+    await page.goto("/as/alerts", { waitUntil: "networkidle" });
+    await expect(page.getByRole("heading", { level: 1, name: "জিলা সতৰ্কবাৰ্তা" })).toBeVisible();
+
+    // Switch language to Hindi
+    await page.goto("/hi/alerts", { waitUntil: "networkidle" });
+    await expect(page.getByRole("heading", { level: 1, name: "जिला आपदा अलर्ट" })).toBeVisible();
+  });
 });

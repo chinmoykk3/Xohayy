@@ -160,5 +160,29 @@
   "errors.rateLimit": "Too many requests. Please wait a moment before trying again.",
   "errors.generic": "An unexpected error occurred. Please try again.",
   "errors.notFound": "The requested emergency resource could not be found.",
-  "errors.serverError": "Server error. Cached emergency data remains available offline."
+  "errors.serverError": "Server error. Cached emergency data remains available offline.",
+
+  "home.actions.emergency": "Emergency Numbers",
+  "home.actions.emergencyDesc": "112, Police, Fire, Ambulance & Control Rooms",
+  "home.actions.guides": "Safety Guides",
+  "home.actions.guidesDesc": "Step-by-step flood and landslide survival steps",
+  "home.actions.shelters": "Shelters Nearby",
+  "home.actions.sheltersDesc": "Find relief camps, shelters & medical facilities",
+  "home.actions.report": "Report a Problem",
+  "home.actions.reportDesc": "Report blocked roads, waterlogging, or hazards",
+  "home.noDistrictSelected": "No district selected",
+  "home.selectDistrictPrompt": "Select your district above to view active flood stages, landslide risk, and local emergency operations.",
+  "home.activeAlertCount": "{count} active advisories",
+  "home.viewAdvisories": "View all advisories",
+  "home.normalConditions": "Normal River & Weather Conditions",
+  "home.normalConditionsDesc": "No active flood or landslide warnings in effect for this district.",
+
+  "district.selectPlaceholder": "Choose or search your district...",
+  "district.searchPlaceholder": "Type district name...",
+  "district.clear": "Clear district selection",
+  "district.noResults": "No districts found matching '{query}'",
+  "district.selected": "{district} selected",
+  "district.label": "Assigned District",
+  "district.change": "Change district",
+  "district.count": "{count} districts available"
 }
