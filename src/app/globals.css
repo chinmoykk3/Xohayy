@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  /* Strict 5-size type scale based on 18px mobile baseline */
-  --font-base-size: 18px;
+  /* Strict 5-size type scale based on 16px baseline */
+  --font-base-size: 16px;
   --line-height-base: 1.5;
-  --text-xs: 0.75rem; /* 13.5px */
-  --text-sm: 0.875rem; /* 15.75px */
-  --text-base: 1rem; /* 18px */
-  --text-lg: 1.25rem; /* 22.5px */
-  --text-xl: 1.5rem; /* 27px */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.5rem; /* 24px */
 
   /* Surfaces & 1px Hairline Borders */
   --color-bg-page: #f7fafc;

@@ -1,14 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import { Icon } from "@/components/ui/Icon";
 import { t } from "@/i18n/config";
 import type { Locale } from "@/types";
-
-const SettingsDialog = dynamic(() => import("./SettingsDialog"), {
-  ssr: false,
-});
+import { SettingsDialog } from "./SettingsDialog";
 
 interface SettingsMenuProps {
   locale: Locale;

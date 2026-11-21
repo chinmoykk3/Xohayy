@@ -73,7 +73,7 @@ export default async function LocaleLayout({
           <OfflineBanner locale={validLocale} />
           <EmergencyFab locale={validLocale} />
           <Header locale={validLocale} />
-          <main id="main-content" className="flex-1 w-full max-w-[960px] mx-auto px-4 sm:px-6 py-6">
+          <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-2 sm:px-6 py-4">
             {children}
           </main>
           <Footer locale={validLocale} />

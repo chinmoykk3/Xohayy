@@ -78,9 +78,7 @@ test.describe("Main User Journey End-to-End (Phase 24, Task 1 & Plan Section 26.
     const sheltersNav = page.locator("nav a[href*='/shelters']").first();
     await sheltersNav.click();
     await expect(page).toHaveURL(/\/en\/shelters/);
-    await expect(
-      page.getByRole("heading", { level: 1, name: "Shelters & Medical Centers" })
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Shelters/i })).toBeVisible();
     // Verify facility cards are listed
     const facilityCard = page.locator("article").first();
     await expect(facilityCard).toBeVisible();

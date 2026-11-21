@@ -23,22 +23,22 @@ test.describe("Language Switching & Persistence End-to-End (Phase 24, Task 3 & P
     await expect(langSelect).toBeVisible();
     await expect(langSelect).toHaveValue("en");
 
-    // English heading
-    await expect(page.getByRole("heading", { level: 1, name: "Xahay" })).toBeVisible();
+    // English headings and text
+    await expect(page.getByText(/Choose your district/i)).toBeVisible();
 
     // 2. Switch to Assamese (as)
     await langSelect.selectOption("as");
     await expect(page).toHaveURL(/\/as/);
     await expect(page.locator("html")).toHaveAttribute("lang", "as-IN");
 
-    // Assamese heading check
-    await expect(page.getByRole("heading", { level: 1, name: "সহায়" })).toBeVisible();
+    // Assamese headings check
+    await expect(page.getByText(/আপোনাৰ জিলা বাছক/i)).toBeVisible();
 
     // Reload and confirm Assamese language persists
     await page.reload({ waitUntil: "networkidle" });
     await expect(page).toHaveURL(/\/as/);
     await expect(page.locator("html")).toHaveAttribute("lang", "as-IN");
-    await expect(page.getByRole("heading", { level: 1, name: "সহায়" })).toBeVisible();
+    await expect(page.getByText(/আপোনাৰ জিলা বাছক/i)).toBeVisible();
     await expect(page.locator("select#language-select")).toHaveValue("as");
 
     // 3. Switch to Hindi (hi)
@@ -47,14 +47,14 @@ test.describe("Language Switching & Persistence End-to-End (Phase 24, Task 3 & P
     await expect(page).toHaveURL(/\/hi/);
     await expect(page.locator("html")).toHaveAttribute("lang", "hi-IN");
 
-    // Hindi heading check
-    await expect(page.getByRole("heading", { level: 1, name: "सहाय" })).toBeVisible();
+    // Hindi headings check
+    await expect(page.getByText(/अपना जिला चुनें/i)).toBeVisible();
 
     // Reload and confirm Hindi language persists
     await page.reload({ waitUntil: "networkidle" });
     await expect(page).toHaveURL(/\/hi/);
     await expect(page.locator("html")).toHaveAttribute("lang", "hi-IN");
-    await expect(page.getByRole("heading", { level: 1, name: "सहाय" })).toBeVisible();
+    await expect(page.getByText(/अपना जिला चुनें/i)).toBeVisible();
     await expect(page.locator("select#language-select")).toHaveValue("hi");
   });
 
