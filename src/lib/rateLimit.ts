@@ -26,6 +26,16 @@ export interface RateLimiter {
   reset?(key?: string): Promise<void>;
 }
 
+/**
+ * In-memory implementation of RateLimiter.
+ *
+ * NOTE ON SERVERLESS ENVIRONMENTS (Plan Section 24.3, Task 8):
+ * In serverless deployments (such as Vercel or AWS Lambda), in-memory Map state
+ * is isolated per function container instance and resets across container cold-starts.
+ * While this provides adequate defense against single-connection burst floods in lightweight
+ * setups, production multi-instance deployments should swap to a shared distributed store
+ * such as Upstash Redis or standard Redis via the existing RateLimiter interface.
+ */
 export class MemoryRateLimiter implements RateLimiter {
   private hits: Map<string, number[]> = new Map();
 
