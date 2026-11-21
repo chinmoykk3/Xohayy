@@ -43,6 +43,7 @@
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@lhci/cli": "^0.16.1",
+    "@next/bundle-analyzer": "^16.4.6",
     "@playwright/test": "^1.65.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@testing-library/jest-dom": "^8.0.0",
