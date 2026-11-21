@@ -105,6 +105,11 @@ function getServerSnapshot(): boolean {
   return true;
 }
 
+export function toggleSimulateOffline() {
+  isOnline = !isOnline;
+  notify();
+}
+
 /**
  * React hook that returns true when online, false when offline.
  * Listens to online and offline events and verifies with /api/health.
