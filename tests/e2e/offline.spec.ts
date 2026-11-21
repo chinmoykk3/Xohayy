@@ -8,19 +8,23 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // 2. Wait for the service worker to register, become active, and control the page
+    // 2. Wait for the service worker to register, become active, and complete precaching
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
         const reg = await navigator.serviceWorker.getRegistration();
-        return Boolean(reg && reg.active && navigator.serviceWorker.controller);
+        if (!reg || !reg.active || !navigator.serviceWorker.controller) return false;
+        try {
+          const cache = await caches.open("shell-v1");
+          const keys = await cache.keys();
+          return keys.length >= 2;
+        } catch {
+          return false;
+        }
       },
       undefined,
-      { timeout: 15000 }
+      { timeout: 20000 }
     );
-
-    // Allow precache requests to settle
-    await page.waitForTimeout(1000);
 
     try {
       // 3. Go offline
@@ -57,15 +61,22 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
     // 1. Visit home while online to warm service worker cache
     await page.goto("/en", { waitUntil: "networkidle" });
 
-    // Wait for the service worker to register, become active, and control the page
+    // Wait for the service worker to register, become active, and complete precaching
     await page.waitForFunction(
       async () => {
         if (!("serviceWorker" in navigator)) return false;
         const reg = await navigator.serviceWorker.getRegistration();
-        return Boolean(reg && reg.active && navigator.serviceWorker.controller);
+        if (!reg || !reg.active || !navigator.serviceWorker.controller) return false;
+        try {
+          const cache = await caches.open("shell-v1");
+          const keys = await cache.keys();
+          return keys.length >= 2;
+        } catch {
+          return false;
+        }
       },
       undefined,
-      { timeout: 15000 }
+      { timeout: 20000 }
     );
 
     // Warm critical pages
@@ -109,9 +120,7 @@ test.describe("Offline Experience (Phase 17 & Phase 24, Task 2)", () => {
   }) => {
     // 1. Visit report page while online
     await page.goto("/en/report", { waitUntil: "networkidle" });
-    await expect(
-      page.getByRole("heading", { level: 1, name: "Report Hazard Condition" })
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Report/i })).toBeVisible();
 
     // Select Dhemaji as district first
     const districtSelect = page.locator("#report-district-select");

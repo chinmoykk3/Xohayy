@@ -19,6 +19,8 @@
     "test:e2e": "playwright test",
     "icons:generate": "node scripts/generate-icons.mjs",
     "verify:secrets": "node scripts/verify-secrets.mjs",
+    "check:bundle": "node scripts/check-bundle-size.mjs",
+    "analyze": "ANALYZE=true next build",
     "audit": "npm audit --audit-level=high",
     "lhci": "lhci autorun",
     "prepare": "husky"

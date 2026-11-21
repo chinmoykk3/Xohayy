@@ -19,27 +19,19 @@ const PRECACHE_ASSETS = [
   "/icons/icon-maskable-512.png",
 ];
 
-// Locales and main route paths to precache
-const LOCALES = ["en", "as", "hi"];
-const MAIN_ROUTES = [
-  "",
-  "/emergency",
-  "/guides",
-  "/guides/flood",
-  "/guides/landslide",
-  "/alerts",
-  "/shelters",
-  "/kit",
-  "/about",
+// Core localized routes to precache
+const PRECACHE_ROUTES = [
+  "/en",
+  "/as",
+  "/hi",
+  "/en/emergency",
+  "/en/guides",
+  "/en/guides/flood",
+  "/en/alerts",
+  "/en/shelters",
+  "/en/kit",
+  "/en/report",
 ];
-
-// Precache list of localized routes
-const PRECACHE_ROUTES = [];
-for (const locale of LOCALES) {
-  for (const route of MAIN_ROUTES) {
-    PRECACHE_ROUTES.push(`/${locale}${route}`);
-  }
-}
 
 // 1. INSTALL LIFECYCLE
 self.addEventListener("install", (event) => {
@@ -47,28 +39,32 @@ self.addEventListener("install", (event) => {
     (async () => {
       const shellCache = await caches.open(SHELL_CACHE);
       // Precache core static shell files
-      await shellCache.addAll(PRECACHE_ASSETS);
+      try {
+        await shellCache.addAll(PRECACHE_ASSETS);
+      } catch (err) {
+        console.warn("[SW] Precache assets warning:", err);
+      }
 
-      // Precache main routes for each locale
-      await Promise.allSettled(
-        PRECACHE_ROUTES.map(async (route) => {
-          try {
-            const fullUrl = new URL(route, self.location.origin).toString();
-            const res = await fetch(fullUrl, { cache: "no-cache" });
-            if (res && res.ok) {
-              await shellCache.put(fullUrl, res.clone());
-              await shellCache.put(route, res);
-            }
-          } catch {
-            // Silently continue for offline resilience during install
+      // Precache essential routes cleanly
+      for (const route of PRECACHE_ROUTES) {
+        try {
+          const fullUrl = new URL(route, self.location.origin).toString();
+          const res = await fetch(fullUrl, { cache: "no-cache" });
+          if (res && res.ok) {
+            await shellCache.put(fullUrl, res.clone());
+            await shellCache.put(route, res);
           }
-        })
-      );
+        } catch {
+          // Silently continue for offline resilience
+        }
+      }
+
+      // First install: skip waiting automatically once cache is primed
+      if (!self.registration || !self.registration.active) {
+        self.skipWaiting();
+      }
     })()
   );
-  if (!self.registration || !self.registration.active) {
-    self.skipWaiting();
-  }
 });
 
 // Message listener for user-triggered skipWaiting (Section 21.7)

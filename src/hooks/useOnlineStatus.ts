@@ -127,6 +127,7 @@ export function __setOnlineStatusForTesting(status: boolean) {
 }
 
 export function __resetOnlineStatusForTesting() {
+  healthCheckPromise = null;
   isOnline = typeof navigator !== "undefined" ? navigator.onLine : true;
   notify();
 }
